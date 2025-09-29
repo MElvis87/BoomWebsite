@@ -1649,7 +1649,7 @@ preloader
         
         .video-title {
             background: linear-gradient(135deg, #cb1d11 0%, #00000000 100%);
-            color: white;
+            color: rgb(0, 0, 0);
             padding: 1rem;
             margin: 0;
             font-weight: 600;
