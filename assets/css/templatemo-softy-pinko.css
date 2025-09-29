@@ -1621,3 +1621,90 @@ preloader
   opacity: 1;
   bottom: 15px;
 }
+
+/*----------------------------------------------*/
+
+
+/*Video Cards*/
+.portfolio-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .video-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 2rem;
+            height: 100%;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .video-title {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 1rem;
+            margin: 0;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .video-placeholder {
+            background-color: #e9ecef;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-size: 3rem;
+        }
+        
+        .video-description {
+            padding: 1.25rem;
+            color: #495057;
+            line-height: 1.6;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: #343a40;
+            font-weight: 700;
+        }
+        
+        .section-title span {
+            color: #ba0909;
+        }
+        
+        /* Custom responsive behavior */
+        @media (min-width: 768px) {
+            .portfolio-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .portfolio-row {
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                gap: 1.5rem;
+                padding-bottom: 1rem;
+            }
+            
+            .video-card {
+                min-width: 280px;
+                flex: 0 0 auto;
+            }
+        }
+
+        /*Video Cards End*/
