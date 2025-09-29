@@ -1625,7 +1625,7 @@ preloader
 /*----------------------------------------------*/
 
 
-/*Video Cards*/
+/*----------------Video Cards-------------------*/
 .portfolio-container {
             max-width: 1400px;
             margin: 0 auto;
@@ -1648,7 +1648,7 @@ preloader
         }
         
         .video-title {
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            background: linear-gradient(135deg, #cb1d11 0%, #00000000 100%);
             color: white;
             padding: 1rem;
             margin: 0;
@@ -1693,18 +1693,87 @@ preloader
         }
         
         @media (max-width: 767px) {
-            .portfolio-row {
-                display: flex;
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                gap: 1.5rem;
-                padding-bottom: 1rem;
-            }
-            
-            .video-card {
-                min-width: 280px;
-                flex: 0 0 auto;
-            }
+       .portfolio-column {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
         }
+    
+       .video-card {
+        width: 100%;
+        }
+       }
+        
 
-        /*Video Cards End*/
+        /*---------------Video Cards End-------------*/
+
+        /*-------------------Loading Screen------------------------*/
+        /*-------------------------------------------------------------
+ Custom Loading Screen Styles 
+ -------------------------------------------------------------*/
+#custom-loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #781800 0%, #c80202 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+
+.loading-container {
+    text-align: center;
+    color: white;
+}
+
+.loading-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.loading-gif {
+    max-width: 250px;
+    height: auto;
+    border-radius: 10px;
+    
+}
+
+.loading-text {
+    font-size: 18px;
+    font-weight: 500;
+    color: #e0e0e0;
+}
+
+.loading-dots:after {
+    content: '';
+    animation: dots 1.5s steps(4, end) infinite;
+}
+
+@keyframes dots {
+    0%, 20% { content: '.'; }
+    40% { content: '..'; }
+    60%, 100% { content: '...'; }
+}
+
+/* Hide loading screen when not needed */
+#custom-loading-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Ensure your main content is hidden until loaded */
+.main-content {
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+}
+
+.main-content.loaded {
+    opacity: 1;
+}
+        /*-------------------Loading Screen End--------------------*/
