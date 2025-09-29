@@ -1598,7 +1598,7 @@ preloader
   right: 15px;
   bottom: -15px;
   z-index: 99999;
-  background-color: rgb(206, 0, 0);
+  background-color: #0d83fd;;
   width: 44px;
   height: 44px;
   border-radius: 50px;
@@ -1607,13 +1607,13 @@ preloader
 
 .scroll-top i {
   font-size: 24px;
-  color: #6F8BA4;
+  color: #ffffff;
   line-height: 0;
 }
 
 .scroll-top:hover {
-  background-color: rgb(191, 191, 191);
-  color: #6F8BA4;
+  background-color: #ffffff;
+  color:#ffffff;
 }
 
 .scroll-top.active {
@@ -1621,6 +1621,7 @@ preloader
   opacity: 1;
   bottom: 15px;
 }
+
 
 /*----------------------------------------------*/
 
