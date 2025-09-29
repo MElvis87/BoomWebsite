@@ -132,3 +132,66 @@
 
 
 })(window.jQuery);
+
+
+//Page Loading - Wait for the page to fully load
+window.addEventListener('load', function() {
+    const loadingScreen = document.getElementById('custom-loading-screen');
+    const mainContent = document.querySelector('.main-content'); // Adjust selector as needed
+    
+    // Add a small delay for smooth transition (optional)
+    setTimeout(function() {
+        // Hide loading screen
+        loadingScreen.classList.add('hidden');
+        
+        // Show main content
+        if (mainContent) {
+            mainContent.classList.add('loaded');
+        }
+        
+        // Remove loading screen from DOM after animation
+        setTimeout(function() {
+            loadingScreen.style.display = 'none';
+        }, 500);
+    }, 1000); // Adjust timing based on your GIF duration
+});
+
+// Optional: Show loader during AJAX requests
+(function() {
+    // Store original fetch function
+    const originalFetch = window.fetch;
+    
+    // Override fetch to show loader
+    window.fetch = function(...args) {
+        showLoader();
+        return originalFetch.apply(this, args)
+            .then(response => {
+                hideLoader();
+                return response;
+            })
+            .catch(error => {
+                hideLoader();
+                throw error;
+            });
+    };
+    
+    function showLoader() {
+        const loadingScreen = document.getElementById('custom-loading-screen');
+        if (loadingScreen) {
+            loadingScreen.style.display = 'flex';
+            loadingScreen.classList.remove('hidden');
+        }
+    }
+    
+    function hideLoader() {
+        const loadingScreen = document.getElementById('custom-loading-screen');
+        if (loadingScreen) {
+            loadingScreen.classList.add('hidden');
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 500);
+        }
+    }
+})();
+
+//Page Loading End
