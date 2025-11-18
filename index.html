@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PixelMotion | 3D Animation Agency</title>
+    <title>Boom | 3D Animation Agency</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -74,27 +74,17 @@
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
             display: flex;
             align-items: center;
         }
 
-        .logo i {
-            margin-right: 10px;
-            font-size: 2rem;
-            /*display: none;*/
+        .logo-image {
+            height: 40px;
+            width: auto;
+            transition: all 0.3s ease;
         }
 
-            .logo-image {
-        height: 40px; /* Adjust based on your logo */
-        width: auto;
-        transition: all 0.3s ease;
-    }
-
-
-/* NavBar Links */
+        /* NavBar Links */
         .nav-links {
             display: flex;
             list-style: none;
@@ -875,6 +865,40 @@
             z-index: 10;
         }
 
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+        }
+
+        .scroll-to-top.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .scroll-to-top:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+
         /* Responsive Design */
         @media (max-width: 992px) {
             .hero h1 {
@@ -955,6 +979,13 @@
                 max-width: 350px;
                 margin: 20px auto;
             }
+
+            .scroll-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -977,15 +1008,23 @@
                 height: 60px;
                 font-size: 1.5rem;
             }
+
+            .scroll-to-top {
+                bottom: 15px;
+                right: 15px;
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Floating Navbar -->
     <nav class="navbar">
-        <div class="logo-image">
-    <img src="images/blogo.PNG" alt="Your Agency Name" class="logo-image">
-</div>
+        <div class="logo">
+            <img src="images/blogo.PNG" alt="PixelMotion" class="logo-image">
+        </div>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#process">Work Process</a></li>
@@ -1294,6 +1333,11 @@
         </div>
     </footer>
 
+    <!-- Scroll to Top Button -->
+    <div class="scroll-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
     <!-- Quote Modal -->
     <div class="modal" id="quote-modal">
         <div class="modal-content">
@@ -1377,10 +1421,19 @@
         // Navbar scroll effect
         window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
+            const scrollToTopBtn = document.querySelector('.scroll-to-top');
+            
             if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
+            }
+            
+            // Show/hide scroll to top button
+            if (window.scrollY > 300) {
+                scrollToTopBtn.classList.add('active');
+            } else {
+                scrollToTopBtn.classList.remove('active');
             }
         });
 
@@ -1439,6 +1492,15 @@
                     // Close mobile menu if open
                     navLinks.classList.remove('active');
                 }
+            });
+        });
+
+        // Scroll to top functionality
+        const scrollToTopBtn = document.querySelector('.scroll-to-top');
+        scrollToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
         });
 
