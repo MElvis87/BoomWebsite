@@ -454,7 +454,10 @@
             .step {
                 padding: 12px;
                 margin: 15px;
-                width: 50px;
+                min-width: 180px; /* Even smaller minimum */
+                width: 95%; /* Almost full width but with some margin */
+               max-width: 280px; /* Smaller maximum */
+               margin: 8px auto;
             }
             
             .step-number {
