@@ -578,6 +578,35 @@
             box-shadow: var(--shadow);
         }
 
+                /* For actual team images */
+        .responsive-team-image {
+            width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            object-fit: cover; /* This ensures the image fills the container without distortion */
+        }
+
+        /* Adjust height for different screen sizes */
+        @media (max-width: 992px) {
+            .responsive-team-image {
+                max-height: 400px;
+                object-position: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .responsive-team-image {
+                max-height: 350px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .responsive-team-image {
+                max-height: 300px;
+            }
+        }
+
         /* Blog Section */
         .blog {
             background: #f5f7ff;
@@ -1240,8 +1269,8 @@
                 </div>
                 <div class="about-image">
                     <!-- Placeholder for team image -->
-                    <div style="width: 100%; height: 400px; background: var(--primary); border-radius: var(--border-radius); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
-                        Our Creative Team
+                    <div class="about-image">
+                       <img src="images/team.jpg" alt="Boom IS Creative Team" class="responsive-team-image">
                     </div>
                 </div>
             </div>
