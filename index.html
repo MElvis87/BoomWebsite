@@ -1358,46 +1358,76 @@
             }
         }
 
-        /*Get Quote Button*/
+                /*Get Quote Button*/
+                @media (max-width: 768px) {
+            /* Style the Get Quote button specifically */
+            .nav-links li:last-child {
+                margin-top: 20px;
+                padding-top: 20px;
+                border-top: 2px solid rgba(108, 99, 255, 0.1);
+            }
+            
+            .nav-links li:last-child a {
+                background: var(--primary);
+                color: white !important;
+                border-radius: 50px;
+                padding: 15px 30px;
+                margin: 0 20px;
+                text-align: center;
+                font-weight: 600;
+                box-shadow: var(--toon-shadow);
+                transition: all 0.3s ease;
+                display: block;
+                border: none;
+            }
+            
+            .nav-links li:last-child a:hover {
+                background: var(--secondary);
+                transform: translateY(-3px);
+                box-shadow: 0 8px 0 rgba(0, 0, 0, 0.2);
+                color: white !important;
+            }
+            
+            .nav-links li:last-child a:active {
+                transform: translateY(0);
+                box-shadow: 0 3px 0 rgba(0, 0, 0, 0.2);
+            }
+            
+            /* Remove the underline effect for this button */
+            .nav-links li:last-child a:after {
+                display: none;
+            }
+        }
+
+        /*Get Quote Pop-Out Adjustments*/
+                /* Target specifically the quote modal */
+        #quote-modal .modal-content {
+            /* Your styles here */
+        }
+
         @media (max-width: 768px) {
-    /* Style the Get Quote button specifically */
-    .nav-links li:last-child {
-        margin-top: 20px;
-        padding-top: 20px;
-        border-top: 2px solid rgba(108, 99, 255, 0.1);
-    }
-    
-    .nav-links li:last-child a {
-        background: var(--primary);
-        color: white !important;
-        border-radius: 50px;
-        padding: 15px 30px;
-        margin: 0 20px;
-        text-align: center;
-        font-weight: 600;
-        box-shadow: var(--toon-shadow);
-        transition: all 0.3s ease;
-        display: block;
-        border: none;
-    }
-    
-    .nav-links li:last-child a:hover {
-        background: var(--secondary);
-        transform: translateY(-3px);
-        box-shadow: 0 8px 0 rgba(0, 0, 0, 0.2);
-        color: white !important;
-    }
-    
-    .nav-links li:last-child a:active {
-        transform: translateY(0);
-        box-shadow: 0 3px 0 rgba(0, 0, 0, 0.2);
-    }
-    
-    /* Remove the underline effect for this button */
-    .nav-links li:last-child a:after {
-        display: none;
-    }
-}
+            #quote-modal .modal-content {
+                padding: 25px 20px;
+                max-height: 75vh;
+                overflow-y: auto;
+            }
+            
+            #quote-modal .form-group {
+                margin-bottom: 12px;
+            }
+            
+            #quote-modal .form-group input,
+            #quote-modal .form-group textarea,
+            #quote-modal .form-group select {
+                padding: 10px 12px;
+                font-size: 0.9rem;
+            }
+            
+            #quote-modal h2 {
+                font-size: 1.6rem;
+                margin-bottom: 15px;
+            }
+        }/*End of Get Quote Adjustments*/
 
 
         @media (max-width: 768px) {
