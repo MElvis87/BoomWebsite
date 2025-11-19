@@ -534,49 +534,114 @@
         }
 
         /* About Section */
-        .about-content {
-            display: flex;
-            align-items: center;
-            max-width: 100%;
-            margin: 0 auto;
-            gap: 50px;
-        }
+        /* About Section */
+.about-content {
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+    margin: 0 auto;
+    gap: 50px;
+}
 
-        .about-text {
-            flex: 1;
-            transform: translateX(-50px);
-            opacity: 0;
-            transition: all 0.8s ease;
-        }
+.about-text {
+    flex: 1;
+    transform: translateX(-50px);
+    opacity: 0;
+    transition: all 0.8s ease;
+}
 
-        .about-text.visible {
-            transform: translateX(0);
-            opacity: 1;
-        }
+.about-text.visible {
+    transform: translateX(0);
+    opacity: 1;
+}
 
-        .about-text p {
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-        }
+.about-text p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
 
-        .about-image {
-            flex: 1;
-            text-align: center;
-            transform: translateX(50px);
-            opacity: 0;
-            transition: all 0.8s ease;
-        }
+.about-image {
+    flex: 1;
+    text-align: center;
+    transform: translateX(50px);
+    opacity: 0;
+    transition: all 0.8s ease;
+}
 
-        .about-image.visible {
-            transform: translateX(0);
-            opacity: 1;
-        }
+.about-image.visible {
+    transform: translateX(0);
+    opacity: 1;
+}
 
-        .about-image img {
-            max-width: 100%;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-        }
+.about-image img {
+    max-width: 100%;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+/* Team Image Placeholder - Make it responsive */
+.team-image-placeholder {
+    width: 100%;
+    height: 400px;
+    background: var(--primary);
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    box-shadow: var(--shadow);
+}
+
+/* Responsive Design for About Section */
+@media (max-width: 992px) {
+    .about-content {
+        flex-direction: column;
+        gap: 40px;
+    }
+    
+    .about-text, 
+    .about-image {
+        flex: none;
+        width: 100%;
+    }
+    
+    .team-image-placeholder {
+        height: 350px;
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-content {
+        gap: 30px;
+    }
+    
+    .team-image-placeholder {
+        height: 300px;
+        font-size: 1.2rem;
+    }
+    
+    .about-text p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .about-content {
+        gap: 25px;
+    }
+    
+    .team-image-placeholder {
+        height: 250px;
+        font-size: 1.1rem;
+        padding: 20px;
+    }
+    
+    .section-title h2 {
+        font-size: 2rem;
+    }
+}
 
                 /* For actual team images */
         .responsive-team-image {
@@ -606,6 +671,30 @@
                 max-height: 300px;
             }
         }
+
+        @media (max-width: 992px) {
+    .about-content {
+        flex-direction: column;
+    }
+    
+    .about-text, 
+    .about-image {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-image div {
+        height: 300px;
+    }
+}
+
+@media (max-width: 576px) {
+    .about-image div {
+        height: 250px;
+        font-size: 1.1rem;
+    }
+}
 
         /* Blog Section */
         .blog {
@@ -1097,7 +1186,7 @@
     <!-- Floating Navbar -->
     <nav class="navbar">
         <div class="logo">
-            <img src="images/blogo.PNG" alt="PixelMotion" class="logo-image">
+            <img src="images/blogo.PNG" alt="Boom logo" class="logo-image">
         </div>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
@@ -1228,8 +1317,8 @@
             <p>Realistic 3D walkthrough of a luxury residential project.</p>
             <div class="video-tags">
                 <span class="video-tag architecture">Architecture</span>
-                <span class="video-tag">Visualization</span><br>
-                <span class="video-tag">3D Walkthrough</span>
+                <span class="video-tag">Visualization</span>
+                <span class="video-tag">Doodling</span>
             </div>
         </div>
     </div>
@@ -1270,7 +1359,7 @@
                 <div class="about-image">
                     <!-- Placeholder for team image -->
                     <div class="about-image">
-                       <img src="images/team.jpg" alt="Boom IS Creative Team" class="responsive-team-image">
+                       <img src="images/team.jpg" alt="Boom Team Photo" class="responsive-team-image">
                     </div>
                 </div>
             </div>
