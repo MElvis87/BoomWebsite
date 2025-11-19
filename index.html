@@ -1401,8 +1401,25 @@
 
         /*Get Quote Pop-Out Adjustments*/
                 /* Target specifically the quote modal */
-        #quote-modal .modal-content {
-            /* Your styles here */
+                #quote-modal .modal-content {
+            background: white;
+            width: 85%;
+            max-width: 550px;
+            max-height: 80vh;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            overflow-y: auto;
+        }
+
+        /* Desktop quote modal */
+        @media (min-width: 992px) {
+            #quote-modal .modal-content {
+                max-width: 520px;
+                padding: 25px;
+                max-height: 75vh;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1428,6 +1445,8 @@
                 margin-bottom: 15px;
             }
         }/*End of Get Quote Adjustments*/
+
+        
 
 
         @media (max-width: 768px) {
