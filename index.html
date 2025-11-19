@@ -411,24 +411,36 @@
             background: #f5f7ff;
         }
 
-        /* YouTube Video Embed Styles */
-        /* YouTube Embed Styles */
-.youtube-embed {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    border-radius: var(--border-radius);
-}
+        /* Simple Tag System - All same color */
+        .video-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: var(--primary);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
-.youtube-embed iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-}
+                /* YouTube Video Embed Styles */
+        .youtube-embed {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+        }
+
+        .youtube-embed iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
 
         .video-wrapper {
             position: relative;
@@ -1140,58 +1152,78 @@
                 <h2>Our Portfolio</h2>
             </div>
                     <div class="video-grid">
-            <!-- Video 1 -->
-            <div class="video-item">
-                <div class="video-thumbnail">
-                    <div class="youtube-embed">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/caG7YVHMIe8?si=hwN0J8ggcQLdWyC_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                </div>
-                <div class="video-info">
-                    <h3>Animated Product Commercial</h3>
-                    <p>A dynamic 3D animation showcasing a tech product's features.</p>
-                </div>
-            </div>
-            
-            <!-- Video 2 -->
-            <div class="video-item">
-                <div class="video-thumbnail">
-                    <div class="youtube-embed">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/caG7YVHMIe8?si=hwN0J8ggcQLdWyC_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                </div>
-                <div class="video-info">
-                    <h3>Character Animation Series</h3>
-                    <p>Fun and engaging character animations for a children's brand.</p>
-                </div>
-            </div>
-            
-            <!-- Video 3 -->
-            <div class="video-item">
-                <div class="video-thumbnail">
-                    <div class="youtube-embed">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/caG7YVHMIe8?si=hwN0J8ggcQLdWyC_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                </div>
-                <div class="video-info">
-                    <h3>Architectural Visualization</h3>
-                    <p>Realistic 3D walkthrough of a luxury residential project.</p>
-                </div>
-            </div>
-            
-            <!-- Video 4 -->
-            <div class="video-item">
-                <div class="video-thumbnail">
-                    <div class="youtube-embed">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/caG7YVHMIe8?si=hwN0J8ggcQLdWyC_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                </div>
-                <div class="video-info">
-                    <h3>Explainer Video</h3>
-                    <p>Animated explainer video for a financial services company.</p>
-                </div>
+    <!-- Product Commercial -->
+    <div class="video-item">
+        <div class="video-thumbnail">
+            <div class="youtube-embed">
+                <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_1?rel=0&modestbranding=1&showinfo=0" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
+        <div class="video-info">
+            <h3>Animated Product Commercial</h3>
+            <p>A dynamic 3D animation showcasing a tech product's features.</p>
+            <div class="video-tags">
+                <span class="video-tag product">Product</span>
+                <span class="video-tag">Commercial</span>
+                <span class="video-tag">3D Animation</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Character Animation -->
+    <div class="video-item">
+        <div class="video-thumbnail">
+            <div class="youtube-embed">
+                <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_2?rel=0&modestbranding=1&showinfo=0" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="video-info">
+            <h3>Character Animation Series</h3>
+            <p>Fun and engaging character animations for a children's brand.</p>
+            <div class="video-tags">
+                <span class="video-tag character">Character</span>
+                <span class="video-tag">Animation</span>
+                <span class="video-tag">Series</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Architecture -->
+    <div class="video-item">
+        <div class="video-thumbnail">
+            <div class="youtube-embed">
+                <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_3?rel=0&modestbranding=1&showinfo=0" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="video-info">
+            <h3>Architectural Visualization</h3>
+            <p>Realistic 3D walkthrough of a luxury residential project.</p>
+            <div class="video-tags">
+                <span class="video-tag architecture">Architecture</span>
+                <span class="video-tag">Visualization</span>
+                <span class="video-tag">3D Walkthrough</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Explainer Video -->
+    <div class="video-item">
+        <div class="video-thumbnail">
+            <div class="youtube-embed">
+                <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_4?rel=0&modestbranding=1&showinfo=0" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="video-info">
+            <h3>Explainer Video</h3>
+            <p>Animated explainer video for a financial services company.</p>
+            <div class="video-tags">
+                <span class="video-tag explainer">Explainer</span>
+                <span class="video-tag">Animation</span>
+                <span class="video-tag">Business</span>
+            </div>
+        </div>
+    </div>
+</div>
         </div>
     </section>
 
