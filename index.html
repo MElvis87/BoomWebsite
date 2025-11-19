@@ -894,6 +894,47 @@
     }
 }
 
+/* Full-width mobile approach */
+@media (max-width: 768px) {
+    .team-modal {
+        padding: 0; /* No padding at all */
+    }
+    
+    .team-modal-content {
+        width: 100%; /* Full width */
+        max-height: 100vh; /* Full height */
+        border-radius: 0; /* Remove border radius for full screen */
+        padding: 60px 20px 20px 20px; /* Extra top padding for close button */
+        margin: 0;
+    }
+    
+    .close-team-modal {
+        top: 20px;
+        right: 20px;
+        background: rgba(255, 255, 255, 0.9);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--shadow);
+    }
+}
+
+@media (max-width: 576px) {
+    .team-modal-content {
+        padding: 50px 15px 15px 15px;
+    }
+    
+    .close-team-modal {
+        top: 15px;
+        right: 15px;
+        width: 35px;
+        height: 35px;
+    }
+}
+
         /* Blog Section */
         .blog {
             background: #f5f7ff;
