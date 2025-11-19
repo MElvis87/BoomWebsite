@@ -681,259 +681,221 @@
     .about-image {
         width: 100%;
     }
-}
+        }
 
-@media (max-width: 768px) {
-    .about-image div {
-        height: 300px;
-    }
-}
+        @media (max-width: 768px) {
+            .about-image div {
+                height: 300px;
+            }
+        }
 
-@media (max-width: 576px) {
-    .about-image div {
-        height: 250px;
-        font-size: 1.1rem;
-    }
-}
+        @media (max-width: 576px) {
+            .about-image div {
+                height: 250px;
+                font-size: 1.1rem;
+            }
+        }
 
-/* Team Button */
-.team-button {
-    margin-top: 20px;
-    background: var(--accent);
-    transform: translateY(0);
-    opacity: 1;
-    animation: none;
-}
+        /* Team Button */
+        .team-button {
+            margin-top: 20px;
+            background: var(--accent);
+            transform: translateY(0);
+            opacity: 1;
+            animation: none;
+        }
 
-.team-button:hover {
-    background: var(--primary);
-    transform: translateY(-5px);
-}
+        .team-button:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
 
-/* Team Modal */
-.team-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 2000;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
+        /* Team Modal */
+        .team-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
 
-.team-modal.active {
-    display: flex;
-}
+        .team-modal.active {
+            display: flex;
+        }
 
-.team-modal-content {
-    background: white;
-    width: 90%;
-    max-width: 900px;
-    max-height: 90vh;
-    border-radius: var(--border-radius);
-    padding: 40px;
-    position: relative;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-    transform: scale(0.8);
-    opacity: 0;
-    transition: all 0.3s ease;
-    overflow-y: auto;
-}
+        .team-modal-content {
+            background: white;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            transform: scale(0.8);
+            opacity: 0;
+            transition: all 0.3s ease;
+            overflow-y: auto;
+        }
 
-.team-modal.active .team-modal-content {
-    transform: scale(1);
-    opacity: 1;
-}
+        .team-modal.active .team-modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
 
-.close-team-modal {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 2rem;
-    cursor: pointer;
-    color: var(--dark);
-    transition: transform 0.3s ease;
-    z-index: 2001;
-}
+        .close-team-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--dark);
+            transition: transform 0.3s ease;
+            z-index: 2001;
+        }
 
-.close-team-modal:hover {
-    transform: rotate(90deg);
-    color: var(--secondary);
-}
+        .close-team-modal:hover {
+            transform: rotate(90deg);
+            color: var(--secondary);
+        }
 
-.team-modal h2 {
-    text-align: center;
-    margin-bottom: 40px;
-    color: var(--primary);
-    font-size: 2.5rem;
-}
+        .team-modal h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary);
+            font-size: 2.5rem;
+        }
 
-/* Team Members Grid */
-.team-members {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 40px;
-}
+        /* Team Members Grid */
+        .team-members {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
 
-.team-member {
-    display: flex;
-    gap: 30px;
-    align-items: flex-start;
-}
+        .team-member {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
 
-.member-image {
-    flex-shrink: 0;
-    width: 150px;
-}
+        .member-image {
+            flex-shrink: 0;
+            width: 150px;
+        }
 
-.member-placeholder {
-    width: 150px;
-    height: 150px;
-    background: var(--primary);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 3rem;
-    box-shadow: var(--shadow);
-}
+        .member-placeholder {
+            width: 150px;
+            height: 150px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            box-shadow: var(--shadow);
+        }
 
-.member-info {
-    flex: 1;
-}
+        .member-info {
+            flex: 1;
+        }
 
-.member-info h3 {
-    font-size: 1.5rem;
-    margin-bottom: 5px;
-    color: var(--dark);
-}
+        .member-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
 
-.member-role {
-    color: var(--primary);
-    font-weight: 600;
-    margin-bottom: 15px;
-    font-size: 1.1rem;
-}
+        .member-role {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
 
-.member-bio {
-    margin-bottom: 20px;
-    line-height: 1.6;
-}
+        .member-bio {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
 
-.member-skills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
+        .member-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
 
-.skill-tag {
-    display: inline-block;
-    padding: 4px 12px;
-    background: var(--light);
-    color: var(--dark);
-    border-radius: 15px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    border: 1px solid #e0e0e0;
-}
+        .skill-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: var(--light);
+            color: var(--dark);
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid #e0e0e0;
+        }
 
-/* Responsive Design for Team Modal */
-@media (max-width: 768px) {
-    .team-modal-content {
-        padding: 30px 20px;
-    }
-    
-    .team-member {
-        flex-direction: column;
-        text-align: center;
-        gap: 20px;
-    }
-    
-    .member-image {
-        margin: 0 auto;
-    }
-    
-    .member-placeholder {
-        width: 120px;
-        height: 120px;
-        font-size: 2.5rem;
-    }
-    
-    .team-modal h2 {
-        font-size: 2rem;
-        margin-bottom: 30px;
-    }
-}
+        /* Responsive Design for Team Modal */
+        @media (max-width: 768px) {
+            .team-modal-content {
+                padding: 30px 20px;
+            }
+            
+            .team-member {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .member-image {
+                margin: 0 auto;
+            }
+            
+            .member-placeholder {
+                width: 120px;
+                height: 120px;
+                font-size: 2.5rem;
+            }
+            
+            .team-modal h2 {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+        }
 
-@media (max-width: 576px) {
-    .team-modal-content {
-        padding: 25px 15px;
-    }
-    
-    .member-placeholder {
-        width: 100px;
-        height: 100px;
-        font-size: 2rem;
-    }
-    
-    .team-modal h2 {
-        font-size: 1.8rem;
-    }
-    
-    .member-info h3 {
-        font-size: 1.3rem;
-    }
-    
-    .member-role {
-        font-size: 1rem;
-    }
-}
+        @media (max-width: 576px) {
+            .team-modal-content {
+                 width: 90%; /* Almost full width */
+        padding: 20px 15px; /* Even more compact */
+            }
+            
+            .member-placeholder {
+                width: 100px;
+                height: 100px;
+                font-size: 2rem;
+            }
+            
+            .team-modal h2 {
+                font-size: 1.8rem;
+            }
+            
+            .member-info h3 {
+                font-size: 1.3rem;
+            }
+            
+            .member-role {
+                font-size: 1rem;
+            }
+        }
 
-/* Full-width mobile approach */
-@media (max-width: 768px) {
-    .team-modal {
-        padding: 0; /* No padding at all */
-    }
-    
-    .team-modal-content {
-        width: 100%; /* Full width */
-        max-height: 100vh; /* Full height */
-        border-radius: 0; /* Remove border radius for full screen */
-        padding: 60px 20px 20px 20px; /* Extra top padding for close button */
-        margin: 0;
-    }
-    
-    .close-team-modal {
-        top: 20px;
-        right: 20px;
-        background: rgba(255, 255, 255, 0.9);
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: var(--shadow);
-    }
-}
 
-@media (max-width: 576px) {
-    .team-modal-content {
-        padding: 50px 15px 15px 15px;
-    }
-    
-    .close-team-modal {
-        top: 15px;
-        right: 15px;
-        width: 35px;
-        height: 35px;
-    }
-}
 
         /* Blog Section */
         .blog {
