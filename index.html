@@ -1990,17 +1990,18 @@
     </div>
 
     <!-- Quote Modal -->
-    <!-- Quote Modal -->
+<!-- Quote Modal -->
 <div class="modal" id="quote-modal">
     <div class="modal-content">
         <span class="close-modal">&times;</span>
         <h2>Get a Quote</h2>
         <form action="https://formsubmit.co/elvismukuru23@gmail.com" method="POST">
-            <!-- FormSubmit configuration -->
-            <input type="hidden" name="_cc" value="secondemail@domain.com,thirdemail@domain.com">
+            <!-- FormSubmit configuration - UPDATED -->
+            <input type="hidden" name="_cc" value="elvismukuru23@gmail.com,elvismukuru23@gmail.com,elvismukuru23@gmail.com">
             <input type="hidden" name="_subject" value="New Quote Request - Boom Innovation Studio">
             <input type="hidden" name="_template" value="table">
             <input type="hidden" name="_next" value="thankyou.html">
+            <input type="hidden" name="_captcha" value="false">
             
             <!-- Form fields -->
             <div class="form-group">
@@ -2057,12 +2058,6 @@
                 <label for="quote-details">Project Details *</label>
                 <textarea id="quote-details" name="project_details" rows="5" placeholder="Tell us about your project, including objectives, target audience, and any specific requirements..." required></textarea>
             </div>
-            <!-- FormSubmit Captcha -->
-            <input type="hidden" name="_captcha" value="false">
-            <!-- Disable FormSubmit's auto-response -->
-            <input type="hidden" name="_autoresponse" value="Thank you for your quote request! We'll get back to you within 24 hours.">
-              <input type="hidden" name="_formsubmit_id" style="display:none">
-
             
             <button type="submit" class="cta-button">Request Quote</button>
         </form>
