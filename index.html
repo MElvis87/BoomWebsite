@@ -2145,25 +2145,48 @@
         });
 
         // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    navLinks.classList.remove('active');
-                }
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        console.log('Anchor clicked:', this.getAttribute('href'));
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        console.log('Looking for:', targetId);
+        const targetElement = document.querySelector(targetId);
+        console.log('Found element:', targetElement);
+        
+        if (targetElement) {
+            console.log('Scrolling to:', targetElement.offsetTop - 80);
+            window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: 'smooth'
             });
-        });
+            
+            // Close mobile menu if open
+            navLinks.classList.remove('active');
+        } else {
+            console.error('Element not found:', targetId);
+        }
+    });
+});
+// Direct fix for the portfolio button
+const portfolioButton = document.querySelector('a[href="#portfolio"].cta-button');
+if (portfolioButton) {
+    portfolioButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        const portfolioSection = document.getElementById('portfolio');
+        if (portfolioSection) {
+            window.scrollTo({
+                top: portfolioSection.offsetTop - 80,
+                behavior: 'smooth'
+            });
+            // Close mobile menu if open
+            navLinks.classList.remove('active');
+        }
+    });
+}
 
         // Scroll to top functionality
         const scrollToTopBtn = document.querySelector('.scroll-to-top');
