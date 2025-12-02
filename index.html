@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://kit.fontawesome.com/3579b6ac8a.js" crossorigin="anonymous"></script>
     <style>
+        html {
+  scroll-behavior: smooth;
+  }
         :root {
             --primary: #6C63FF;
             --secondary: #FF6584;
@@ -1580,6 +1583,25 @@
                 font-size: 1rem;
             }
         }
+
+        /* Center the team button on mobile/tablet */
+@media (max-width: 992px) {
+    .team-button {
+        display: block !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        text-align: center !important;
+    }
+    
+    /* Optional: Make it full width on very small screens */
+    @media (max-width: 576px) {
+        .team-button {
+            width: 100% !important;
+            max-width: 300px !important;
+        }
+    }
+}
+/*Centering the team button*/
     </style>
 </head>
 <body>
@@ -2000,7 +2022,8 @@
             <input type="hidden" name="_cc" value="elvismukuru23@gmail.com,nanjwanlongji@gmail.com">
             <input type="hidden" name="_subject" value="New Quote Request - Boom Innovation Studio">
             <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_next" value="thankyou.html">
+            <input type="hidden" name="_next" value="https://yourdomain.com/thankyou.html">
+            <input type="hidden" name="_template" value="basic">
             <input type="hidden" name="_captcha" value="false">
             
             <!-- Form fields -->
