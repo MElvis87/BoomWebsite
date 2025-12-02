@@ -1990,50 +1990,82 @@
     </div>
 
     <!-- Quote Modal -->
-    <div class="modal" id="quote-modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Get a Quote</h2>
-            <form>
-                <div class="form-group">
-                    <label for="quote-name">Your Name</label>
-                    <input type="text" id="quote-name" placeholder="Enter your name">
-                </div>
-                <div class="form-group">
-                    <label for="quote-email">Your Email</label>
-                    <input type="email" id="quote-email" placeholder="Enter your email">
-                </div>
-                <div class="form-group">
-                    <label for="quote-project">Project Type</label>
-                    <select id="quote-project" style="width: 100%; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1rem;">
-                        <option value="">Select project type</option>
-                        <option value="character">Character Animation</option>
-                        <option value="product">Product Commercial</option>
-                        <option value="architectural">Architectural Visualization</option>
-                        <option value="explainer">Explainer Video</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="quote-budget">Budget Range</label>
-                    <select id="quote-budget" style="width: 100%; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1rem;">
-                        <option value="">Select budget range</option>
-                        <option value="">Below $500</option>
-                        <option value="">$500- $1,000</option>
-                        <option value="1k-5k">$1,000 - $5,000</option>
-                        <option value="5k-15k">$5,000 - $15,000</option>
-                        <option value="15k-30k">$15,000 - $30,000</option>
-                        <option value="30k+">$30,000+</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="quote-details">Project Details</label>
-                    <textarea id="quote-details" rows="5" placeholder="Tell us about your project"></textarea>
-                </div>
-                <button type="submit" class="cta-button">Request Quote</button>
-            </form>
-        </div>
+    <!-- Quote Modal -->
+<div class="modal" id="quote-modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Get a Quote</h2>
+        <form action="https://formsubmit.co/el/elvismukuru23@gmail.com" method="POST">
+            <!-- FormSubmit configuration -->
+            <input type="hidden" name="_cc" value="secondemail@domain.com,thirdemail@domain.com">
+            <input type="hidden" name="_subject" value="New Quote Request - Boom Innovation Studio">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_next" value="thankyou.html">
+            
+            <!-- Form fields -->
+            <div class="form-group">
+                <label for="quote-name">Your Name *</label>
+                <input type="text" id="quote-name" name="name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label for="quote-email">Your Email *</label>
+                <input type="email" id="quote-email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="quote-phone">Phone Number</label>
+                <input type="tel" id="quote-phone" name="phone" placeholder="Enter your phone number">
+            </div>
+            <div class="form-group">
+                <label for="quote-company">Company Name</label>
+                <input type="text" id="quote-company" name="company" placeholder="Enter your company name">
+            </div>
+            <div class="form-group">
+                <label for="quote-project">Project Type *</label>
+                <select id="quote-project" name="project_type" required style="width: 100%; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1rem;">
+                    <option value="">Select project type</option>
+                    <option value="character">Character Animation</option>
+                    <option value="product">Product Commercial</option>
+                    <option value="architectural">Architectural Visualization</option>
+                    <option value="explainer">Explainer Video</option>
+                    <option value="motion-graphics">Motion Graphics</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="quote-budget">Budget Range *</label>
+                <select id="quote-budget" name="budget_range" required style="width: 100%; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1rem;">
+                    <option value="">Select budget range</option>
+                    <option value="below-500">Below $500</option>
+                    <option value="500-1000">$500 - $1,000</option>
+                    <option value="1k-5k">$1,000 - $5,000</option>
+                    <option value="5k-15k">$5,000 - $15,000</option>
+                    <option value="15k-30k">$15,000 - $30,000</option>
+                    <option value="30k+">$30,000+</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="quote-timeline">Project Timeline</label>
+                <select id="quote-timeline" name="timeline" style="width: 100%; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 1rem;">
+                    <option value="">Select timeline</option>
+                    <option value="urgent">Urgent (1-2 weeks)</option>
+                    <option value="standard">Standard (3-4 weeks)</option>
+                    <option value="flexible">Flexible (1-2 months)</option>
+                    <option value="long-term">Long-term (3+ months)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="quote-details">Project Details *</label>
+                <textarea id="quote-details" name="project_details" rows="5" placeholder="Tell us about your project, including objectives, target audience, and any specific requirements..." required></textarea>
+            </div>
+            <!-- FormSubmit Captcha -->
+            <input type="hidden" name="_captcha" value="false">
+            <!-- Disable FormSubmit's auto-response -->
+            <input type="hidden" name="_autoresponse" value="Thank you for your quote request! We'll get back to you within 24 hours.">
+            
+            <button type="submit" class="cta-button">Request Quote</button>
+        </form>
     </div>
+</div>
 
     <script>
         // Navbar scroll effect
