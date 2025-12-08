@@ -1141,6 +1141,115 @@
             color: #777;
         }
 
+        /* BLOG CARDS – Read Button */
+.blog-read-btn {
+    margin-top: 20px;
+    padding: 12px 32px;
+    font-size: 1rem;
+}
+
+/* BLOG POPUP MODAL – Matches your quote modal style */
+.blog-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(42, 45, 67, 0.94);
+    backdrop-filter: blur(12px);
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    z-index: 3000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+}
+
+.blog-modal.active {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+}
+
+.blog-modal .modal-wrapper {
+    position: relative;
+    max-width: 800px;
+    width: 100%;
+}
+
+.blog-modal .blog-close {
+    position: absolute;
+    top: 0;
+    right: -80px;
+    width: 56px;
+    height: 56px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    z-index: 5000;
+}
+
+.blog-modal .blog-close:hover {
+    background: var(--secondary);
+    color: white;
+    transform: scale(1.1) rotate(90deg);
+}
+
+@media (max-width: 992px) {
+    .blog-modal .blog-close {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 9999;
+    }
+}
+
+.blog-article {
+    background: white;
+    border-radius: var(--border-radius);
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+    animation: modalPop 0.45s ease-out;
+}
+
+.blog-article-header {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    padding: 60px 50px 40px;
+    text-align: center;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.blog-article-header h2 {
+    font-size: 2.4rem;
+    margin-bottom: 12px;
+    text-shadow: var(--toon-shadow);
+}
+
+.blog-article-meta {
+    font-size: 1.1rem;
+    opacity: 0.95;
+}
+
+.blog-article-content {
+    padding: 50px;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    color: #444;
+}
+
+.blog-article-content p {
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .blog-article-header { padding: 70px 30px 40px; }
+    .blog-article-header h2 { font-size: 2rem; }
+    .blog-article-content { padding: 40px 30px; font-size: 1.05rem; }
+}
+
         /* Contact Section */
         .contact-content {
             display: flex;
@@ -2051,54 +2160,87 @@
 </div>
 
     <!-- Blog Section -->
-    <section class="blog" id="blog">
-        <div class="container">
-            <div class="section-title">
-                <h2>Latest From Our Blog</h2>
+    <!-- Blog Section -->
+<section class="blog" id="blog">
+    <div class="container">
+        <div class="section-title">
+            <h2>Latest From Our Blog</h2>
+        </div>
+
+        <div class="blog-grid">
+            <!-- Blog Card 1 -->
+            <div class="blog-card" data-blog="1">
+                <div class="blog-image">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <div class="blog-content">
+                    <h3>The Future of 3D Animation in Advertising</h3>
+                    <p>Exploring how emerging technologies are shaping the future of animated advertising and brand storytelling.</p>
+                    <div class="blog-meta">
+                        <span>June 15, 2025</span>
+                        <span>5 min read</span>
+                    </div>
+                    <button class="cta-button blog-read-btn">Read Article</button>
+                </div>
             </div>
-            <div class="blog-grid">
-                <div class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-paint-brush"></i>
-                    </div>
-                    <div class="blog-content">
-                        <h3>The Future of 3D Animation in Advertising</h3>
-                        <p>Exploring how emerging technologies are shaping the future of animated advertising.</p>
-                        <div class="blog-meta">
-                            <span>June 15, 2025</span>
-                            <span>5 min read</span>
-                        </div>
-                    </div>
+
+            <!-- Blog Card 2 -->
+            <div class="blog-card" data-blog="2">
+                <div class="blog-image">
+                    <i class="fas fa-vr-cardboard"></i>
                 </div>
-                <div class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-vr-cardboard"></i>
+                <div class="blog-content">
+                    <h3>VR and AR: The Next Frontier for Animators</h3>
+                    <p>How virtual and augmented reality are creating revolutionary opportunities for 3D artists.</p>
+                    <div class="blog-meta">
+                        <span>May 28, 2025</span>
+                        <span>7 min read</span>
                     </div>
-                    <div class="blog-content">
-                        <h3>VR and AR: The Next Frontier for Animators</h3>
-                        <p>How virtual and augmented reality are creating new opportunities for animators.</p>
-                        <div class="blog-meta">
-                            <span>May 28, 2025</span>
-                            <span>7 min read</span>
-                        </div>
-                    </div>
+                    <button class="cta-button blog-read-btn">Read Article</button>
                 </div>
-                <div class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-lightbulb"></i>
+            </div>
+
+            <!-- Blog Card 3 -->
+            <div class="blog-card" data-blog="3">
+                <div class="blog-image">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <div class="blog-content">
+                    <h3>5 Tips for Creating Memorable Animated Characters</h3>
+                    <p>Expert advice on designing characters that audiences will love and remember for years.</p>
+                    <div class="blog-meta">
+                        <span>April 12, 2025</span>
+                        <span>4 min read</span>
                     </div>
-                    <div class="blog-content">
-                        <h3>5 Tips for Creating Memorable Animated Characters</h3>
-                        <p>Expert advice on designing characters that audiences will love and remember.</p>
-                        <div class="blog-meta">
-                            <span>April 12, 2025</span>
-                            <span>4 min read</span>
-                        </div>
-                    </div>
+                    <button class="cta-button blog-read-btn">Read Article</button>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+<!-- BLOG POPUP MODAL -->
+<div class="modal blog-modal" id="blog-modal">
+    <div class="modal-wrapper">
+        <button class="close-modal blog-close" aria-label="Close article">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <path d="M6 6L22 22M22 6L6 22" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+            </svg>
+        </button>
+
+        <article class="blog-article">
+            <div class="blog-article-header">
+                <h2 id="blog-title">Title loads here</h2>
+                <div class="blog-article-meta">
+                    <span id="blog-date">Date</span> • <span id="blog-readtime">Read time</span>
+                </div>
+            </div>
+            <div class="blog-article-content" id="blog-content">
+                <!-- Content injected via JS -->
+            </div>
+        </article>
+    </div>
+</div>
 
     <!-- Contact Section -->
     <section id="contact">
@@ -2575,6 +2717,99 @@ document.querySelectorAll('.cta-button').forEach(button => {
             }, 300);
         }
     });
+
+
+    // BLOG POPUP SYSTEM
+const blogModal = document.getElementById('blog-modal');
+const blogClose = document.querySelector('.blog-close');
+const blogTitle = document.getElementById('blog-title');
+const blogDate = document.getElementById('blog-date');
+const blogReadTime = document.getElementById('blog-readtime');
+const blogContent = document.getElementById('blog-content');
+
+// Blog content database
+const blogPosts = {
+    1: {
+        title: "The Future of 3D Animation in Advertising",
+        date: "June 15, 2025",
+        readtime: "5 min read",
+        content: `
+            <p>3D animation is no longer just for blockbuster movies — it's revolutionizing how brands tell their stories...</p>
+            <p>With tools like Blender, Unreal Engine becoming more accessible, even small studios can now create cinematic-quality commercials that rival Hollywood productions.</p>
+            <h3>Key Trends We're Watching:</h3>
+            <ul>
+                <li>Real-time rendering in advertising campaigns</li>
+                <li>AI-assisted animation workflows</li>
+                <li>Hyper-realistic product visualizations</li>
+                <li>Interactive 3D ads on social media</li>
+            </ul>
+            <p>At Boom Innovation Studio, we're already helping brands stay ahead of these trends with cutting-edge animated content that drives real results.</p>
+        `
+    },
+    2: {
+        title: "VR and AR: The Next Frontier for Animators",
+        date: "May 28, 2025",
+        readtime: "7 min read",
+        content: `
+            <p>Virtual and Augmented Reality are opening entirely new canvases for 3D animators...</p>
+            <p>Instead of flat screens, we're now creating immersive worlds where users can walk around characters, interact with products, and experience brands like never before.</p>
+            <p>Early adopters in real estate, education, and e-commerce are already seeing massive engagement increases with VR/AR experiences.</p>
+            <p>The future isn't coming — it's already here.</p>
+        `
+    },
+    3: {
+        title: "5 Tips for Creating Memorable Animated Characters",
+        date: "April 12, 2025",
+        readtime: "4 min read",
+        content: `
+            <p>Great animated characters don't just look good — they feel alive...</p>
+            <ol>
+                <li><strong>Give them a strong silhouette</strong> — recognizable even in shadow</li>
+                <li><strong>Exaggerate key features</strong> for instant personality</li>
+                <li><strong>Use asymmetry</strong> — perfect symmetry feels robotic</li>
+                <li><strong>Design with emotion in mind</strong> from day one</li>
+                <li><strong>Test in motion early</strong> — still images lie!</li>
+            </ol>
+            <p>Want characters that audiences fall in love with? Let's talk.</p>
+        `
+    }
+};
+
+// Open blog popup
+document.querySelectorAll('.blog-card').forEach(card => {
+    card.addEventListener('click', function(e) {
+        if (!e.target.closest('.blog-read-btn')) return;
+        
+        const blogId = this.getAttribute('data-blog');
+        const post = blogPosts[blogId];
+
+        blogTitle.textContent = post.title;
+        blogDate.textContent = post.date;
+        blogReadTime.textContent = post.readtime;
+        blogContent.innerHTML = post.content;
+
+        blogModal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // prevent background scroll
+    });
+});
+
+// Close blog popup
+function closeBlogModal() {
+    blogModal.classList.remove('active');
+    setTimeout(() => {
+        document.body.style.overflow = '';
+    }, 400);
+}
+
+blogClose.addEventListener('click', closeBlogModal);
+blogModal.addEventListener('click', e => {
+    if (e.target === blogModal) closeBlogModal();
+});
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && blogModal.classList.contains('active')) {
+        closeBlogModal();
+    }
+});
 </script>
 </body>
 </html>
