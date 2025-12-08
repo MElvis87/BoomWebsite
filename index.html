@@ -2380,6 +2380,38 @@ document.addEventListener('keydown', function(e) {
         }, 300);
     }
 });
+
+// DIRECT FIX FOR HERO BUTTON - Add this at the end of your script
+const heroButton = document.querySelector('.hero .cta-button');
+if (heroButton) {
+    console.log('Found hero button, attaching click handler');
+    heroButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        console.log('Hero button clicked');
+        
+        const portfolioSection = document.getElementById('portfolio');
+        if (portfolioSection) {
+            const navbar = document.querySelector('.navbar');
+            const navbarHeight = navbar ? navbar.offsetHeight : 80;
+            const targetPosition = portfolioSection.offsetTop - navbarHeight - 20;
+            
+            console.log('Scrolling to portfolio, position:', targetPosition);
+            
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+            
+            // Close mobile menu if open
+            const navLinks = document.querySelector('.nav-links');
+            if (navLinks) {
+                navLinks.classList.remove('active');
+            }
+        }
+    });
+} else {
+    console.log('Hero button not found');
+}
     </script>
 </body>
 </html>
