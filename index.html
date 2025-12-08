@@ -345,6 +345,17 @@ body.night-mode .video-item:hover {
             height: 40px;
             width: auto;
             transition: all 0.3s ease;
+            /* Add opacity for smoother transitions */
+            opacity: 1;
+        }
+
+        /* Logo switching - default state */
+        .logo-light {
+            display: block;
+        }
+
+        .logo-dark {
+            display: none;
         }
 
         /* NavBar Links */
@@ -444,6 +455,15 @@ body.night-mode .video-item:hover {
 
 body.night-mode .hero {
     background-image: url('images/herobg-night.jpg'); /* Night image */
+}
+
+/* Night mode logo switching */
+body.night-mode .logo-light {
+    display: none;
+}
+
+body.night-mode .logo-dark {
+    display: block;
 }
 
         .hero-content {
@@ -2227,8 +2247,12 @@ body.night-mode .hero {
 <body>
     <nav class="navbar">
     <div class="logo">
-        <img src="images/blogo.PNG" alt="Boom logo" class="logo-image">
-    </div>
+    <!-- Light mode logo (shown by default) -->
+    <img src="images/blogo.PNG" alt="Boom logo" class="logo-image logo-light">
+    
+    <!-- Dark mode logo (hidden by default) -->
+    <img src="images/blogo-dark.PNG" alt="Boom logo" class="logo-image logo-dark">
+</div>
     <ul class="nav-links">
         <li><a href="#home">Home</a></li>
         <li><a href="#process">Work Process</a></li>
