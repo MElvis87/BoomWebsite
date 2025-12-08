@@ -1703,8 +1703,12 @@
         right: 20px;
         width: 52px;
         height: 52px;
+        z-index: 9999 !important;   /* forces it above everything */
+        background: white;         /* ensures no transparency issues */
+        box-shadow: 0 8px 25px rgba(0,0,0,0.3);
     }
 }
+
 
 /* Modal Card */
 .modal-card {
@@ -1801,6 +1805,9 @@
     .quote-form { padding: 32px 24px; }
     .form-grid { gap: 22px; }
 }
+/*End of new Get-Quote Form Design*/
+
+
     </style>
 </head>
 <body>
@@ -2295,7 +2302,9 @@
                     </div>
                 </div>
 
-                <button type="submit" class="cta-button modal-submit">Send Request</button>
+                <button type="submit" class="cta-button modal-submit" style="margin: 20px auto 0; display: block;">
+    Send Request
+</button>
             </form>
         </div>
     </div>
