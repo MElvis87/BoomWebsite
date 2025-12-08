@@ -344,6 +344,36 @@
             }
         }
 
+
+        /* Make the hero CTA button behave exactly like the others */
+.hero-cta {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Ripple effect that works on ALL .cta-button elements */
+.cta-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
         /* Section Styling */
         section {
             padding: 100px 0;
@@ -1636,7 +1666,11 @@
             <div class="hero-content">
                 <h1>Bringing Ideas to Life with 3D Animation</h1>
                 <p>We create captivating 3D animations that tell your brand's story and engage your audience like never before.</p>
-                <a href="#portfolio" class="cta-button">View Our Work</a>
+                <!-- Hero Section CTA Button -->
+<a href="#portfolio" class="cta-button hero-cta">
+    View Our Work
+    <span class="ripple"></span>
+</a>
             </div>
         </div>
     </section>
@@ -2087,331 +2121,254 @@
     </div>
 </div>
 
-    <script>
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            const scrollToTopBtn = document.querySelector('.scroll-to-top');
-            
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-            
-            // Show/hide scroll to top button
-            if (window.scrollY > 300) {
-                scrollToTopBtn.classList.add('active');
-            } else {
-                scrollToTopBtn.classList.remove('active');
-            }
-        });
+     <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar');
+        const scrollToTopBtn = document.querySelector('.scroll-to-top');
+        
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+        
+        // Show/hide scroll to top button
+        if (window.scrollY > 300) {
+            scrollToTopBtn.classList.add('active');
+        } else {
+            scrollToTopBtn.classList.remove('active');
+        }
+    });
 
-        // Mobile menu toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        
-        mobileMenuBtn.addEventListener('click', function() {
-            navLinks.classList.toggle('active');
-        });
+    // Mobile menu toggle
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    
+    mobileMenuBtn.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+    });
 
-        // Quote modal functionality
-        const quoteBtn = document.getElementById('quote-btn');
-        const quoteModal = document.getElementById('quote-modal');
-        const closeModal = document.querySelector('.close-modal');
-        
-        quoteBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            quoteModal.style.display = 'flex';
-            setTimeout(() => {
-                quoteModal.classList.add('active');
-            }, 10);
-        });
-        
-        closeModal.addEventListener('click', function() {
+    // Quote modal functionality
+    const quoteBtn = document.getElementById('quote-btn');
+    const quoteModal = document.getElementById('quote-modal');
+    const closeModal = document.querySelector('.close-modal');
+    
+    quoteBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        quoteModal.style.display = 'flex';
+        setTimeout(() => {
+            quoteModal.classList.add('active');
+        }, 10);
+    });
+    
+    closeModal.addEventListener('click', function() {
+        quoteModal.classList.remove('active');
+        setTimeout(() => {
+            quoteModal.style.display = 'none';
+        }, 300);
+    });
+    
+    window.addEventListener('click', function(e) {
+        if (e.target === quoteModal) {
             quoteModal.classList.remove('active');
             setTimeout(() => {
                 quoteModal.style.display = 'none';
             }, 300);
-        });
-        
-        window.addEventListener('click', function(e) {
-            if (e.target === quoteModal) {
-                quoteModal.classList.remove('active');
-                setTimeout(() => {
-                    quoteModal.style.display = 'none';
-                }, 300);
-            }
-        });
-
-        // Smooth scrolling for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        console.log('Anchor clicked:', this.getAttribute('href'));
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        console.log('Looking for:', targetId);
-        const targetElement = document.querySelector(targetId);
-        console.log('Found element:', targetElement);
-        
-        if (targetElement) {
-            console.log('Scrolling to:', targetElement.offsetTop - 80);
-            window.scrollTo({
-                top: targetElement.offsetTop - 80,
-                behavior: 'smooth'
-            });
-            
-            // Close mobile menu if open
-            navLinks.classList.remove('active');
-        } else {
-            console.error('Element not found:', targetId);
         }
     });
-});
-// Direct fix for the portfolio button
-const portfolioButton = document.querySelector('a[href="#portfolio"].cta-button');
-if (portfolioButton) {
-    portfolioButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        const portfolioSection = document.getElementById('portfolio');
-        if (portfolioSection) {
-            window.scrollTo({
-                top: portfolioSection.offsetTop - 80,
-                behavior: 'smooth'
-            });
-            // Close mobile menu if open
-            navLinks.classList.remove('active');
-        }
+
+    // Scroll to top functionality
+    const scrollToTopBtn = document.querySelector('.scroll-to-top');
+    scrollToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     });
-}
 
-        // Scroll to top functionality
-        const scrollToTopBtn = document.querySelector('.scroll-to-top');
-        scrollToTopBtn.addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // Scroll-driven animations
-        function isElementInViewport(el) {
-            const rect = el.getBoundingClientRect();
-            return (
-                rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 &&
-                rect.bottom >= 0
-            );
-        }
-
-        function handleScrollAnimation() {
-            const steps = document.querySelectorAll('.step');
-            const videoItems = document.querySelectorAll('.video-item');
-            const blogCards = document.querySelectorAll('.blog-card');
-            const aboutText = document.querySelector('.about-text');
-            const aboutImage = document.querySelector('.about-image');
-            const contactInfo = document.querySelector('.contact-info');
-            const contactForm = document.querySelector('.contact-form');
-
-            steps.forEach(step => {
-                if (isElementInViewport(step)) {
-                    step.classList.add('visible');
-                }
-            });
-
-            videoItems.forEach(item => {
-                if (isElementInViewport(item)) {
-                    item.classList.add('visible');
-                }
-            });
-
-            blogCards.forEach(card => {
-                if (isElementInViewport(card)) {
-                    card.classList.add('visible');
-                }
-            });
-
-            if (aboutText && isElementInViewport(aboutText)) {
-                aboutText.classList.add('visible');
-            }
-
-            if (aboutImage && isElementInViewport(aboutImage)) {
-                aboutImage.classList.add('visible');
-            }
-
-            if (contactInfo && isElementInViewport(contactInfo)) {
-                contactInfo.classList.add('visible');
-            }
-
-            if (contactForm && isElementInViewport(contactForm)) {
-                contactForm.classList.add('visible');
-            }
-        }
-
-        // Initial check on page load
-        window.addEventListener('load', handleScrollAnimation);
-        // Check on scroll
-        window.addEventListener('scroll', handleScrollAnimation);
-
-        // Physics-based click animations
-        document.addEventListener('click', function(e) {
-            createRipple(e);
-            //createPhysicsElement(e);
-        });
-
-        function createRipple(e) {
-            const button = e.target.closest('.cta-button');
-            if (!button) return;
-
-            const ripple = document.createElement('span');
-            const rect = button.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            const x = e.clientX - rect.left - size / 2;
-            const y = e.clientY - rect.top - size / 2;
-
-            ripple.style.width = ripple.style.height = size + 'px';
-            ripple.style.left = x + 'px';
-            ripple.style.top = y + 'px';
-            ripple.classList.add('ripple');
-
-            button.appendChild(ripple);
-
-            setTimeout(() => {
-                ripple.remove();
-            }, 600);
-        }
-
-        function createPhysicsElement(e) {
-            const element = document.createElement('div');
-            element.classList.add('physics-element');
-            document.body.appendChild(element);
-
-            const x = e.clientX;
-            const y = e.clientY;
-            
-            element.style.left = x + 'px';
-            element.style.top = y + 'px';
-
-            // Random velocity for physics effect
-            const velocityX = (Math.random() - 0.5) * 20;
-            const velocityY = (Math.random() - 0.5) * 20 - 10; // More upward
-            const rotation = (Math.random() - 0.5) * 360;
-            
-            let posX = x;
-            let posY = y;
-            let gravity = 0.5;
-            let bounce = 0.7;
-            let friction = 0.99;
-            
-            function animate() {
-                velocityY += gravity;
-                posX += velocityX;
-                posY += velocityY;
+    // SIMPLE SMOOTH SCROLLING FOR ALL LINKS (FIXED VERSION)
+    document.addEventListener('DOMContentLoaded', function() {
+        // Handle all anchor links including hero button
+        const allLinks = document.querySelectorAll('a[href^="#"]');
+        
+        allLinks.forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
                 
-                // Bounce off walls
-                if (posX + 30 > window.innerWidth || posX < 0) {
-                    velocityX *= -bounce;
-                    posX = posX < 0 ? 0 : window.innerWidth - 30;
-                }
+                // Skip if it's just "#" (like the quote button)
+                if (href === '#') return;
                 
-                // Bounce off bottom
-                if (posY + 30 > window.innerHeight) {
-                    velocityY *= -bounce;
-                    posY = window.innerHeight - 30;
+                e.preventDefault();
+                
+                const targetSection = document.querySelector(href);
+                
+                if (targetSection) {
+                    // Calculate position with navbar offset
+                    const navbar = document.querySelector('.navbar');
+                    const navbarHeight = navbar ? navbar.offsetHeight : 100;
+                    const targetPosition = targetSection.offsetTop - navbarHeight;
                     
-                    // Stop animation when velocity is very small
-                    if (Math.abs(velocityY) < 1) {
-                        element.remove();
-                        return;
+                    // Smooth scroll
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const navLinks = document.querySelector('.nav-links');
+                    if (navLinks && navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
                     }
                 }
-                
-                // Apply friction
-                velocityX *= friction;
-                velocityY *= friction;
-                
-                element.style.left = posX + 'px';
-                element.style.top = posY + 'px';
-                element.style.transform = `rotate(${rotation}deg)`;
-                
-                requestAnimationFrame(animate);
+            });
+        });
+    });
+
+    // Scroll-driven animations
+    function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return (
+            rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 &&
+            rect.bottom >= 0
+        );
+    }
+
+    function handleScrollAnimation() {
+        const steps = document.querySelectorAll('.step');
+        const videoItems = document.querySelectorAll('.video-item');
+        const blogCards = document.querySelectorAll('.blog-card');
+        const aboutText = document.querySelector('.about-text');
+        const aboutImage = document.querySelector('.about-image');
+        const contactInfo = document.querySelector('.contact-info');
+        const contactForm = document.querySelector('.contact-form');
+
+        steps.forEach(step => {
+            if (isElementInViewport(step)) {
+                step.classList.add('visible');
             }
-            
-            animate();
+        });
+
+        videoItems.forEach(item => {
+            if (isElementInViewport(item)) {
+                item.classList.add('visible');
+            }
+        });
+
+        blogCards.forEach(card => {
+            if (isElementInViewport(card)) {
+                card.classList.add('visible');
+            }
+        });
+
+        if (aboutText && isElementInViewport(aboutText)) {
+            aboutText.classList.add('visible');
         }
 
-        // Team Modal Functionality
-const teamModalBtn = document.getElementById('team-modal-btn');
-const teamModal = document.getElementById('team-modal');
-const closeTeamModal = document.querySelector('.close-team-modal');
+        if (aboutImage && isElementInViewport(aboutImage)) {
+            aboutImage.classList.add('visible');
+        }
 
-teamModalBtn.addEventListener('click', function() {
-    teamModal.style.display = 'flex';
-    setTimeout(() => {
-        teamModal.classList.add('active');
-    }, 10);
+        if (contactInfo && isElementInViewport(contactInfo)) {
+            contactInfo.classList.add('visible');
+        }
+
+        if (contactForm && isElementInViewport(contactForm)) {
+            contactForm.classList.add('visible');
+        }
+    }
+
+    // Initial check on page load
+    window.addEventListener('load', handleScrollAnimation);
+    // Check on scroll
+    window.addEventListener('scroll', handleScrollAnimation);
+
+    // Ripple effect for buttons
+    document.addEventListener('click', function(e) {
+        const button = e.target.closest('.cta-button');
+        if (!button) return;
+
+        const ripple = document.createElement('span');
+        const rect = button.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        ripple.classList.add('ripple');
+
+        button.appendChild(ripple);
+
+        setTimeout(() => {
+            ripple.remove();
+        }, 600);
+    });
+
+    // Ripple effect for ALL .cta-button (including the hero one)
+document.querySelectorAll('.cta-button').forEach(button => {
+    button.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        ripple.classList.add('ripple');
+
+        // Remove old ripples
+        const oldRipple = this.querySelector('.ripple');
+        if (oldRipple) oldRipple.remove();
+
+        this.appendChild(ripple);
+
+        // Clean up
+        setTimeout(() => ripple.remove(), 600);
+    });
 });
 
-closeTeamModal.addEventListener('click', function() {
-    teamModal.classList.remove('active');
-    setTimeout(() => {
-        teamModal.style.display = 'none';
-    }, 300);
-});
+    // Team Modal Functionality
+    const teamModalBtn = document.getElementById('team-modal-btn');
+    const teamModal = document.getElementById('team-modal');
+    const closeTeamModal = document.querySelector('.close-team-modal');
 
-// Close modal when clicking outside
-teamModal.addEventListener('click', function(e) {
-    if (e.target === teamModal) {
+    teamModalBtn.addEventListener('click', function() {
+        teamModal.style.display = 'flex';
+        setTimeout(() => {
+            teamModal.classList.add('active');
+        }, 10);
+    });
+
+    closeTeamModal.addEventListener('click', function() {
         teamModal.classList.remove('active');
         setTimeout(() => {
             teamModal.style.display = 'none';
         }, 300);
-    }
-});
+    });
 
-// Close modal with Escape key
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && teamModal.classList.contains('active')) {
-        teamModal.classList.remove('active');
-        setTimeout(() => {
-            teamModal.style.display = 'none';
-        }, 300);
-    }
-});
-
-// DIRECT FIX FOR HERO BUTTON - Add this at the end of your script
-const heroButton = document.querySelector('.hero .cta-button');
-if (heroButton) {
-    console.log('Found hero button, attaching click handler');
-    heroButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        console.log('Hero button clicked');
-        
-        const portfolioSection = document.getElementById('portfolio');
-        if (portfolioSection) {
-            const navbar = document.querySelector('.navbar');
-            const navbarHeight = navbar ? navbar.offsetHeight : 80;
-            const targetPosition = portfolioSection.offsetTop - navbarHeight - 20;
-            
-            console.log('Scrolling to portfolio, position:', targetPosition);
-            
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-            
-            // Close mobile menu if open
-            const navLinks = document.querySelector('.nav-links');
-            if (navLinks) {
-                navLinks.classList.remove('active');
-            }
+    // Close modal when clicking outside
+    teamModal.addEventListener('click', function(e) {
+        if (e.target === teamModal) {
+            teamModal.classList.remove('active');
+            setTimeout(() => {
+                teamModal.style.display = 'none';
+            }, 300);
         }
     });
-} else {
-    console.log('Hero button not found');
-}
-    </script>
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && teamModal.classList.contains('active')) {
+            teamModal.classList.remove('active');
+            setTimeout(() => {
+                teamModal.style.display = 'none';
+            }, 300);
+        }
+    });
+</script>
 </body>
 </html>
