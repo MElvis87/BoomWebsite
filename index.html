@@ -241,10 +241,6 @@ body.night-mode .blog-image i {
     display: block !important;
 }
 
-/* Optional hover enhancement */
-body.night-mode .blog-card:hover .blog-image i {
-    color: var(--accent) !important;
-}
 
 /* Night mode contact form styling */
 body.night-mode .contact-form {
@@ -1380,21 +1376,36 @@ body.night-mode .logo-dark {
                 padding: 30px 20px;
             }
             
-            .team-member {
-                flex-direction: column;
-                text-align: center;
-                gap: 20px;
-            }
+ .team-member {
+        flex-direction: column;
+        align-items: center; /* Center all content */
+        text-align: center;
+        gap: 25px;
+    }
             
-            .member-image {
-                margin: 0 auto;
-            }
-            
-            .member-placeholder {
-                width: 120px;
-                height: 120px;
-                font-size: 2.5rem;
-            }
+             .member-image {
+        margin: 0 auto;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-shrink: 1; /* Allow shrinking */
+    }
+    
+    .member-placeholder {
+        width: 140px;
+        height: 140px;
+        font-size: 3rem;
+        margin: 0 auto; /* Ensure centering */
+    }
+}
+
+/* For very small screens */
+@media (max-width: 576px) {
+    .member-placeholder {
+        width: 120px;
+        height: 120px;
+        font-size: 2.5rem;
+    }
             
             .team-modal h2 {
                 font-size: 2rem;
@@ -1427,6 +1438,44 @@ body.night-mode .logo-dark {
             }
         }
 
+
+/* Custom team member photo styling */
+.member-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid white;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+/* Night mode styling */
+body.night-mode .member-photo {
+    border: 4px solid #2A2D43;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Hover effect */
+.member-photo:hover {
+    transform: scale(1.05);
+    border-color: var(--primary);
+}
+
+/* Responsive sizing */
+@media (max-width: 768px) {
+    .member-photo {
+        width: 140px;
+        height: 140px;
+    }
+}
+
+@media (max-width: 576px) {
+    .member-photo {
+        width: 120px;
+        height: 120px;
+    }
+}
 
 
         /* Blog Section */
@@ -2594,7 +2643,7 @@ body.night-mode .logo-dark {
         </div>
     </section>
 
-    <!-- About Section -->
+
     <!-- About Section -->
 <section id="about">
     <div class="container">
@@ -2628,13 +2677,15 @@ body.night-mode .logo-dark {
         <div class="team-members">
             <!-- Team Member 1 -->
             <div class="team-member">
-                <div class="member-image">
-                    <div class="member-placeholder">
-                        <i class="fas fa-user"></i>
-                    </div>
-                </div>
-                <div class="member-info">
-                    <h3>Elvis Mukuru</h3>
+    <div class="member-image">
+        <!-- Replace placeholder with actual image -->
+        <img src="images/team.jpg" alt="Elvis Mukuru" class="member-photo">
+        <!-- <div class="member-placeholder"> OLD CODE
+            <i class="fas fa-user"></i>
+        </div> -->
+    </div>
+    <div class="member-info">
+        <h3>Elvis Mukuru</h3>
                     <p class="member-role">Creative Director & Lead Animator</p>
                     <p class="member-bio">With over 2 years in the animation industry, Elvis specializes in character animation and visual storytelling. He has worked on award-winning projects for major brands and brings creative vision to every project.</p>
                     <div class="member-skills">
@@ -2647,13 +2698,12 @@ body.night-mode .logo-dark {
             
             <!-- Team Member 2 -->
             <div class="team-member">
-                <div class="member-image">
-                    <div class="member-placeholder">
-                        <i class="fas fa-user"></i>
-                    </div>
-                </div>
-                <div class="member-info">
-                    <h3>Bamijour Longji</h3>
+    <div class="member-image">
+        <!-- Replace placeholder with actual image -->
+        <img src="images/team.jpg" alt="Bamijour Longji" class="member-photo">
+    </div>
+    <div class="member-info">
+        <h3>Bamijour Longji</h3>
                     <p class="member-role">Marketing Lead & Web Designer</p>
                     <p class="member-bio">Bamijour is our technical expert with 10 years of experience in 3D modeling, lighting, and rendering. He ensures our animations are technically flawless while maintaining artistic integrity.</p>
                     <div class="member-skills">
