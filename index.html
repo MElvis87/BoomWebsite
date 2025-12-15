@@ -210,6 +210,7 @@ body.night-mode .team-modal-content {
     color: #E8EAF0;
 }
 
+
 body.night-mode .section-title h2 {
     color: #E8EAF0;
 }
@@ -231,6 +232,52 @@ body.night-mode .contact-detail p {
 
 body.night-mode footer {
     background: #1A1D2E;
+}
+
+/* Make blog card icons visible in night mode */
+body.night-mode .blog-image i {
+    color: #E8EAF0 !important;
+    opacity: 1 !important;
+    display: block !important;
+}
+
+/* Optional hover enhancement */
+body.night-mode .blog-card:hover .blog-image i {
+    color: var(--accent) !important;
+}
+
+/* Night mode contact form styling */
+body.night-mode .contact-form {
+    background: #2A2D43; /* Same as other night mode elements */
+    color: #E8EAF0;
+    border: 1px solid #3A3F5C; /* Subtle border */
+    border-radius: var(--border-radius);
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+body.night-mode .form-group input,
+body.night-mode .form-group textarea {
+    background: #1A1D2E; /* Darker background for inputs */
+    color: #E8EAF0;
+    border: 2px solid #3A3F5C;
+}
+
+body.night-mode .form-group input:focus,
+body.night-mode .form-group textarea:focus {
+    border-color: var(--primary);
+    background: #1A1D2E;
+    color: #E8EAF0;
+}
+
+body.night-mode .form-group input::placeholder,
+body.night-mode .form-group textarea::placeholder {
+    color: #8A8FB5; /* Lighter placeholder text */
+    opacity: 0.7;
+}
+
+body.night-mode .form-group label {
+    color: #E8EAF0;
 }
 
 /* Night mode hero background */
@@ -372,6 +419,8 @@ body.night-mode .video-item:hover {
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
     border-color: var(--primary);
 }
+
+
 
 
         .navbar.scrolled {
@@ -2702,7 +2751,7 @@ body.night-mode .logo-dark {
     </div>
 </div>
 
-    <!-- Contact Section -->
+       <!-- Contact Section -->
     <section id="contact">
         <div class="container">
             <div class="section-title">
@@ -2745,22 +2794,27 @@ body.night-mode .logo-dark {
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form>
+                    <form action="https://formsubmit.co/info@boomis.site" method="POST">
+                        <input type="hidden" name="_cc" value="elvismukuru23@gmail.com,nanjwanlongji@gmail.com">
+                        <input type="hidden" name="_subject" value="New Contact Form Submission - Boom Innovation Studio">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="https://boomis.site/thankyou.html">
+                        
                         <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" placeholder="Enter your name">
+                            <label for="contact-name">Your Name *</label>
+                            <input type="text" id="contact-name" name="name" placeholder="Enter your name" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">Your Email</label>
-                            <input type="email" id="email" placeholder="Enter your email">
+                            <label for="contact-email">Your Email *</label>
+                            <input type="email" id="contact-email" name="email" placeholder="Enter your email" required>
                         </div>
                         <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" placeholder="Enter subject">
+                            <label for="contact-subject">Subject</label>
+                            <input type="text" id="contact-subject" name="subject" placeholder="Enter subject">
                         </div>
                         <div class="form-group">
-                            <label for="message">Your Message</label>
-                            <textarea id="message" rows="5" placeholder="Enter your message"></textarea>
+                            <label for="contact-message">Your Message *</label>
+                            <textarea id="contact-message" name="message" rows="5" placeholder="Enter your message" required></textarea>
                         </div>
                         <button type="submit" class="cta-button">Send Message</button>
                     </form>
@@ -3291,6 +3345,24 @@ document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && blogModal.classList.contains('active')) {
         closeBlogModal();
     }
+});
+
+// Contact form submission feedback
+document.querySelectorAll('form').forEach(form => {
+    form.addEventListener('submit', function(e) {
+        const submitBtn = this.querySelector('.cta-button');
+        if (submitBtn) {
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            // Reset after 8 seconds (safety measure in case form fails)
+            setTimeout(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 8000);
+        }
+    });
 });
 </script>
 </body>
