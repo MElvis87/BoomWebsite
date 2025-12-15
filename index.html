@@ -1674,6 +1674,301 @@ body.night-mode .member-photo {
     .blog-article-content { padding: 40px 30px; font-size: 1.05rem; }
 }
 
+
+
+
+/* Gallery Section */
+.gallery {
+    background: #f5f7ff;
+    padding: 100px 0;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transform: translateY(50px);
+    opacity: 0;
+    transition: all 0.5s ease;
+    aspect-ratio: 4/3;
+}
+
+.gallery-item.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.gallery-item:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.5s ease;
+}
+
+.gallery-item:hover .gallery-image {
+    transform: scale(1.1);
+}
+
+.gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    padding: 30px 20px 20px;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+    color: white;
+}
+
+.gallery-item:hover .gallery-overlay {
+    transform: translateY(0);
+}
+
+.gallery-view-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(0);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    z-index: 2;
+}
+
+.gallery-item:hover .gallery-view-btn {
+    transform: scale(1);
+}
+
+.gallery-view-btn:hover {
+    background: var(--secondary);
+    transform: scale(1.1) !important;
+}
+
+.gallery-view-btn i {
+    font-size: 1.2rem;
+}
+
+.gallery-caption {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* Gallery Modal */
+.gallery-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 4000;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.gallery-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.gallery-modal-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-modal-img {
+    max-width: 100%;
+    max-height: 90vh;
+    border-radius: var(--border-radius);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+    animation: modalPop 0.5s ease-out;
+}
+
+.gallery-modal-close {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    color: var(--dark);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+}
+
+.gallery-modal-close:hover {
+    background: var(--secondary);
+    color: white;
+    transform: rotate(90deg) scale(1.1);
+}
+
+.gallery-modal-caption {
+    position: absolute;
+    bottom: -60px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: white;
+    font-size: 1.1rem;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: var(--border-radius);
+}
+
+.gallery-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    color: var(--dark);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+    z-index: 2;
+}
+
+.gallery-nav:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.gallery-nav.prev {
+    left: 20px;
+}
+
+.gallery-nav.next {
+    right: 20px;
+}
+
+/* Night Mode Gallery */
+body.night-mode .gallery {
+    background: #1A1D2E;
+}
+
+body.night-mode .gallery-item {
+    background: #2A2D43;
+    border: 1px solid #3A3F5C;
+}
+
+body.night-mode .gallery-overlay {
+    background: linear-gradient(to top, rgba(26, 29, 46, 0.9), transparent);
+}
+
+/* Responsive Gallery */
+@media (max-width: 992px) {
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .gallery-nav {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 15px;
+    }
+    
+    .gallery-item {
+        aspect-ratio: 1/1;
+    }
+    
+    .gallery-overlay {
+        padding: 20px 15px 15px;
+    }
+    
+    .gallery-nav {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+    }
+    
+    .gallery-nav.prev {
+        left: 10px;
+    }
+    
+    .gallery-nav.next {
+        right: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .gallery-overlay h3 {
+        font-size: 1rem;
+    }
+    
+    .gallery-caption {
+        font-size: 0.8rem;
+    }
+    
+    .gallery-view-btn {
+        width: 35px;
+        height: 35px;
+        top: 15px;
+        right: 15px;
+    }
+}
+
         /* Contact Section */
         .contact-content {
             display: flex;
@@ -2437,6 +2732,7 @@ body.night-mode .member-photo {
         <li><a href="#portfolio">Portfolio</a></li>
         <li><a href="#about">About Us</a></li>
         <li><a href="#blog">Blog</a></li>
+        <li><a href="#gallery">Gallery</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a href="#" id="quote-btn">Get Quote</a></li>
     </ul>
@@ -2798,6 +3094,104 @@ body.night-mode .member-photo {
                 <!-- Content injected via JS -->
             </div>
         </article>
+    </div>
+</div>
+
+
+<!-- Gallery Section -->
+<section class="gallery" id="gallery">
+    <div class="container">
+        <div class="section-title">
+            <h2>Our Gallery</h2>
+        </div>
+        <div class="gallery-grid">
+            <!-- Gallery Item 1 -->
+            <div class="gallery-item" data-gallery="1">
+                <img src="images/team.jpg" alt="Creative Process" class="gallery-image">
+                <button class="gallery-view-btn" data-index="0">
+                    <i class="fas fa-expand-alt"></i>
+                </button>
+                <div class="gallery-overlay">
+                    <h3>Creative Process</h3>
+                    <p class="gallery-caption">Behind the scenes of our animation workflow</p>
+                </div>
+            </div>
+            
+            <!-- Gallery Item 2 -->
+            <div class="gallery-item" data-gallery="2">
+                <img src="images/team.jpg" alt="3D Modeling" class="gallery-image">
+                <button class="gallery-view-btn" data-index="1">
+                    <i class="fas fa-expand-alt"></i>
+                </button>
+                <div class="gallery-overlay">
+                    <h3>3D Modeling</h3>
+                    <p class="gallery-caption">Detailed character and environment modeling</p>
+                </div>
+            </div>
+            
+            <!-- Gallery Item 3 -->
+            <div class="gallery-item" data-gallery="3">
+                <img src="images/team.jpg" alt="Animation Studio" class="gallery-image">
+                <button class="gallery-view-btn" data-index="2">
+                    <i class="fas fa-expand-alt"></i>
+                </button>
+                <div class="gallery-overlay">
+                    <h3>Animation Studio</h3>
+                    <p class="gallery-caption">Our state-of-the-art animation setup</p>
+                </div>
+            </div>
+            
+            <!-- Gallery Item 4 -->
+            <div class="gallery-item" data-gallery="4">
+                <img src="images/team.jpg" alt="Team Collaboration" class="gallery-image">
+                <button class="gallery-view-btn" data-index="3">
+                    <i class="fas fa-expand-alt"></i>
+                </button>
+                <div class="gallery-overlay">
+                    <h3>Team Collaboration</h3>
+                    <p class="gallery-caption">Brainstorming sessions and creative meetings</p>
+                </div>
+            </div>
+            
+            <!-- Gallery Item 5 -->
+            <div class="gallery-item" data-gallery="5">
+                <img src="images/team.jpg" alt="Rendering Process" class="gallery-image">
+                <button class="gallery-view-btn" data-index="4">
+                    <i class="fas fa-expand-alt"></i>
+                </button>
+                <div class="gallery-overlay">
+                    <h3>Rendering Process</h3>
+                    <p class="gallery-caption">High-quality rendering and visual effects</p>
+                </div>
+            </div>
+            
+            <!-- Gallery Item 6 -->
+            <div class="gallery-item" data-gallery="6">
+                <img src="images/team.jpg" alt="Project Showcase" class="gallery-image">
+                <button class="gallery-view-btn" data-index="5">
+                    <i class="fas fa-expand-alt"></i>
+                </button>
+                <div class="gallery-overlay">
+                    <h3>Project Showcase</h3>
+                    <p class="gallery-caption">Completed projects and client presentations</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery Modal -->
+<div class="gallery-modal" id="gallery-modal">
+    <button class="gallery-modal-close">&times;</button>
+    <button class="gallery-nav prev">
+        <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="gallery-nav next">
+        <i class="fas fa-chevron-right"></i>
+    </button>
+    <div class="gallery-modal-content">
+        <img src="" alt="" class="gallery-modal-img">
+        <div class="gallery-modal-caption"></div>
     </div>
 </div>
 
@@ -3413,6 +3807,132 @@ document.querySelectorAll('form').forEach(form => {
             }, 8000);
         }
     });
+});
+
+// Gallery Functionality
+const galleryItems = document.querySelectorAll('.gallery-item');
+const galleryModal = document.getElementById('gallery-modal');
+const galleryModalImg = document.querySelector('.gallery-modal-img');
+const galleryModalCaption = document.querySelector('.gallery-modal-caption');
+const galleryCloseBtn = document.querySelector('.gallery-modal-close');
+const galleryPrevBtn = document.querySelector('.gallery-nav.prev');
+const galleryNextBtn = document.querySelector('.gallery-nav.next');
+
+let currentGalleryIndex = 0;
+const galleryData = [
+    {
+        src: 'images/team.jpg',
+        title: 'Creative Process',
+        caption: 'Behind the scenes of our animation workflow'
+    },
+    {
+        src: 'images/team.jpg',
+        title: '3D Modeling',
+        caption: 'Detailed character and environment modeling'
+    },
+    {
+        src: 'images/team.jpg',
+        title: 'Animation Studio',
+        caption: 'Our state-of-the-art animation setup'
+    },
+    {
+        src: 'images/team.jpg',
+        title: 'Team Collaboration',
+        caption: 'Brainstorming sessions and creative meetings'
+    },
+    {
+        src: 'images/team.jpg',
+        title: 'Rendering Process',
+        caption: 'High-quality rendering and visual effects'
+    },
+    {
+        src: 'images/team.jpg',
+        title: 'Project Showcase',
+        caption: 'Completed projects and client presentations'
+    }
+];
+
+// Open gallery modal
+document.querySelectorAll('.gallery-view-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        currentGalleryIndex = parseInt(this.getAttribute('data-index'));
+        updateGalleryModal();
+        galleryModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+});
+
+// Update gallery modal content
+function updateGalleryModal() {
+    const currentItem = galleryData[currentGalleryIndex];
+    galleryModalImg.src = currentItem.src;
+    galleryModalImg.alt = currentItem.title;
+    galleryModalCaption.textContent = `${currentItem.title} - ${currentItem.caption}`;
+}
+
+// Close gallery modal
+function closeGalleryModal() {
+    galleryModal.classList.remove('active');
+    setTimeout(() => {
+        document.body.style.overflow = '';
+    }, 300);
+}
+
+galleryCloseBtn.addEventListener('click', closeGalleryModal);
+galleryModal.addEventListener('click', function(e) {
+    if (e.target === galleryModal) {
+        closeGalleryModal();
+    }
+});
+
+// Navigation
+galleryPrevBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    currentGalleryIndex = (currentGalleryIndex - 1 + galleryData.length) % galleryData.length;
+    updateGalleryModal();
+});
+
+galleryNextBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    currentGalleryIndex = (currentGalleryIndex + 1) % galleryData.length;
+    updateGalleryModal();
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', function(e) {
+    if (!galleryModal.classList.contains('active')) return;
+    
+    if (e.key === 'Escape') {
+        closeGalleryModal();
+    } else if (e.key === 'ArrowLeft') {
+        currentGalleryIndex = (currentGalleryIndex - 1 + galleryData.length) % galleryData.length;
+        updateGalleryModal();
+    } else if (e.key === 'ArrowRight') {
+        currentGalleryIndex = (currentGalleryIndex + 1) % galleryData.length;
+        updateGalleryModal();
+    }
+});
+
+// Add gallery items to scroll animation
+function handleGalleryAnimation() {
+    galleryItems.forEach(item => {
+        if (isElementInViewport(item)) {
+            item.classList.add('visible');
+        }
+    });
+}
+
+// Add to existing scroll event listener
+window.addEventListener('scroll', function() {
+    handleScrollAnimation();
+    handleGalleryAnimation(); // Add this line
+});
+
+// Also call on load
+window.addEventListener('load', function() {
+    handleScrollAnimation();
+    handleGalleryAnimation(); // Add this line
 });
 </script>
 </body>
