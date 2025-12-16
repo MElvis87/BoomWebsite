@@ -3,24 +3,53 @@
 <head>
 
 <script>
-// Prevent direct access to submission pages
 document.addEventListener('DOMContentLoaded', function() {
-    // Check if user came from your site's form
+    // Method 1: Check referrer
     const referrer = document.referrer;
-    const allowedOrigins = [
-        'https://boomis.site',
-        'https://www.boomis.site',
-        //'http://localhost:5500', // For local development
-        //'http://127.0.0.1:5500'
-    ];
+    const allowedOrigins = ['https://boomis.site', 'https://www.boomis.site'];
     
-    const isValidReferrer = allowedOrigins.some(origin => 
-        referrer.startsWith(origin)
-    );
+    // Method 2: Check session storage
+    const isFormSubmitted = sessionStorage.getItem('formSubmitted');
     
-    // If not coming from a valid origin, redirect to homepage
-    if (!isValidReferrer) {
-        window.location.href = 'https://boomis.site';
+    // Get current page type
+    const isContactPage = window.location.pathname.includes('contact');
+    const isQuotePage = window.location.pathname.includes('quote');
+    const formType = isContactPage ? 'contact' : 'quote';
+    
+    let isValidAccess = false;
+    
+    // Check if coming from allowed origin
+    if (allowedOrigins.some(origin => referrer.startsWith(origin))) {
+        isValidAccess = true;
+    }
+    
+    // OR check session storage
+    if (isFormSubmitted === 'true') {
+        const storedFormType = sessionStorage.getItem('formType');
+        if (storedFormType === formType) {
+            isValidAccess = true;
+            // Clear after successful validation
+            sessionStorage.removeItem('formSubmitted');
+            sessionStorage.removeItem('formType');
+        }
+    }
+    
+    // If no valid access method found, redirect
+    if (!isValidAccess) {
+        // Optional: Show a brief message
+        document.body.innerHTML = `
+            <div style="display: flex; justify-content: center; align-items: center; height: 100vh; text-align: center; padding: 20px;">
+                <div>
+                    <h2 style="color: var(--primary); margin-bottom: 20px;">Invalid Access</h2>
+                    <p>This page can only be accessed after form submission.</p>
+                    <p>Redirecting to homepage...</p>
+                </div>
+            </div>
+        `;
+        
+        setTimeout(() => {
+            window.location.href = 'https://boomis.site';
+        }, 3000);
     }
 });
 </script>

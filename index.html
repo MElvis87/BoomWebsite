@@ -3809,6 +3809,19 @@ document.querySelectorAll('form').forEach(form => {
     });
 });
 
+// Add to your existing form submission code
+document.querySelectorAll('form').forEach(form => {
+    form.addEventListener('submit', function(e) {
+        // For FormSubmit.co forms
+        if (this.action.includes('formsubmit.co')) {
+            // Set session flag
+            const formType = this.classList.contains('quote-form') ? 'quote' : 'contact';
+            sessionStorage.setItem('formSubmitted', 'true');
+            sessionStorage.setItem('formType', formType);
+        }
+    });
+});
+
 // Gallery Functionality
 const galleryItems = document.querySelectorAll('.gallery-item');
 const galleryModal = document.getElementById('gallery-modal');
