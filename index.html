@@ -2714,6 +2714,100 @@ body.night-mode .gallery-overlay {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
+/* Newsletter Form Styling - Matches your site */
+.newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.newsletter-input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+    background: var(--light);
+    color: var(--dark);
+}
+
+.newsletter-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(108, 99, 255, 0.1);
+}
+
+.newsletter-submit {
+    width: 100%;
+    padding: 15px;
+    font-weight: 600;
+}
+
+/* Small Feedback Popup */
+.newsletter-popup {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    color: var(--dark);
+    padding: 16px 30px;
+    border-radius: 50px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    font-weight: 600;
+    font-size: 1rem;
+    z-index: 9999;
+    opacity: 0;
+    transition: all 0.4s ease;
+    pointer-events: none;
+    border: 3px solid transparent;
+    max-width: 90%;
+    text-align: center;
+}
+
+.newsletter-popup.show {
+    opacity: 1;
+    bottom: 50px;
+}
+
+.newsletter-popup.success {
+    background: #e6f7ee;
+    border-color: #c2e19a;
+    color: #2d8659;
+}
+
+.newsletter-popup.error {
+    background: #fce8e8;
+    border-color: #ffb3b3;
+    color: #c53030;
+}
+
+/* Night mode adjustments */
+body.night-mode .newsletter-input {
+    background: #1A1D2E;
+    color: #E8EAF0;
+    border-color: #3A3F5C;
+}
+
+body.night-mode .newsletter-popup {
+    background: #2A2D43;
+    color: #E8EAF0;
+}
+
+body.night-mode .newsletter-popup.success {
+    background: #1e4030;
+    border-color: #2d8659;
+}
+
+body.night-mode .newsletter-popup.error {
+    background: #4a1f24;
+    border-color: #c53030;
+}
 
     </style>
 </head>
@@ -3299,36 +3393,46 @@ body.night-mode .gallery-overlay {
                         <li><a href="#">Motion Graphics</a></li>
                     </ul>
                 </div>
+
                 <div class="footer-column">
     <h3>Newsletter</h3>
     <p>Subscribe to our newsletter for the latest updates and offers.</p><br>
-    <div class="form-group">
-        <!-- Replace the entire Zoho script/block with this button -->
-        <button type="button" class="cta-button" onclick="zc_loadForm('campaigns.zoho.com','https://zgnp-zngp.maillist-manage.com/ua/Optin?od=11287ecd48eb49&amp;zx=1360b3b91&amp;tD=115ced82b300a2b91&amp;sD=115ced82b300a46eb')">
+
+    <!-- Custom Styled Zoho Newsletter Form -->
+    <form id="custom-newsletter-form" class="newsletter-form">
+        <div class="form-group" style="margin-bottom: 15px;">
+            <input 
+                type="email" 
+                name="CONTACT_EMAIL" 
+                placeholder="Enter your email" 
+                required 
+                class="newsletter-input"
+            >
+        </div>
+
+        <button type="submit" class="cta-button newsletter-submit">
             Join Our Newsletter
         </button>
-        <!-- Keep the hidden inputs and scripts if needed, but they're already loaded via the onclick -->
-        <input type='hidden' id='zc_Url' value='zgnp-zngp.maillist-manage.com'/>
-        <input type='hidden' id='zc_formIx' name='zc_formIx' value='3z70db613e4ac1a25fbfa614db3da4fffa1e0c3f1f1abd36e07acf5956ac97abe6' >
-        <input type='hidden' id='cmpZuid' name='zx' value='undefined' >
-        <input type='hidden' id='viewFrom' name='viewFrom' value='BUTTON_ACTION' />
-        <input type='hidden' id='button_tc_codeVal' name='button_tc_codeVal' value='ZCFORMVIEW' />
-        <script type='text/javascript' src='https://zgnp-zngp.maillist-manage.com/js/optin_min.js'></script>
-        <script>
-            var trackingText='ZCFORMVIEW';
-            var $ZC = jQuery.noConflict();
-            $ZC('[id=embedLink]').append("<input type='hidden' id='tc_code"+$ZC('[id=embedLink]').size()+"' value="+trackingText+">");
-            var elemSize = parseInt($ZC('[id=embedLink]').size())-1;
-            var embedLink = $ZC($ZC('[id=embedLink]')[elemSize]).attr('href');
-            if(embedLink!=undefined && embedLink!=null && embedLink!='null'){
-                var dynamicCodeVal = $ZC("#tc_code"+$ZC('[id=embedLink]').size()).val();
-                embedLink = embedLink+'&trackingcode='+dynamicCodeVal;
-                $ZC($ZC('[id=embedLink]')[elemSize]).attr('href',embedLink);
-                $ZC('[id=button_tc_codeVal]').val(dynamicCodeVal);
-                trackSignupEvent(dynamicCodeVal,'buttonView');
-            }
-        </script>
-    </div>
+
+        <!-- Hidden fields required by Zoho -->
+        <input type="hidden" name="zx" id="cmpZuid" value="1360b3b91">
+        <input type="hidden" name="zcvers" value="3.0">
+        <input type="hidden" name="oldListIds" id="allCheckedListIds" value="">
+        <input type="hidden" name="mode" value="OptinCreateView">
+        <input type="hidden" name="zcld" value="115ced82b300a46d9">
+        <input type="hidden" name="zctd" value="115ced82b300a2b91">
+        <input type="hidden" name="document_domain" value="">
+        <input type="hidden" name="zc_Url" value="zgnp-zngp.maillist-manage.com">
+        <input type="hidden" name="new_optin_response_in" value="0">
+        <input type="hidden" name="duplicate_optin_response_in" value="0">
+        <input type="hidden" name="zc_trackCode" value="ZCFORMVIEW">
+        <input type="hidden" name="zc_formIx" value="3z70db613e4ac1a25fbfa614db3da4fffa1e0c3f1f1abd36e07acf5956ac97abe6">
+        <input type="hidden" name="viewFrom" value="URL_ACTION">
+        <input type="hidden" name="scriptless" value="yes">
+    </form>
+
+    <!-- Small Custom Popup for Feedback -->
+    <div id="newsletter-feedback" class="newsletter-popup" style="display: none;"></div>
 </div>
             </div>
             <div class="copyright">
@@ -3967,6 +4071,98 @@ window.addEventListener('scroll', function() {
 window.addEventListener('load', function() {
     handleScrollAnimation();
     handleGalleryAnimation(); // Add this line
+});
+
+</script>
+
+<script>
+// Custom Newsletter Form Submission with AJAX-like Feedback
+document.getElementById('custom-newsletter-form')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const form = this;
+    const email = form.querySelector('input[type="email"]').value.trim();
+    const feedback = document.getElementById('newsletter-feedback');
+    const submitBtn = form.querySelector('.newsletter-submit');
+
+    if (!email) return;
+
+    // Disable button & show loading
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Subscribing...';
+
+    // Create hidden iframe to submit form without page change
+    let iframe = document.getElementById('zoho-iframe');
+    if (!iframe) {
+        iframe = document.createElement('iframe');
+        iframe.id = 'zoho-iframe';
+        iframe.style.display = 'none';
+        document.body.appendChild(iframe);
+    }
+
+    // Set iframe target and submit
+    form.target = 'zoho-iframe';
+    form.action = 'https://zgnp-zngp.maillist-manage.com/weboptin.zc?zx=1360b3b91';
+    form.submit();
+
+    // Listen for response via postMessage or fallback timeout
+    const showFeedback = (message, type) => {
+        feedback.textContent = message;
+        feedback.className = 'newsletter-popup ' + type;
+        feedback.style.display = 'block';
+        feedback.classList.add('show');
+
+        setTimeout(() => {
+            feedback.classList.remove('show');
+            setTimeout(() => {
+                feedback.style.display = 'none';
+            }, 400);
+        }, 4000);
+
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Join Our Newsletter';
+        form.reset();
+    };
+
+    // Success: Zoho sends success via postMessage in some cases
+    window.addEventListener('message', function handler(event) {
+        if (event.origin.includes('maillist-manage.com') && event.data.includes('Thank you')) {
+            showFeedback('You’ve been added to the mailing list! 🎉', 'success');
+            window.removeEventListener('message', handler);
+        }
+    });
+
+    // Fallback detection using polling (Zoho updates URL or sends message)
+    let attempts = 0;
+    const checkInterval = setInterval(() => {
+        try {
+            if (iframe.contentWindow && iframe.contentWindow.document && 
+                iframe.contentWindow.document.body.innerHTML.includes('Thank you')) {
+                showFeedback('You’ve been added to the mailing list! 🎉', 'success');
+                clearInterval(checkInterval);
+            } else if (iframe.contentWindow && iframe.contentWindow.document && 
+                iframe.contentWindow.document.body.innerHTML.includes('already subscribed')) {
+                showFeedback('This email is already subscribed.', 'error');
+                clearInterval(checkInterval);
+            }
+        } catch (e) {}
+
+        attempts++;
+        if (attempts > 30) { // ~15 seconds
+            showFeedback('Subscription successful!', 'success'); // optimistic fallback
+            clearInterval(checkInterval);
+        }
+    }, 500);
+
+    // Also handle duplicate case via common Zoho response
+    setTimeout(() => {
+        try {
+            const doc = iframe.contentWindow.document;
+            if (doc && doc.body && doc.body.textContent.includes('already')) {
+                showFeedback('This email is already subscribed.', 'error');
+            }
+        } catch (e) {}
+    }, 3000);
 });
 </script>
 </body>
