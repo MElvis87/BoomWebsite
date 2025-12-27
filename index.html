@@ -2714,262 +2714,19 @@ body.night-mode .gallery-overlay {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-/* Custom Newsletter Form in Footer */
-.newsletter-form {
+/* Custom Styling for Zoho Newsletter Form */
+.custom-newsletter-wrapper {
     margin-top: 20px;
 }
 
-.newsletter-input-group {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap; /* Responsive wrap on small screens */
-    align-items: center;
-}
-
-.newsletter-input-group input {
-    flex: 1;
-    min-width: 220px;
-    padding: 15px 20px;
-    border: 2px solid #e0e0e0;
-    border-radius: 50px;
-    font-size: 1rem;
-    background: white;
-    color: var(--dark);
-    transition: all 0.3s ease;
-}
-
-.newsletter-input-group input:focus {
-    border-color: var(--primary);
-    outline: none;
-    box-shadow: 0 5px 15px rgba(108, 99, 255, 0.1);
-}
-
-.newsletter-submit {
-    padding: 15px 30px !important;
-    background: var(--primary);
-    box-shadow: var(--toon-shadow);
-    white-space: nowrap;
-}
-
-.newsletter-submit:hover {
-    background: var(--accent);
-    transform: translateY(-5px);
-}
-
-/* Night Mode */
-body.night-mode .newsletter-input-group input {
-    background: #1A1D2E;
-    border-color: #3A3F5C;
-    color: #E8EAF0;
-}
-
-body.night-mode .newsletter-input-group input::placeholder {
-    color: #8A8FB5;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .newsletter-input-group {
-        flex-direction: column;
-    }
-    
-    .newsletter-input-group input {
-        width: 100%;
-        min-width: auto;
-    }
-    
-    .newsletter-submit {
-        width: 100%;
-    }
-}
-
-/* Newsletter Popup Styles */
-.newsletter-popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.9);
-    background: var(--light);
-    color: var(--dark);
-    padding: 30px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow), var(--toon-shadow);
-    text-align: center;
-    font-size: 1.2rem;
-    font-weight: 500;
-    z-index: 9999;
-    max-width: 80%;
-    opacity: 0;
-    transition: all 0.4s ease;
-}
-
-.newsletter-popup.show {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-}
-
-.newsletter-popup.success {
-    border: 2px solid var(--accent);
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-    color: white;
-}
-
-.newsletter-popup.error {
-    border: 2px solid var(--secondary);
-    background: linear-gradient(135deg, var(--secondary) 0%, #ff4d6d 100%);
-    color: white;
-}
-
-/* Night Mode Adjustments */
-body.night-mode .newsletter-popup {
-    background: #2A2D43;
-    color: #E8EAF0;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-body.night-mode .newsletter-popup.success {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-}
-
-body.night-mode .newsletter-popup.error {
-    background: linear-gradient(135deg, var(--secondary) 0%, #ff4d6d 100%);
-}
-
-
-/* Custom Newsletter Form in Footer */
-.newsletter-form {
-    margin-top: 20px;
-}
-
-.newsletter-input-group {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap; /* Responsive wrap on small screens */
-    align-items: center;
-}
-
-.newsletter-input-group input {
-    flex: 1;
-    min-width: 220px;
-    padding: 15px 20px;
-    border: 2px solid #e0e0e0;
-    border-radius: 50px;
-    font-size: 1rem;
-    background: white;
-    color: var(--dark);
-    transition: all 0.3s ease;
-}
-
-.newsletter-input-group input:focus {
-    border-color: var(--primary);
-    outline: none;
-    box-shadow: 0 5px 15px rgba(108, 99, 255, 0.1);
-}
-
-.newsletter-submit {
-    padding: 15px 30px !important;
-    background: var(--primary);
-    box-shadow: var(--toon-shadow);
-    white-space: nowrap;
-}
-
-.newsletter-submit:hover {
-    background: var(--accent);
-    transform: translateY(-5px);
-}
-
-/* Night Mode */
-body.night-mode .newsletter-input-group input {
-    background: #1A1D2E;
-    border-color: #3A3F5C;
-    color: #E8EAF0;
-}
-
-body.night-mode .newsletter-input-group input::placeholder {
-    color: #8A8FB5;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .newsletter-input-group {
-        flex-direction: column;
-    }
-    
-    .newsletter-input-group input {
-        width: 100%;
-        min-width: auto;
-    }
-    
-    .newsletter-submit {
-        width: 100%;
-    }
-}
-
-/* Newsletter Popup Styles (if missing from earlier) */
-.newsletter-popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.9);
-    background: var(--light);
-    color: var(--dark);
-    padding: 30px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow), var(--toon-shadow);
-    text-align: center;
-    font-size: 1.2rem;
-    font-weight: 500;
-    z-index: 9999;
-    max-width: 80%;
-    opacity: 0;
-    transition: all 0.4s ease;
-}
-
-.newsletter-popup.show {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-}
-
-.newsletter-popup.success {
-    border: 2px solid var(--accent);
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-    color: white;
-}
-
-.newsletter-popup.error {
-    border: 2px solid var(--secondary);
-    background: linear-gradient(135deg, var(--secondary) 0%, #ff4d6d 100%);
-    color: white;
-}
-
-/* Night Mode for Popup */
-body.night-mode .newsletter-popup {
-    background: #2A2D43;
-    color: #E8EAF0;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-body.night-mode .newsletter-popup.success {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-}
-
-body.night-mode .newsletter-popup.error {
-    background: linear-gradient(135deg, var(--secondary) 0%, #ff4d6d 100%);
-}
-
-/* Custom Newsletter Form Styling */
-.newsletter-form {
-    margin-top: 20px;
-}
-
-.newsletter-input-group {
+.custom-newsletter-wrapper .SIGNUP_FLD {
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
     align-items: center;
 }
 
-.newsletter-input-group input {
+.custom-newsletter-wrapper input[type="text"], .custom-newsletter-wrapper input[type="email"] {
     flex: 1;
     min-width: 220px;
     padding: 15px 20px;
@@ -2981,47 +2738,65 @@ body.night-mode .newsletter-popup.error {
     transition: all 0.3s ease;
 }
 
-.newsletter-input-group input:focus {
+.custom-newsletter-wrapper input[type="text"]:focus, .custom-newsletter-wrapper input[type="email"]:focus {
     border-color: var(--primary);
     outline: none;
     box-shadow: 0 5px 15px rgba(108, 99, 255, 0.1);
 }
 
-.newsletter-submit {
-    padding: 15px 30px !important;
+.custom-newsletter-wrapper input[type="button"] {
+    padding: 15px 30px;
     background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    cursor: pointer;
     box-shadow: var(--toon-shadow);
+    transition: all 0.3s ease;
     white-space: nowrap;
 }
 
-.newsletter-submit:hover {
+.custom-newsletter-wrapper input[type="button"]:hover {
     background: var(--accent);
     transform: translateY(-5px);
 }
 
-/* Night Mode for Form */
-body.night-mode .newsletter-input-group input {
+/* Hide Zoho's default success/error messages (use custom pop-up) */
+.custom-newsletter-wrapper #Zc_SignupSuccess, .custom-newsletter-wrapper #errorMsgDiv {
+    display: none !important;
+}
+
+/* Night Mode Overrides */
+body.night-mode .custom-newsletter-wrapper input[type="text"], body.night-mode .custom-newsletter-wrapper input[type="email"] {
     background: #1A1D2E;
     border-color: #3A3F5C;
     color: #E8EAF0;
 }
 
-body.night-mode .newsletter-input-group input::placeholder {
+body.night-mode .custom-newsletter-wrapper input[type="text"]::placeholder, body.night-mode .custom-newsletter-wrapper input[type="email"]::placeholder {
     color: #8A8FB5;
 }
 
-/* Responsive Adjustments */
+body.night-mode .custom-newsletter-wrapper input[type="button"] {
+    background: var(--primary);
+}
+
+body.night-mode .custom-newsletter-wrapper input[type="button"]:hover {
+    background: var(--accent);
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-    .newsletter-input-group {
+    .custom-newsletter-wrapper .SIGNUP_FLD {
         flex-direction: column;
     }
     
-    .newsletter-input-group input {
+    .custom-newsletter-wrapper input[type="text"], .custom-newsletter-wrapper input[type="email"] {
         width: 100%;
-        min-width: auto;
     }
     
-    .newsletter-submit {
+    .custom-newsletter-wrapper input[type="button"] {
         width: 100%;
     }
 }
@@ -3617,32 +3392,50 @@ body.night-mode .newsletter-input-group input::placeholder {
     <!-- Custom Feedback Popup -->
     <div id="newsletter-feedback" class="newsletter-popup" style="display: none;"></div>
 
-    <!-- Fully Custom Form -->
-    <form id="custom-newsletter-form" class="newsletter-form" action="https://zgnp-zngp.maillist-manage.com/weboptin.zc" method="POST">
-        <div class="newsletter-input-group">
-            <input type="email" name="CONTACT_EMAIL" id="EMBED_FORM_EMAIL_LABEL" placeholder="Enter your email" required>
-            <button type="submit" class="cta-button newsletter-submit" id="zcWebOptin">Join Now</button>
+    <!-- Zoho No CSS Embed with Custom Styling Wrapper -->
+    <div class="custom-newsletter-wrapper">
+        <!-- Paste your Zoho No CSS embed code here -->
+        <script type="text/javascript" src="https://zgnp-zngp.maillist-manage.com/js/optin.min.js" onload="setupSF('sf3z70db613e4ac1a25fbfa614db3da4fffa1e0c3f1f1abd36e07acf5956ac97abe6','ZCFORMVIEW',false,'light',false,'0')"></script>
+        <script type="text/javascript">
+            function runOnFormSubmit_sf3z70db613e4ac1a25fbfa614db3da4fffa1e0c3f1f1abd36e07acf5956ac97abe6(th){
+                /*Before submit, if you want to trigger your event, "include your code here"*/
+            };
+        </script>
+        <div id="sf3z70db613e4ac1a25fbfa614db3da4fffa1e0c3f1f1abd36e07acf5956ac97abe6" data-type="signupform" style="opacity: 1;">
+            <div id="customForm">
+                <div class="quick_form_31_css" name="SIGNUP_BODY">
+                    <div>
+                        <div id="SIGNUP_HEADING"></div>
+                        <div style="position:relative;">
+                            <div id="Zc_SignupSuccess" style="display:none;position:absolute;margin-left:4%;width:90%;background-color: white; padding: 3px; border: 3px solid rgb(194, 225, 154);  margin-top: 10px;margin-bottom:10px;word-break:break-all">
+                                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                    <tbody>
+                                        <tr>
+                                            <td width="10%">
+                                                <img class="successicon" src="https://zgnp-zngp.maillist-manage.com/images/challangeiconenable.jpg" align="absmiddle">
+                                            </td>
+                                            <td>
+                                                <span id="signupSuccessMsg" style="color: rgb(73, 140, 132); font-family: sans-serif; font-size: 14px;word-break:break-word">&nbsp;&nbsp;Thank you for Signing Up</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <form method="POST" id="zcampaignOptinForm" action="https://zgnp-zngp.maillist-manage.com/weboptin.zc" target="_zcSignup">
+                            <div id="errorMsgDiv" style="display: none;">Please correct the marked field(s) below.</div>
+                            <div class="SIGNUP_FLD">
+                                <input type="text" name="CONTACT_EMAIL" id="EMBED_FORM_EMAIL_LABEL" placeholder="Email" changeitem="SIGNUP_FORM_FIELD">
+                            </div>
+                            <input type="button" name="SIGNUP_SUBMIT_BUTTON" id="zcWebOptin" value="Join Now">
+                            <!-- Hidden fields from your original -->
+                            <!-- Add all hidden inputs here as in your previous code -->
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- Hidden Zoho Fields (complete set for valid submission) -->
-        <input type="hidden" id="fieldBorder" name="fieldBorder" value="">
-        <input type="hidden" id="submitType" name="submitType" value="optinCustomView">
-        <input type="hidden" id="formType" name="formType" value="QuickForm">
-        <input type="hidden" id="emailReportId" name="emailReportId" value="">
-        <input type="hidden" name="zx" id="cmpZuid" value="1360b3b91">
-        <input type="hidden" name="zcvers" value="3.0">
-        <input type="hidden" name="oldListIds" id="allCheckedListIds" value="">
-        <input type="hidden" id="mode" name="mode" value="OptinCreateView">
-        <input type="hidden" id="zcld" name="zcld" value="115ced82b300a46d9">
-        <input type="hidden" id="zctd" name="zctd" value="115ced82b300a2b91">
-        <input type="hidden" id="document_domain" value="">
-        <input type="hidden" id="zc_Url" name="zc_Url" value="zgnp-zngp.maillist-manage.com">
-        <input type="hidden" id="new_optin_response_in" value="0">
-        <input type="hidden" id="duplicate_optin_response_in" value="0">
-        <input type="hidden" name="zc_trackCode" id="zc_trackCode" value="ZCFORMVIEW">
-        <input type="hidden" id="zc_formIx" name="zc_formIx" value="3z70db613e4ac1a25fbfa614db3da4fffa4f526bbe236cb02e385ce6c231dd9a52"> <!-- Your form key -->
-        <input type="hidden" id="viewFrom" name="viewFrom" value="URL_ACTION">
-        <span style="display: none" id="dt_CONTACT_EMAIL">1,true,6,Contact Email,2</span>
-    </form>
+    </div>
 </div>
 
 </div>
@@ -4288,35 +4081,42 @@ window.addEventListener('load', function() {
 </script>
 
 <script>
-// Custom Newsletter Form Submission with Iframe (Public Endpoint)
-document.getElementById('custom-newsletter-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const form = this;
-    const email = form.querySelector('input[name="CONTACT_EMAIL"]').value.trim();
+// Custom Newsletter Form Submission Handling for Zoho Embed
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('zcampaignOptinForm');
     const feedback = document.getElementById('newsletter-feedback');
-    const submitBtn = form.querySelector('.newsletter-submit');
+    const submitBtn = document.getElementById('zcWebOptin');
+    const successDiv = document.getElementById('Zc_SignupSuccess');
+    const errorDiv = document.getElementById('errorMsgDiv');
 
-    if (!email) return;
+    if (!form) return;
 
-    // Disable button & show loading
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Subscribing...';
+    form.addEventListener('submit', function(e) {
+        submitBtn.disabled = true;
+        submitBtn.value = 'Subscribing...';
+    });
 
-    // Create hidden iframe
-    let iframe = document.getElementById('zoho-iframe');
-    if (!iframe) {
-        iframe = document.createElement('iframe');
-        iframe.id = 'zoho-iframe';
-        iframe.style.display = 'none';
-        document.body.appendChild(iframe);
-    }
+    // Observer for Zoho messages
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (successDiv.style.display !== 'none') {
+                showFeedback('Successfully subscribed! Check your email to confirm. 🎉', 'success');
+                successDiv.style.display = 'none';
+            } else if (errorDiv.style.display !== 'none') {
+                let message = errorDiv.textContent.toLowerCase();
+                if (message.includes('already')) {
+                    showFeedback('This email is already subscribed.', 'error');
+                } else {
+                    showFeedback('Something went wrong. Please try again.', 'error');
+                }
+                errorDiv.style.display = 'none';
+            }
+        });
+    });
 
-    // Set target and submit
-    form.target = 'zoho-iframe';
-    form.submit();
+    observer.observe(document.body, { childList: true, subtree: true });
 
-    // Function to show popup
+    // Show feedback function (same as before)
     const showFeedback = (message, type) => {
         feedback.textContent = message;
         feedback.className = `newsletter-popup ${type}`;
@@ -4331,36 +4131,9 @@ document.getElementById('custom-newsletter-form').addEventListener('submit', fun
         }, 5000);
 
         submitBtn.disabled = false;
-        submitBtn.textContent = 'Join Now';
-        if (type === 'success') form.reset();
+        submitBtn.value = 'Join Now';
+        form.reset();
     };
-
-    // Poll iframe for response
-    let attempts = 0;
-    const checkInterval = setInterval(() => {
-        try {
-            const doc = iframe.contentWindow.document;
-            if (doc && doc.body) {
-                const bodyText = doc.body.innerHTML.toLowerCase();
-                if (bodyText.includes('thank you') || bodyText.includes('confirmation email') || bodyText.includes('success')) {
-                    showFeedback('Successfully subscribed! Check your email to confirm if needed. 🎉', 'success');
-                    clearInterval(checkInterval);
-                } else if (bodyText.includes('already subscribed') || bodyText.includes('contact already exists') || bodyText.includes('duplicate')) {
-                    showFeedback('This email is already subscribed.', 'error');
-                    clearInterval(checkInterval);
-                } else if (bodyText.includes('problem in optin') || bodyText.includes('unknown error') || bodyText.includes('error') || bodyText.includes('invalid')) {
-                    showFeedback('Something went wrong—please try again or check your email format.', 'error');
-                    clearInterval(checkInterval);
-                }
-            }
-        } catch (e) {} // Ignore cross-origin errors
-
-        attempts++;
-        if (attempts > 30) { // Timeout ~15s
-            showFeedback('Subscription processed! Check your email.', 'success'); // Fallback
-            clearInterval(checkInterval);
-        }
-    }, 500);
 });
 </script>
 
