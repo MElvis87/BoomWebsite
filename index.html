@@ -2714,99 +2714,73 @@ body.night-mode .gallery-overlay {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-/* Newsletter Form Styling - Matches your site */
+/* Custom Newsletter Form in Footer */
 .newsletter-form {
+    margin-top: 20px;
+}
+
+.newsletter-input-group {
     display: flex;
-    flex-direction: column;
-    gap: 12px;
-    max-width: 300px;
-    margin: 0 auto;
+    gap: 15px;
+    flex-wrap: wrap; /* Responsive wrap on small screens */
+    align-items: center;
 }
 
-.newsletter-input {
-    width: 100%;
-    padding: 15px;
+.newsletter-input-group input {
+    flex: 1;
+    min-width: 220px;
+    padding: 15px 20px;
     border: 2px solid #e0e0e0;
-    border-radius: 10px;
+    border-radius: 50px;
     font-size: 1rem;
-    font-family: 'Inter', sans-serif;
-    transition: all 0.3s ease;
-    background: var(--light);
+    background: white;
     color: var(--dark);
+    transition: all 0.3s ease;
 }
 
-.newsletter-input:focus {
-    outline: none;
+.newsletter-input-group input:focus {
     border-color: var(--primary);
-    transform: scale(1.02);
+    outline: none;
     box-shadow: 0 5px 15px rgba(108, 99, 255, 0.1);
 }
 
 .newsletter-submit {
-    width: 100%;
-    padding: 15px;
-    font-weight: 600;
+    padding: 15px 30px !important;
+    background: var(--primary);
+    box-shadow: var(--toon-shadow);
+    white-space: nowrap;
 }
 
-/* Small Feedback Popup */
-.newsletter-popup {
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: white;
-    color: var(--dark);
-    padding: 16px 30px;
-    border-radius: 50px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    font-weight: 600;
-    font-size: 1rem;
-    z-index: 9999;
-    opacity: 0;
-    transition: all 0.4s ease;
-    pointer-events: none;
-    border: 3px solid transparent;
-    max-width: 90%;
-    text-align: center;
+.newsletter-submit:hover {
+    background: var(--accent);
+    transform: translateY(-5px);
 }
 
-.newsletter-popup.show {
-    opacity: 1;
-    bottom: 50px;
-}
-
-.newsletter-popup.success {
-    background: #e6f7ee;
-    border-color: #c2e19a;
-    color: #2d8659;
-}
-
-.newsletter-popup.error {
-    background: #fce8e8;
-    border-color: #ffb3b3;
-    color: #c53030;
-}
-
-/* Night mode adjustments */
-body.night-mode .newsletter-input {
+/* Night Mode */
+body.night-mode .newsletter-input-group input {
     background: #1A1D2E;
-    color: #E8EAF0;
     border-color: #3A3F5C;
-}
-
-body.night-mode .newsletter-popup {
-    background: #2A2D43;
     color: #E8EAF0;
 }
 
-body.night-mode .newsletter-popup.success {
-    background: #1e4030;
-    border-color: #2d8659;
+body.night-mode .newsletter-input-group input::placeholder {
+    color: #8A8FB5;
 }
 
-body.night-mode .newsletter-popup.error {
-    background: #4a1f24;
-    border-color: #c53030;
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .newsletter-input-group {
+        flex-direction: column;
+    }
+    
+    .newsletter-input-group input {
+        width: 100%;
+        min-width: auto;
+    }
+    
+    .newsletter-submit {
+        width: 100%;
+    }
 }
 
 /* Newsletter Popup Styles */
@@ -3448,82 +3422,18 @@ body.night-mode .newsletter-popup.error {
 
               <div class="footer-column">
     <h3>Newsletter</h3>
-    <p>Subscribe to our newsletter for the latest updates and offers.</p><br>
+    <p>Subscribe to our newsletter for the latest updates and offers.</p>
 
-    <!-- Custom Feedback Popup (hidden by default) -->
+    <!-- Custom Feedback Popup -->
     <div id="newsletter-feedback" class="newsletter-popup" style="display: none;"></div>
 
-    <!-- Zoho Campaigns Web-Optin Form (your existing embed) -->
-    <script type="text/javascript" src="https://zgnp-zngp.maillist-manage.com/js/optin.min.js" onload="setupSF('sf3z70db613e4ac1a25fbfa614db3da4fffa1e0c3f1f1abd36e07acf5956ac97abe6','ZCFORMVIEW',false,'light',false,'0')"></script>
-    <script type="text/javascript">
-        function runOnFormSubmit_sf3z70db613e4ac1a25fbfa614db3da4fffa1e0c3f1f1abd36e07acf5956ac97abe6(th){
-            /*Before submit, if you want to trigger your event, "include your code here"*/
-        };
-    </script>
-
-    <style>.quick_form_31_css * { -webkit-box-sizing: border-box !important; -moz-box-sizing: border-box !important; box-sizing: border-box !important; overflow-wrap: break-word }@media only screen and (max-width: 600px) {.quick_form_31_css[name="SIGNUP_BODY"] { width: 100% !important; min-width: 100% !important; margin: 0px auto !important; padding: 0px !important } .SIGNUP_FLD { width: 90% !important; margin: 10px 5% !important; padding: 0px !important } .SIGNUP_FLD input { margin: 0 !important } }</style>
-
-    <div id="sf3z70db613e4ac1a25fbfa614db3da4fffa1e0c3f1f1abd36e07acf5956ac97abe6" data-type="signupform" style="opacity: 1;">
-        <div id="customForm">
-            <div class="quick_form_31_css" style="background-color: rgb(255, 255, 255); width: 600px; z-index: 2; font-family: &quot;Arial&quot;; border-width: 1px; border-style: solid; border-color: rgb(235, 235, 235); overflow: hidden" name="SIGNUP_BODY">
-                <div>
-                    <div style="font-size: 14px; font-family: &quot;Arial&quot;; font-weight: bold; color: rgb(138, 104, 215); text-align: left; padding: 15px 30px 5px; width: 100%; display: block" id="SIGNUP_HEADING">Join Our Newsletter</div>
-                    <div style="position:relative;">
-                        <div id="Zc_SignupSuccess" style="display:none;position:absolute;margin-left:4%;width:90%;background-color: white; padding: 3px; border: 3px solid rgb(194, 225, 154);  margin-top: 10px;margin-bottom:10px;word-break:break-all">
-                            <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                                <tbody>
-                                    <tr>
-                                        <td width="10%">
-                                            <img class="successicon" src="https://zgnp-zngp.maillist-manage.com/images/challangeiconenable.jpg" align="absmiddle">
-                                        </td>
-                                        <td>
-                                            <span id="signupSuccessMsg" style="color: rgb(73, 140, 132); font-family: sans-serif; font-size: 14px;word-break:break-word">&nbsp;&nbsp;Thank you for Signing Up</span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <form method="POST" id="zcampaignOptinForm" style="margin: 0px; width: 100%; padding: 0px 25px" action="https://zgnp-zngp.maillist-manage.com/weboptin.zc" target="_zcSignup">
-                        <div style="background-color: rgb(255, 235, 232); padding: 10px; color: rgb(210, 0, 0); font-size: 11px; margin: 20px 10px 0px; border: 1px solid rgb(255, 217, 211); opacity: 1; display: none" id="errorMsgDiv">Please correct the marked field(s) below.</div>
-                        <div style="position: relative; margin: 15px 0 30px; width: 320px; height: 36px; display: inline-block" class="SIGNUP_FLD">
-                            <input type="text" style="font-size: 17px; border: 1px solid rgb(235, 235, 235); border-radius: 50px; width: 100%; height: 100%; z-index: 4; outline: none; padding: 5px 10px; color: rgb(136, 136, 136); text-align: left; font-family: &quot;Arial&quot;; background-color: transparent; background-color: rgb(255, 255, 255); box-sizing: border-box" placeholder="Email" changeitem="SIGNUP_FORM_FIELD" name="CONTACT_EMAIL" id="EMBED_FORM_EMAIL_LABEL">
-                        </div>
-                        <div style="position: relative; width: 180px; height: 38px; margin: 0 0 0 20px; text-align: left; display: inline-block" class="SIGNUP_FLD">
-                            <input type="button" style="text-align: center; width: 100%; height: 100%; z-index: 5; border: 1px rgb(68, 67, 67); color: rgb(255, 255, 255); cursor: pointer; outline: none; font-size: 14px; background-color: rgb(254, 7, 19); border-radius: 50px" name="SIGNUP_SUBMIT_BUTTON" id="zcWebOptin" value="Join Now">
-                        </div>
-                        <input type="hidden" id="fieldBorder" value="">
-                        <input type="hidden" id="submitType" name="submitType" value="optinCustomView">
-                        <input type="hidden" id="emailReportId" name="emailReportId" value="">
-                        <input type="hidden" id="formType" name="formType" value="QuickForm">
-                        <input type="hidden" name="zx" id="cmpZuid" value="1360b3b91">
-                        <input type="hidden" name="zcvers" value="3.0">
-                        <input type="hidden" name="oldListIds" id="allCheckedListIds" value="">
-                        <input type="hidden" id="mode" name="mode" value="OptinCreateView">
-                        <input type="hidden" id="zcld" name="zcld" value="115ced82b300a46d9">
-                        <input type="hidden" id="zctd" name="zctd" value="115ced82b300a2b91">
-                        <input type="hidden" id="document_domain" value="">
-                        <input type="hidden" id="zc_Url" value="zgnp-zngp.maillist-manage.com">
-                        <input type="hidden" id="new_optin_response_in" value="0">
-                        <input type="hidden" id="duplicate_optin_response_in" value="0">
-                        <input type="hidden" name="zc_trackCode" id="zc_trackCode" value="ZCFORMVIEW">
-                        <input type="hidden" id="zc_formIx" name="zc_formIx" value="3z70db613e4ac1a25fbfa614db3da4fffa1e0c3f1f1abd36e07acf5956ac97abe6">
-                        <input type="hidden" id="viewFrom" value="URL_ACTION">
-                        <span style="display: none" id="dt_CONTACT_EMAIL">1,true,6,Contact Email,2</span>
-                    </form>
-                </div>
-            </div>
+    <!-- Fully Custom Form -->
+    <form id="custom-newsletter-form" class="newsletter-form">
+        <div class="newsletter-input-group">
+            <input type="email" name="email" placeholder="Enter your email" required>
+            <button type="submit" class="cta-button newsletter-submit">Join Now</button>
         </div>
-        <img src="https://zgnp-zngp.maillist-manage.com/images/spacer.gif" id="refImage" onload="referenceSetter(this)" style="display:none;">
-    </div>
-    <input type="hidden" id="signupFormType" value="QuickForm_Horizontal">
-    <div id="zcOptinOverLay" oncontextmenu="return false" style="display:none;text-align: center; background-color: rgb(0, 0, 0); opacity: 0.5; z-index: 100; position: fixed; width: 100%; top: 0px; left: 0px; height: 988px;"></div>
-    <div id="zcOptinSuccessPopup" style="display:none;z-index: 9999;width: 800px; height: 40%;top: 84px;position: fixed; left: 26%;background-color: #FFFFFF;border-color: #E6E6E6; border-style: solid; border-width: 1px;  box-shadow: 0 1px 10px #424242;padding: 35px;">
-        <span style="position: absolute;top: -16px;right:-14px;z-index:99999;cursor: pointer;" id="closeSuccess">
-            <img src="https://zgnp-zngp.maillist-manage.com/images/videoclose.png">
-        </span>
-        <div id="zcOptinSuccessPanel"></div>
-    </div>
+    </form>
 </div>
 
 </div>
@@ -4169,76 +4079,72 @@ window.addEventListener('load', function() {
 </script>
 
 <script>
-// Custom Newsletter Form Submission with AJAX-like Feedback
-document.getElementById('zcampaignOptinForm').addEventListener('submit', function(e) {
+// Custom Newsletter Form Submission to Zoho Campaigns
+document.getElementById('custom-newsletter-form').addEventListener('submit', function(e) {
     e.preventDefault();
 
     const form = this;
-    const email = form.querySelector('input[name="CONTACT_EMAIL"]').value.trim();
+    const email = form.querySelector('input[name="email"]').value.trim();
     const feedback = document.getElementById('newsletter-feedback');
-    const submitBtn = form.querySelector('#zcWebOptin');
+    const submitBtn = form.querySelector('.newsletter-submit');
 
     if (!email) return;
 
-    // Disable button & show loading
+    // Change button to loading
+    submitBtn.textContent = 'Subscribing...';
     submitBtn.disabled = true;
-    submitBtn.value = 'Subscribing...';
 
-    // Create hidden iframe to submit form without page change
-    let iframe = document.getElementById('zoho-iframe');
-    if (!iframe) {
-        iframe = document.createElement('iframe');
-        iframe.id = 'zoho-iframe';
-        iframe.style.display = 'none';
-        document.body.appendChild(iframe);
-    }
+    // Zoho Subscription Endpoint (replace YOUR_LISTKEY_HERE)
+    const listkey = '3z70db613e4ac1a25fbfa614db3da4fffa4f526bbe236cb02e385ce6c231dd9a52'; // ← Paste your listkey here!
+    const url = `https://campaigns.zoho.com/api/v1.1/json/listsubscribe?resfmt=JSON&listkey=${listkey}&contactinfo={"Contact Email":"${encodeURIComponent(email)}"}&source=Website Footer`;
 
-    // Set iframe target and submit
-    form.target = 'zoho-iframe';
-    form.submit();
-
-    // Function to show custom popup
-    const showFeedback = (message, type) => {
-        feedback.textContent = message;
-        feedback.className = `newsletter-popup ${type}`;
-        feedback.style.display = 'block';
-        feedback.classList.add('show');
-
-        setTimeout(() => {
-            feedback.classList.remove('show');
-            setTimeout(() => {
-                feedback.style.display = 'none';
-            }, 400);
-        }, 4000); // Auto-hide after 4 seconds
-
-        submitBtn.disabled = false;
-        submitBtn.value = 'Join Now';
-        form.reset();
-    };
-
-    // Poll iframe for response (Zoho loads a new page with success/error text)
-    let attempts = 0;
-    const checkInterval = setInterval(() => {
-        try {
-            const doc = iframe.contentWindow.document;
-            if (doc && doc.body) {
-                const bodyText = doc.body.innerHTML.toLowerCase();
-                if (bodyText.includes('thank you') || bodyText.includes('success')) {
-                    showFeedback('You’ve been added to the mailing list! 🎉', 'success');
-                    clearInterval(checkInterval);
-                } else if (bodyText.includes('already subscribed') || bodyText.includes('duplicate')) {
-                    showFeedback('This email is already subscribed.', 'error');
-                    clearInterval(checkInterval);
+    fetch(url, { method: 'POST' })
+        .then(response => response.json())
+        .then(data => {
+            let message, type;
+            if (data.status === 'success' || data.code === '0') {
+                if (data.message.includes('confirmation email')) {
+                    message = 'Check your email to confirm subscription! 📧';
+                    type = 'success';
+                } else {
+                    message = 'Successfully subscribed! 🎉';
+                    type = 'success';
                 }
+            } else if (data.message && data.message.includes('already')) {
+                message = 'This email is already subscribed.';
+                type = 'error';
+            } else {
+                message = 'Something went wrong. Please try again.';
+                type = 'error';
             }
-        } catch (e) {} // Cross-origin errors are expected
 
-        attempts++;
-        if (attempts > 30) { // Timeout after ~15 seconds
-            showFeedback('Subscription successful! (If not, check your email.)', 'success'); // Optimistic fallback
-            clearInterval(checkInterval);
-        }
-    }, 500);
+            // Show custom popup
+            feedback.textContent = message;
+            feedback.className = `newsletter-popup ${type}`;
+            feedback.style.display = 'block';
+            feedback.classList.add('show');
+
+            setTimeout(() => {
+                feedback.classList.remove('show');
+                setTimeout(() => feedback.style.display = 'none', 400);
+            }, 5000);
+
+            if (type === 'success') form.reset();
+        })
+        .catch(() => {
+            feedback.textContent = 'Network error. Please try again later.';
+            feedback.className = 'newsletter-popup error';
+            feedback.style.display = 'block';
+            feedback.classList.add('show');
+            setTimeout(() => {
+                feedback.classList.remove('show');
+                setTimeout(() => feedback.style.display = 'none', 400);
+            }, 5000);
+        })
+        .finally(() => {
+            submitBtn.textContent = 'Join Now';
+            submitBtn.disabled = false;
+        });
 });
 </script>
 
