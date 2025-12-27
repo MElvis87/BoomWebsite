@@ -2904,6 +2904,127 @@ body.night-mode .newsletter-input-group input::placeholder {
         width: 100%;
     }
 }
+
+/* Newsletter Popup Styles (if missing from earlier) */
+.newsletter-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background: var(--light);
+    color: var(--dark);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow), var(--toon-shadow);
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+    z-index: 9999;
+    max-width: 80%;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.newsletter-popup.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.newsletter-popup.success {
+    border: 2px solid var(--accent);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    color: white;
+}
+
+.newsletter-popup.error {
+    border: 2px solid var(--secondary);
+    background: linear-gradient(135deg, var(--secondary) 0%, #ff4d6d 100%);
+    color: white;
+}
+
+/* Night Mode for Popup */
+body.night-mode .newsletter-popup {
+    background: #2A2D43;
+    color: #E8EAF0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+body.night-mode .newsletter-popup.success {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+}
+
+body.night-mode .newsletter-popup.error {
+    background: linear-gradient(135deg, var(--secondary) 0%, #ff4d6d 100%);
+}
+
+/* Custom Newsletter Form Styling */
+.newsletter-form {
+    margin-top: 20px;
+}
+
+.newsletter-input-group {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.newsletter-input-group input {
+    flex: 1;
+    min-width: 220px;
+    padding: 15px 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 50px;
+    font-size: 1rem;
+    background: white;
+    color: var(--dark);
+    transition: all 0.3s ease;
+}
+
+.newsletter-input-group input:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 5px 15px rgba(108, 99, 255, 0.1);
+}
+
+.newsletter-submit {
+    padding: 15px 30px !important;
+    background: var(--primary);
+    box-shadow: var(--toon-shadow);
+    white-space: nowrap;
+}
+
+.newsletter-submit:hover {
+    background: var(--accent);
+    transform: translateY(-5px);
+}
+
+/* Night Mode for Form */
+body.night-mode .newsletter-input-group input {
+    background: #1A1D2E;
+    border-color: #3A3F5C;
+    color: #E8EAF0;
+}
+
+body.night-mode .newsletter-input-group input::placeholder {
+    color: #8A8FB5;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .newsletter-input-group {
+        flex-direction: column;
+    }
+    
+    .newsletter-input-group input {
+        width: 100%;
+        min-width: auto;
+    }
+    
+    .newsletter-submit {
+        width: 100%;
+    }
+}
     </style>
 </head>
 <body>
@@ -3499,23 +3620,28 @@ body.night-mode .newsletter-input-group input::placeholder {
     <!-- Fully Custom Form -->
     <form id="custom-newsletter-form" class="newsletter-form" action="https://zgnp-zngp.maillist-manage.com/weboptin.zc" method="POST">
         <div class="newsletter-input-group">
-            <input type="email" name="CONTACT_EMAIL" placeholder="Enter your email" required>
-            <button type="submit" class="cta-button newsletter-submit">Join Now</button>
+            <input type="email" name="CONTACT_EMAIL" id="EMBED_FORM_EMAIL_LABEL" placeholder="Enter your email" required>
+            <button type="submit" class="cta-button newsletter-submit" id="zcWebOptin">Join Now</button>
         </div>
-        <!-- Hidden Zoho Fields (from your embed code) -->
-        <input type="hidden" name="zx" value="1360b3b91">
+        <!-- Hidden Zoho Fields (complete set for valid submission) -->
+        <input type="hidden" id="fieldBorder" name="fieldBorder" value="">
+        <input type="hidden" id="submitType" name="submitType" value="optinCustomView">
+        <input type="hidden" id="formType" name="formType" value="QuickForm">
+        <input type="hidden" id="emailReportId" name="emailReportId" value="">
+        <input type="hidden" name="zx" id="cmpZuid" value="1360b3b91">
         <input type="hidden" name="zcvers" value="3.0">
-        <input type="hidden" name="oldListIds" value="">
-        <input type="hidden" name="mode" value="OptinCreateView">
-        <input type="hidden" name="zcld" value="115ced82b300a46d9">
-        <input type="hidden" name="zctd" value="115ced82b300a2b91">
-        <input type="hidden" name="document_domain" value="">
-        <input type="hidden" name="zc_Url" value="zgnp-zngp.maillist-manage.com">
-        <input type="hidden" name="new_optin_response_in" value="0">
-        <input type="hidden" name="duplicate_optin_response_in" value="0">
-        <input type="hidden" name="zc_trackCode" value="ZCFORMVIEW">
-        <input type="hidden" name="zc_formIx" value="3z70db613e4ac1a25fbfa614db3da4fffa4f526bbe236cb02e385ce6c231dd9a52"> <!-- Your listkey here -->
-        <input type="hidden" name="viewFrom" value="URL_ACTION">
+        <input type="hidden" name="oldListIds" id="allCheckedListIds" value="">
+        <input type="hidden" id="mode" name="mode" value="OptinCreateView">
+        <input type="hidden" id="zcld" name="zcld" value="115ced82b300a46d9">
+        <input type="hidden" id="zctd" name="zctd" value="115ced82b300a2b91">
+        <input type="hidden" id="document_domain" value="">
+        <input type="hidden" id="zc_Url" name="zc_Url" value="zgnp-zngp.maillist-manage.com">
+        <input type="hidden" id="new_optin_response_in" value="0">
+        <input type="hidden" id="duplicate_optin_response_in" value="0">
+        <input type="hidden" name="zc_trackCode" id="zc_trackCode" value="ZCFORMVIEW">
+        <input type="hidden" id="zc_formIx" name="zc_formIx" value="3z70db613e4ac1a25fbfa614db3da4fffa4f526bbe236cb02e385ce6c231dd9a52"> <!-- Your form key -->
+        <input type="hidden" id="viewFrom" name="viewFrom" value="URL_ACTION">
+        <span style="display: none" id="dt_CONTACT_EMAIL">1,true,6,Contact Email,2</span>
     </form>
 </div>
 
@@ -4163,7 +4289,7 @@ window.addEventListener('load', function() {
 
 <script>
 // Custom Newsletter Form Submission with Iframe (Public Endpoint)
-document.getElementById('custom-newsletter-form')?.addEventListener('submit', function(e) {
+document.getElementById('custom-newsletter-form').addEventListener('submit', function(e) {
     e.preventDefault();
 
     const form = this;
@@ -4216,14 +4342,14 @@ document.getElementById('custom-newsletter-form')?.addEventListener('submit', fu
             const doc = iframe.contentWindow.document;
             if (doc && doc.body) {
                 const bodyText = doc.body.innerHTML.toLowerCase();
-                if (bodyText.includes('thank you') || bodyText.includes('confirmation email')) {
-                    showFeedback('Check your email to confirm! 📧 (or successfully subscribed if no double opt-in)', 'success');
+                if (bodyText.includes('thank you') || bodyText.includes('confirmation email') || bodyText.includes('success')) {
+                    showFeedback('Successfully subscribed! Check your email to confirm if needed. 🎉', 'success');
                     clearInterval(checkInterval);
                 } else if (bodyText.includes('already subscribed') || bodyText.includes('contact already exists') || bodyText.includes('duplicate')) {
                     showFeedback('This email is already subscribed.', 'error');
                     clearInterval(checkInterval);
-                } else if (bodyText.includes('error') || bodyText.includes('invalid')) {
-                    showFeedback('Invalid email or something went wrong. Please try again.', 'error');
+                } else if (bodyText.includes('problem in optin') || bodyText.includes('unknown error') || bodyText.includes('error') || bodyText.includes('invalid')) {
+                    showFeedback('Something went wrong—please try again or check your email format.', 'error');
                     clearInterval(checkInterval);
                 }
             }
@@ -4231,7 +4357,7 @@ document.getElementById('custom-newsletter-form')?.addEventListener('submit', fu
 
         attempts++;
         if (attempts > 30) { // Timeout ~15s
-            showFeedback('Subscription successful! Check your email.', 'success'); // Optimistic fallback
+            showFeedback('Subscription processed! Check your email.', 'success'); // Fallback
             clearInterval(checkInterval);
         }
     }, 500);
