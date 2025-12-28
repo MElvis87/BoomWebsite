@@ -284,6 +284,12 @@ body.night-mode .hero {
 /* Add these to your existing dark mode section in the CSS */
 
 /* Night mode portfolio section */
+/* Add a light mode background explicitly */
+body:not(.night-mode) .portfolio {
+    background: #f5f7ff;
+}
+
+/* Your existing night mode rule */
 body.night-mode .portfolio {
     background: #1A1D2E;
 }
@@ -925,10 +931,10 @@ body.night-mode .logo-dark {
                 line-height: 1.4;
             }
         }
-        /* Portfolio Section */
+        /* Portfolio Section
         .portfolio {
             background: #f5f7ff;
-        }
+        }*/
 
         /* Simple Tag System - All same color */
         .video-tag {
