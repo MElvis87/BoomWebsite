@@ -1904,6 +1904,173 @@ body.night-mode .gallery-overlay {
     background: linear-gradient(to top, rgba(26, 29, 46, 0.9), transparent);
 }
 
+/* Legal Modal Popups */
+.legal-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(42, 45, 67, 0.94);
+    backdrop-filter: blur(12px);
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    z-index: 3000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+}
+
+.legal-modal.active {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+}
+
+.legal-modal-wrapper {
+    position: relative;
+    max-width: 800px;
+    width: 100%;
+    max-height: 90vh;
+}
+
+.legal-modal-close {
+    position: absolute;
+    top: -60px;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    color: var(--dark);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+    z-index: 10;
+}
+
+.legal-modal-close:hover {
+    background: var(--secondary);
+    color: white;
+    transform: rotate(90deg) scale(1.1);
+}
+
+.legal-modal-content {
+    background: white;
+    border-radius: var(--border-radius);
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+    animation: modalPop 0.45s ease-out;
+}
+
+.legal-modal-header {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    padding: 40px 50px 30px;
+    text-align: center;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.legal-modal-header h2 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    text-shadow: var(--toon-shadow);
+}
+
+.legal-modal-body {
+    padding: 40px 50px;
+    line-height: 1.7;
+    color: #444;
+}
+
+.legal-modal-body h3 {
+    color: var(--primary);
+    margin: 25px 0 15px;
+    font-size: 1.3rem;
+}
+
+.legal-modal-body p {
+    margin-bottom: 15px;
+}
+
+.legal-modal-body ul, .legal-modal-body ol {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.legal-modal-body li {
+    margin-bottom: 8px;
+}
+
+/* Night Mode */
+body.night-mode .legal-modal-content {
+    background: #2A2D43;
+    color: #E8EAF0;
+}
+
+body.night-mode .legal-modal-body {
+    color: #E8EAF0;
+}
+
+body.night-mode .legal-modal-body p {
+    color: #B0B5CC;
+}
+
+body.night-mode .legal-modal-body h3 {
+    color: var(--accent);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .legal-modal-wrapper {
+        max-width: 95%;
+    }
+    
+    .legal-modal-close {
+        top: -50px;
+        right: 0;
+        width: 45px;
+        height: 45px;
+    }
+    
+    .legal-modal-header {
+        padding: 30px 25px 25px;
+    }
+    
+    .legal-modal-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .legal-modal-body {
+        padding: 30px 25px;
+    }
+}
+
+@media (max-width: 576px) {
+    .legal-modal-close {
+        top: 20px;
+        right: 20px;
+        position: fixed;
+    }
+    
+    .legal-modal-header h2 {
+        font-size: 1.6rem;
+    }
+    
+    .legal-modal-body {
+        padding: 25px 20px;
+        font-size: 0.95rem;
+    }
+}
+
 /* Responsive Gallery */
 @media (max-width: 992px) {
     .gallery-grid {
@@ -2766,172 +2933,7 @@ body.night-mode .newsletter-popup.error {
     background: linear-gradient(135deg, var(--secondary) 0%, #ff4d6d 100%);
 }
 
-/* Legal Modal Popups */
-.legal-modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(42, 45, 67, 0.94);
-    backdrop-filter: blur(12px);
-    align-items: center;
-    justify-content: center;
-    padding: 40px 20px;
-    z-index: 3000;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.4s ease;
-}
 
-.legal-modal.active {
-    display: flex;
-    opacity: 1;
-    visibility: visible;
-}
-
-.legal-modal-wrapper {
-    position: relative;
-    max-width: 800px;
-    width: 100%;
-    max-height: 90vh;
-}
-
-.legal-modal-close {
-    position: absolute;
-    top: -60px;
-    right: 0;
-    width: 50px;
-    height: 50px;
-    background: white;
-    border: none;
-    border-radius: 50%;
-    color: var(--dark);
-    font-size: 1.5rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    box-shadow: var(--shadow);
-    z-index: 10;
-}
-
-.legal-modal-close:hover {
-    background: var(--secondary);
-    color: white;
-    transform: rotate(90deg) scale(1.1);
-}
-
-.legal-modal-content {
-    background: white;
-    border-radius: var(--border-radius);
-    max-height: 80vh;
-    overflow-y: auto;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.35);
-    animation: modalPop 0.45s ease-out;
-}
-
-.legal-modal-header {
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    color: white;
-    padding: 40px 50px 30px;
-    text-align: center;
-    border-radius: var(--border-radius) var(--border-radius) 0 0;
-    position: sticky;
-    top: 0;
-    z-index: 2;
-}
-
-.legal-modal-header h2 {
-    font-size: 2.2rem;
-    margin-bottom: 10px;
-    text-shadow: var(--toon-shadow);
-}
-
-.legal-modal-body {
-    padding: 40px 50px;
-    line-height: 1.7;
-    color: #444;
-}
-
-.legal-modal-body h3 {
-    color: var(--primary);
-    margin: 25px 0 15px;
-    font-size: 1.3rem;
-}
-
-.legal-modal-body p {
-    margin-bottom: 15px;
-}
-
-.legal-modal-body ul, .legal-modal-body ol {
-    margin-left: 20px;
-    margin-bottom: 20px;
-}
-
-.legal-modal-body li {
-    margin-bottom: 8px;
-}
-
-/* Night Mode */
-body.night-mode .legal-modal-content {
-    background: #2A2D43;
-    color: #E8EAF0;
-}
-
-body.night-mode .legal-modal-body {
-    color: #E8EAF0;
-}
-
-body.night-mode .legal-modal-body p {
-    color: #B0B5CC;
-}
-
-body.night-mode .legal-modal-body h3 {
-    color: var(--accent);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .legal-modal-wrapper {
-        max-width: 95%;
-    }
-    
-    .legal-modal-close {
-        top: -50px;
-        right: 0;
-        width: 45px;
-        height: 45px;
-    }
-    
-    .legal-modal-header {
-        padding: 30px 25px 25px;
-    }
-    
-    .legal-modal-header h2 {
-        font-size: 1.8rem;
-    }
-    
-    .legal-modal-body {
-        padding: 30px 25px;
-    }
-}
-
-@media (max-width: 576px) {
-    .legal-modal-close {
-        top: 20px;
-        right: 20px;
-        position: fixed;
-    }
-    
-    .legal-modal-header h2 {
-        font-size: 1.6rem;
-    }
-    
-    .legal-modal-body {
-        padding: 25px 20px;
-        font-size: 0.95rem;
-    }
-}
 
 
 
@@ -3612,7 +3614,8 @@ body.night-mode .legal-modal-body h3 {
         </div>
     </footer>
 
-<!-- Legal Modals -->
+
+    <!-- Legal Modals -->
 <div class="legal-modal" id="privacy-modal">
     <div class="legal-modal-wrapper">
         <button class="legal-modal-close">&times;</button>
@@ -3700,7 +3703,6 @@ body.night-mode .legal-modal-body h3 {
         </div>
     </div>
 </div>
-
 
     <!-- Scroll to Top Button -->
     <div class="scroll-to-top">
@@ -4334,6 +4336,9 @@ window.addEventListener('load', function() {
     handleGalleryAnimation(); // Add this line
 });
 
+</script>
+
+<script>
 // Legal Modals Functionality
 const legalLinks = document.querySelectorAll('.legal-link');
 const privacyModal = document.getElementById('privacy-modal');
@@ -4392,9 +4397,6 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-</script>
-
-<script>
 // Custom Newsletter Form Submission with AJAX-like Feedback
 document.getElementById('zcampaignOptinForm').addEventListener('submit', function(e) {
     e.preventDefault();
