@@ -2766,6 +2766,173 @@ body.night-mode .newsletter-popup.error {
     background: linear-gradient(135deg, var(--secondary) 0%, #ff4d6d 100%);
 }
 
+/* Legal Modal Popups */
+.legal-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(42, 45, 67, 0.94);
+    backdrop-filter: blur(12px);
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    z-index: 3000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+}
+
+.legal-modal.active {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+}
+
+.legal-modal-wrapper {
+    position: relative;
+    max-width: 800px;
+    width: 100%;
+    max-height: 90vh;
+}
+
+.legal-modal-close {
+    position: absolute;
+    top: -60px;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    color: var(--dark);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+    z-index: 10;
+}
+
+.legal-modal-close:hover {
+    background: var(--secondary);
+    color: white;
+    transform: rotate(90deg) scale(1.1);
+}
+
+.legal-modal-content {
+    background: white;
+    border-radius: var(--border-radius);
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+    animation: modalPop 0.45s ease-out;
+}
+
+.legal-modal-header {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    padding: 40px 50px 30px;
+    text-align: center;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.legal-modal-header h2 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    text-shadow: var(--toon-shadow);
+}
+
+.legal-modal-body {
+    padding: 40px 50px;
+    line-height: 1.7;
+    color: #444;
+}
+
+.legal-modal-body h3 {
+    color: var(--primary);
+    margin: 25px 0 15px;
+    font-size: 1.3rem;
+}
+
+.legal-modal-body p {
+    margin-bottom: 15px;
+}
+
+.legal-modal-body ul, .legal-modal-body ol {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.legal-modal-body li {
+    margin-bottom: 8px;
+}
+
+/* Night Mode */
+body.night-mode .legal-modal-content {
+    background: #2A2D43;
+    color: #E8EAF0;
+}
+
+body.night-mode .legal-modal-body {
+    color: #E8EAF0;
+}
+
+body.night-mode .legal-modal-body p {
+    color: #B0B5CC;
+}
+
+body.night-mode .legal-modal-body h3 {
+    color: var(--accent);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .legal-modal-wrapper {
+        max-width: 95%;
+    }
+    
+    .legal-modal-close {
+        top: -50px;
+        right: 0;
+        width: 45px;
+        height: 45px;
+    }
+    
+    .legal-modal-header {
+        padding: 30px 25px 25px;
+    }
+    
+    .legal-modal-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .legal-modal-body {
+        padding: 30px 25px;
+    }
+}
+
+@media (max-width: 576px) {
+    .legal-modal-close {
+        top: 20px;
+        right: 20px;
+        position: fixed;
+    }
+    
+    .legal-modal-header h2 {
+        font-size: 1.6rem;
+    }
+    
+    .legal-modal-body {
+        padding: 25px 20px;
+        font-size: 0.95rem;
+    }
+}
+
 
 
     </style>
@@ -3340,6 +3507,10 @@ body.night-mode .newsletter-popup.error {
                         <li><a href="#portfolio">Portfolio</a></li>
                         <li><a href="#about">About Us</a></li>
                         <li><a href="#blog">Blog</a></li>
+                        <!-- Add these two links -->
+                        <li><a href="#" class="legal-link" data-type="privacy">Privacy Policy</a></li>
+                        <li><a href="#" class="legal-link" data-type="terms">Terms & Conditions</a></li>
+                        <!-- End of new links -->
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -3440,6 +3611,96 @@ body.night-mode .newsletter-popup.error {
             </div>
         </div>
     </footer>
+
+<!-- Legal Modals -->
+<div class="legal-modal" id="privacy-modal">
+    <div class="legal-modal-wrapper">
+        <button class="legal-modal-close">&times;</button>
+        <div class="legal-modal-content">
+            <div class="legal-modal-header">
+                <h2>Privacy Policy</h2>
+                <p>Last Updated: December 2024</p>
+            </div>
+            <div class="legal-modal-body">
+                <h3>Information We Collect</h3>
+                <p>When you contact us or request a quote, we may collect personal information such as your name, email address, phone number, and project details. This information is used solely to respond to your inquiries and provide our services.</p>
+                
+                <h3>How We Use Your Information</h3>
+                <p>We use the information we collect to:</p>
+                <ul>
+                    <li>Respond to your inquiries and provide quotes</li>
+                    <li>Communicate about your project</li>
+                    <li>Improve our services</li>
+                    <li>Send occasional updates about our studio (only if you subscribe)</li>
+                </ul>
+                
+                <h3>Data Protection</h3>
+                <p>We implement appropriate security measures to protect your personal information. We do not sell, trade, or rent your personal information to third parties.</p>
+                
+                <h3>Third-Party Services</h3>
+                <p>We use FormSubmit.co to handle form submissions and Zoho Campaigns for newsletter management. These services have their own privacy policies governing data handling.</p>
+                
+                <h3>Your Rights</h3>
+                <p>You have the right to:</p>
+                <ul>
+                    <li>Access your personal information</li>
+                    <li>Correct inaccurate information</li>
+                    <li>Request deletion of your information</li>
+                    <li>Opt-out of communications</li>
+                </ul>
+                
+                <h3>Contact Us</h3>
+                <p>For privacy-related inquiries, contact us at: info@boomis.site</p>
+                
+                <p><em>This policy may be updated periodically. Please check back for changes.</em></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="legal-modal" id="terms-modal">
+    <div class="legal-modal-wrapper">
+        <button class="legal-modal-close">&times;</button>
+        <div class="legal-modal-content">
+            <div class="legal-modal-header">
+                <h2>Terms & Conditions</h2>
+                <p>Effective: December 2024</p>
+            </div>
+            <div class="legal-modal-body">
+                <h3>Acceptance of Terms</h3>
+                <p>By accessing and using Boom Innovation Studio's website and services, you agree to be bound by these Terms and Conditions.</p>
+                
+                <h3>Services</h3>
+                <p>We provide 3D animation, visual effects, and related creative services. All quotes are estimates and final pricing may vary based on project scope changes.</p>
+                
+                <h3>Intellectual Property</h3>
+                <p>All content on this website, including animations, designs, and text, is owned by Boom Innovation Studio or licensed to us. You may not reproduce, distribute, or create derivative works without permission.</p>
+                
+                <h3>Client Projects</h3>
+                <p>Upon full payment, clients receive ownership of final deliverables as outlined in individual project agreements. We retain the right to display completed work in our portfolio unless otherwise agreed.</p>
+                
+                <h3>Payment Terms</h3>
+                <p>Projects typically require a 50% deposit to begin work, with the balance due upon completion. Late payments may incur additional fees.</p>
+                
+                <h3>Revisions</h3>
+                <p>We include a reasonable number of revisions in our quotes. Additional revisions may incur extra charges.</p>
+                
+                <h3>Limitation of Liability</h3>
+                <p>Boom Innovation Studio shall not be liable for any indirect, incidental, or consequential damages arising from the use of our services or website.</p>
+                
+                <h3>Governing Law</h3>
+                <p>These terms are governed by the laws of Uganda and Nigeria, where our studios are located.</p>
+                
+                <h3>Changes to Terms</h3>
+                <p>We reserve the right to modify these terms at any time. Continued use of our services constitutes acceptance of changes.</p>
+                
+                <h3>Contact</h3>
+                <p>For questions about these terms, contact us at: info@boomis.site</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 
     <!-- Scroll to Top Button -->
     <div class="scroll-to-top">
@@ -4071,6 +4332,64 @@ window.addEventListener('scroll', function() {
 window.addEventListener('load', function() {
     handleScrollAnimation();
     handleGalleryAnimation(); // Add this line
+});
+
+// Legal Modals Functionality
+const legalLinks = document.querySelectorAll('.legal-link');
+const privacyModal = document.getElementById('privacy-modal');
+const termsModal = document.getElementById('terms-modal');
+const legalCloseButtons = document.querySelectorAll('.legal-modal-close');
+
+// Open legal modal
+legalLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const type = this.getAttribute('data-type');
+        
+        if (type === 'privacy') {
+            privacyModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        } else if (type === 'terms') {
+            termsModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    });
+});
+
+// Close legal modal function
+function closeLegalModal(modal) {
+    modal.classList.remove('active');
+    setTimeout(() => {
+        document.body.style.overflow = '';
+    }, 300);
+}
+
+// Close buttons
+legalCloseButtons.forEach(btn => {
+    btn.addEventListener('click', function() {
+        const modal = this.closest('.legal-modal');
+        closeLegalModal(modal);
+    });
+});
+
+// Close modal when clicking outside
+[privacyModal, termsModal].forEach(modal => {
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeLegalModal(modal);
+        }
+    });
+});
+
+// Close with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        if (privacyModal.classList.contains('active')) {
+            closeLegalModal(privacyModal);
+        } else if (termsModal.classList.contains('active')) {
+            closeLegalModal(termsModal);
+        }
+    }
 });
 
 </script>
