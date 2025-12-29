@@ -2942,7 +2942,159 @@ body.night-mode .newsletter-popup.error {
 
 
 
+/* Newsletter Form Base Styles */
+#customForm {
+    max-width: 300px; /* Keeps it compact in footer */
+    margin: 0 auto; /* Center in column */
+}
 
+#SIGNUP_HEADING {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 15px;
+    text-align: left; /* Align with other footer headings */
+    display: block; /* Ensure it's visible if added */
+}
+
+.SIGNUP_FLD {
+    margin-bottom: 15px; /* Better spacing between fields */
+}
+
+#zcampaignOptinForm input[type="text"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid rgba(108, 117, 125, 0.15); /* Subtle grey border matching navbar */
+    border-radius: var(--border-radius); /* 20px */
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    background: white;
+    color: var(--dark);
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow); /* Soft shadow */
+}
+
+#zcampaignOptinForm input[type="text"]:focus {
+    border-color: var(--primary); /* #6C63FF */
+    box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1); /* Glow */
+    outline: none;
+}
+
+#zcampaignOptinForm input[type="text"]::placeholder {
+    color: #8A8FB5; /* Muted grey */
+    opacity: 0.7;
+}
+
+#zcWebOptin {
+    width: 100%;
+    padding: 12px 15px;
+    background: var(--primary); /* #6C63FF */
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--toon-shadow); /* Cartoon shadow */
+    position: relative;
+    overflow: hidden; /* For ripple */
+}
+
+#zcWebOptin:hover {
+    background: var(--secondary); /* #FF6584 */
+    transform: translateY(-3px);
+    box-shadow: 0 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+#zcWebOptin:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Ripple effect */
+#zcWebOptin .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Success/Error Messages */
+#Zc_SignupSuccess {  /* If Zoho adds this on success */
+    background: rgba(73, 140, 132, 0.1) !important; /* Light green */
+    border: 2px solid rgb(73, 140, 132) !important;
+    color: var(--dark);
+    border-radius: var(--border-radius);
+    padding: 15px !important;
+    margin: 15px 0 !important;
+    box-shadow: var(--shadow);
+}
+
+#errorMsgDiv {
+    color: var(--secondary); /* Red for errors */
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    text-align: center;
+    display: none; /* Hide by default; Zoho shows on error */
+}
+
+/* Night Mode Styles */
+body.night-mode #SIGNUP_HEADING {
+    color: #E8EAF0;
+}
+
+body.night-mode #zcampaignOptinForm input[type="text"] {
+    background: #1A1D2E;
+    border-color: #3A3F5C;
+    color: #E8EAF0;
+}
+
+body.night-mode #zcampaignOptinForm input[type="text"]:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+}
+
+body.night-mode #zcampaignOptinForm input[type="text"]::placeholder {
+    color: #8A8FB5;
+    opacity: 0.7;
+}
+
+body.night-mode #zcWebOptin {
+    background: var(--primary);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+body.night-mode #zcWebOptin:hover {
+    background: var(--accent); /* #36D1DC */
+}
+
+body.night-mode #Zc_SignupSuccess {
+    background: rgba(73, 140, 132, 0.2) !important;
+    border-color: rgb(73, 140, 132) !important;
+    color: #E8EAF0;
+}
+
+body.night-mode #errorMsgDiv {
+    color: var(--secondary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #customForm {
+        max-width: 100%;
+    }
+}
 
 
 
@@ -3551,9 +3703,10 @@ body.night-mode .newsletter-popup.error {
     <div id="customForm">
         <div class="quick_form_31_css" name="SIGNUP_BODY">
             <div>
-                <div id="SIGNUP_HEADING">Join Our Newsletter</div>
+                <h3>Newsletter</h3>
+                <div id="SIGNUP_HEADING">Join the Boom Newsletter to keep up with the latest insights and offers.</div>
                 <div style="position:relative;">
-                    <div id="Zc_SignupSuccess" style="display:none;position:absolute;margin-left:4%;width:90%;background-color: white; padding: 3px; border: 3px solid rgb(194, 225, 154);  margin-top: 10px;margin-bottom:10px;word-break:break-all ">
+                    <div id="Zc_SignupSuccess" style="display:none;position:absolute;margin-left:4%;width:90%;background-color: white; padding: 3px; border: 3px solid rgb(194, 225, 154);  margin-top: 10px;margin-bottom:10px;word-break:break-all; border-radius: 20px; ">
                         <table width="100%" cellpadding="0" cellspacing="0" border="0">
                             <tbody>
                                 <tr>
@@ -3568,13 +3721,55 @@ body.night-mode .newsletter-popup.error {
                         </table>
                     </div>
                 </div>
+
                 <form method="POST" id="zcampaignOptinForm" action="https://zgnp-zngp.maillist-manage.com/weboptin.zc" target="_zcSignup">
-                    <div id="errorMsgDiv">Please correct the marked field(s) below.</div>
+                    <div id="errorMsgDiv" style="display: none;">Please correct the marked field(s) below.</div><br>
                     <div class="SIGNUP_FLD">
-                        <input type="text" placeholder="Email" changeitem="SIGNUP_FORM_FIELD" name="CONTACT_EMAIL" id="EMBED_FORM_EMAIL_LABEL">
-                    </div>
+                        <input type="text" 
+       placeholder="Email" 
+       changeitem="SIGNUP_FORM_FIELD" 
+       name="CONTACT_EMAIL" 
+       id="EMBED_FORM_EMAIL_LABEL"
+       style="
+           width: 100%; 
+           padding: 12px 15px; 
+           border: 2px solid rgba(108, 117, 125, 0.15); 
+           border-radius: 20px; 
+           font-family: 'Inter', sans-serif; 
+           font-size: 1rem; 
+           background: white; 
+           color: #2A2D43; 
+           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
+           transition: all 0.3s ease;
+       "
+       onfocus="this.style.borderColor='#6C63FF'; this.style.boxShadow='0 0 0 3px rgba(108, 99, 255, 0.1)';"
+       onblur="this.style.borderColor='rgba(108, 117, 125, 0.15)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.1)';">
+                    </div><br>
                     <div class="SIGNUP_FLD">
-                        <input type="button" name="SIGNUP_SUBMIT_BUTTON" id="zcWebOptin" value="Join Now">
+                        <input type="button" 
+       name="SIGNUP_SUBMIT_BUTTON" 
+       id="zcWebOptin" 
+       value="Join Now"
+       style="
+           width: 100%; 
+           padding: 12px 15px; 
+           background: #6C63FF; 
+           color: white; 
+           border: none; 
+           border-radius: 20px; 
+           font-family: 'Inter', sans-serif; 
+           font-size: 1rem; 
+           font-weight: 600; 
+           cursor: pointer; 
+           transition: all 0.3s ease; 
+           box-shadow: 0 5px 0 rgba(0, 0, 0, 0.8); 
+           position: relative; 
+           overflow: hidden;
+       "
+       onmouseover="this.style.background='#FF6584'; this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 0 rgba(0, 0, 0, 0.2)';"
+       onmouseout="this.style.background='#6C63FF'; this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 0 rgba(0, 0, 0, 0.8)';"
+       onmousedown="this.style.transform='translateY(0)';"
+       onmouseup="this.style.transform='translateY(-3px)';">
                     </div>
                     <input type="hidden" id="fieldBorder" value="">
                     <input type="hidden" id="submitType" name="submitType" value="optinCustomView">
@@ -4051,6 +4246,28 @@ document.querySelectorAll('.cta-button').forEach(button => {
         // Clean up
         setTimeout(() => ripple.remove(), 600);
     });
+});
+
+// Ripple effect for Newsletter Subscribe button (Zoho Campaigns)
+document.getElementById('zcWebOptin').addEventListener('click', function(e) {
+    const ripple = document.createElement('span');
+    const rect = this.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = e.clientX - rect.left - size / 2;
+    const y = e.clientY - rect.top - size / 2;
+
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = x + 'px';
+    ripple.style.top = y + 'px';
+    ripple.classList.add('ripple');
+
+    // Remove any old ripple
+    const oldRipple = this.querySelector('.ripple');
+    if (oldRipple) oldRipple.remove();
+
+    this.appendChild(ripple);
+
+    setTimeout(() => ripple.remove(), 600);
 });
 
     // Team Modal Functionality
