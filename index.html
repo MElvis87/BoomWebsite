@@ -422,6 +422,104 @@ body.night-mode .video-item:hover {
     border-color: var(--primary);
 }
 
+/* Enhanced Night Mode Styling for Get Quote Form */
+body.night-mode .quote-form {
+    background: #2A2D43; /* Matches blog cards, video items */
+    border: 1px solid #3A3F5C; /* Subtle dark border */
+    padding: 40px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4); /* Deeper, softer shadow */
+    color: #E8EAF0;
+}
+
+body.night-mode .quote-form h3 {
+    color: #E8EAF0;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+body.night-mode .quote-form .form-group label {
+    color: #E8EAF0;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+body.night-mode .quote-form input[type="text"],
+body.night-mode .quote-form input[type="email"],
+body.night-mode .quote-form select,
+body.night-mode .quote-form textarea {
+    background: #1A1D2E; /* Darker input background */
+    border: 2px solid #3A3F5C;
+    color: #E8EAF0;
+    border-radius: var(--border-radius);
+    padding: 12px 15px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+body.night-mode .quote-form input:focus,
+body.night-mode .quote-form select:focus,
+body.night-mode .quote-form textarea:focus {
+    border-color: var(--primary); /* #6C63FF glow */
+    box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+    background: #1A1D2E;
+    outline: none;
+}
+
+body.night-mode .quote-form input::placeholder,
+body.night-mode .quote-form textarea::placeholder {
+    color: #8A8FB5;
+    opacity: 0.8;
+}
+
+/* Submit Button in Night Mode */
+body.night-mode .quote-form .cta-button {
+    background: var(--primary); /* #6C63FF */
+    color: white;
+    box-shadow: 0 8px 0 rgba(0, 0, 0, 0.3);
+    margin-top: 20px;
+}
+
+body.night-mode .quote-form .cta-button:hover {
+    background: var(--accent); /* #36D1DC for nice contrast on hover */
+    transform: translateY(-4px);
+    box-shadow: 0 12px 0 rgba(0, 0, 0, 0.3);
+}
+
+body.night-mode .quote-form .cta-button:active {
+    transform: translateY(0);
+    box-shadow: 0 5px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Optional: Ripple in dark mode (if ripple is white, make it slightly transparent) */
+body.night-mode .ripple {
+    background: rgba(255, 255, 255, 0.5) !important;
+}
+
+
+/* Improved Light Mode Quote Form */
+body:not(.night-mode) .quote-form {
+    background: white;
+    border: 1px solid rgba(108, 117, 125, 0.15);
+    box-shadow: var(--shadow);
+}
+
+body:not(.night-mode) .quote-form input,
+body:not(.night-mode) .quote-form select,
+body:not(.night-mode) .quote-form textarea {
+    background: white;
+    border: 2px solid rgba(108, 117, 125, 0.15);
+    box-shadow: var(--shadow);
+}
+
+body:not(.night-mode) .quote-form input:focus,
+body:not(.night-mode) .quote-form select:focus,
+body:not(.night-mode) .quote-form textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
+}
+
 
 
 
@@ -3723,7 +3821,7 @@ body.night-mode #errorMsgDiv {
                 </div>
 
                 <form method="POST" id="zcampaignOptinForm" action="https://zgnp-zngp.maillist-manage.com/weboptin.zc" target="_zcSignup">
-                    <div id="errorMsgDiv" style="display: none;">Please correct the marked field(s) below.</div><br>
+                    <div id="errorMsgDiv" style="display: none; color: lightgray;">Please fill your email address in.</div><br>
                     <div class="SIGNUP_FLD">
                         <input type="text" 
        placeholder="Email" 
