@@ -2392,16 +2392,27 @@ body.night-mode .legal-modal-body h3 {
         }
 
         .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            transition: all 0.3s ease;
-        }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+/* Light mode social icons fix */
+body:not(.night-mode) .social-links a {
+    background: var(--primary);
+    color: white;
+}
+
+body:not(.night-mode) .social-links a:hover {
+    background: var(--secondary);
+    color: white;
+}
 
         .social-links a:hover {
             background: var(--primary);
