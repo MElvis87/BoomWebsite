@@ -2347,6 +2347,49 @@ body.night-mode .legal-modal-body h3 {
             box-shadow: 0 5px 15px rgba(108, 99, 255, 0.1);
         }
 
+
+        /* NUCLEAR OPTION: Force invisible track and visible thumb */
+.modal-card,
+.team-modal-content,
+.blog-article,
+.legal-modal-content {
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) rgba(0, 0, 0, 0) !important;
+}
+
+/* Kill the track completely */
+.modal-card::-webkit-scrollbar-track,
+.team-modal-content::-webkit-scrollbar-track,
+.blog-article::-webkit-scrollbar-track,
+.legal-modal-content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0) !important;
+    box-shadow: none !important;
+    border: none !important;
+    -webkit-box-shadow: none !important;
+}
+
+/* Make thumb clearly visible */
+.modal-card::-webkit-scrollbar-thumb,
+.team-modal-content::-webkit-scrollbar-thumb,
+.blog-article::-webkit-scrollbar-thumb,
+.legal-modal-content::-webkit-scrollbar-thumb {
+    background-color: var(--primary) !important;
+    border-radius: 4px !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    background-clip: padding-box !important;
+}
+
+/* Specific for Get Quote modal */
+#quote-modal .modal-card::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0) !important;
+}
+
+#quote-modal .modal-card::-webkit-scrollbar-thumb {
+    background-color: var(--primary) !important;
+    border-radius: 4px !important;
+}
+
         /* Footer */
         footer {
             background: var(--dark);
@@ -3215,6 +3258,131 @@ body.night-mode #errorMsgDiv {
 }
 
 
+/* Business Registration Row */
+.business-registration-row {
+    width: 100%;
+    margin: 40px 0 30px;
+    padding: 25px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.registration-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.business-registration-row h4 {
+    color: var(--accent);
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.registration-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.registration-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 200px;
+}
+
+.registration-label {
+    color: #ccc;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.registration-value {
+    color: white;
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 8px 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    word-break: break-word;
+    max-width: 300px;
+}
+
+/* Night Mode Support */
+body.night-mode .business-registration-row {
+    border-color: rgba(54, 209, 220, 0.2);
+}
+
+body.night-mode .registration-label {
+    color: #B0B5CC;
+}
+
+body.night-mode .registration-value {
+    color: #E8EAF0;
+    background: rgba(42, 45, 67, 0.6);
+    border-color: rgba(54, 209, 220, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .registration-grid {
+        gap: 20px;
+    }
+    
+    .registration-item {
+        min-width: 180px;
+    }
+}
+
+@media (max-width: 768px) {
+    .business-registration-row {
+        margin: 30px 0 25px;
+        padding: 20px 0;
+    }
+    
+    .registration-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .registration-item {
+        width: 100%;
+        max-width: 350px;
+    }
+    
+    .registration-value {
+        max-width: 100%;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .business-registration-row {
+        margin: 25px 0 20px;
+        padding: 15px 0;
+    }
+    
+    .business-registration-row h4 {
+        font-size: 1rem;
+        margin-bottom: 15px;
+    }
+    
+    .registration-value {
+        font-size: 0.85rem;
+        padding: 6px 12px;
+    }
+}
+
 
     </style>
 </head>
@@ -3927,11 +4095,32 @@ body.night-mode #errorMsgDiv {
 </div>
 
 </div>
+                        </div>
+            
+            <!-- NEW: Business Registration Row -->
+            <div class="business-registration-row">
+                <div class="registration-container">
+                    <h4>Business Registration Numbers</h4>
+                    <div class="registration-grid">
+                        <div class="registration-item">
+                            <span class="registration-label">Nigeria:</span>
+                            <span class="registration-value">9173179</span>
+                        </div>
+                        
+                        <!-- Add more as needed 
+
+                        <div class="registration-item">
+                            <span class="registration-label">International:</span>
+                            <span class="registration-value">[INTERNATIONAL_REG_NUMBER]</span>
+                        </div>
+                             -->
+                    </div>
+                </div>
             </div>
+            
             <div class="copyright">
                 <p>&copy; 2026 Boom Innovation Studio. All rights reserved. Courtesy of the Blender Foundation.</p>
             </div>
-        </div>
     </footer>
 
 
