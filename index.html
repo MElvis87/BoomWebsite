@@ -3457,6 +3457,15 @@ body.night-mode .navbar.scrolled {
     box-shadow: 0 18px 56px rgba(0, 0, 0, 0.42);
 }
 
+body.night-mode .navbar .nav-links {
+    background: transparent !important;
+    backdrop-filter: none;
+}
+
+body.night-mode .navbar .nav-links li:not(:last-child) a {
+    background: transparent;
+}
+
 .logo-image {
     height: 36px;
 }
@@ -4128,6 +4137,11 @@ body.night-mode .skill-tag {
         border: 1px solid var(--line);
         border-radius: 8px;
         box-shadow: var(--shadow);
+    }
+
+    body.night-mode .navbar .nav-links {
+        background: rgba(15, 23, 42, 0.96) !important;
+        backdrop-filter: blur(10px);
     }
 
     .nav-links li {
