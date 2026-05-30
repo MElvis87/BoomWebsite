@@ -3642,6 +3642,7 @@ body.night-mode .nav-links li:last-child a {
 }
 
 #process,
+#partners,
 #about,
 .blog,
 .gallery {
@@ -3659,6 +3660,7 @@ body.night-mode .gallery {
 }
 
 .process-steps,
+.partners-grid,
 .video-grid,
 .blog-grid,
 .gallery-grid {
@@ -3666,6 +3668,7 @@ body.night-mode .gallery {
 }
 
 .step,
+.partner-card,
 .video-item,
 .blog-card,
 .gallery-item,
@@ -3681,6 +3684,7 @@ body.night-mode .gallery {
 }
 
 .step,
+.partner-card,
 .video-item,
 .blog-card,
 .gallery-item {
@@ -3692,6 +3696,7 @@ body.night-mode .gallery {
 }
 
 .step:hover,
+.partner-card:hover,
 .video-item:hover,
 .blog-card:hover,
 .gallery-item:hover {
@@ -3734,11 +3739,49 @@ body.night-mode .gallery {
 }
 
 .step p,
+.partners-intro,
 .video-info p,
 .blog-content p,
 .about-text p,
 .contact-detail p {
     color: var(--ink-muted);
+}
+
+.partners {
+    position: relative;
+}
+
+.partners .section-title {
+    margin-bottom: 18px;
+}
+
+.partners-intro {
+    max-width: 640px;
+    margin: 0 auto 34px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.partners-grid {
+    display: grid;
+    grid-template-columns: minmax(220px, 360px);
+    justify-content: center;
+}
+
+.partner-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 170px;
+    padding: 34px;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.partner-logo {
+    display: block;
+    width: min(100%, 230px);
+    max-height: 120px;
+    object-fit: contain;
 }
 
 .video-grid {
@@ -3986,6 +4029,7 @@ footer {
 }
 
 body.night-mode .step,
+body.night-mode .partner-card,
 body.night-mode .video-item,
 body.night-mode .blog-card,
 body.night-mode .gallery-item,
@@ -4000,6 +4044,7 @@ body.night-mode .legal-modal-content {
 }
 
 body.night-mode .step p,
+body.night-mode .partners-intro,
 body.night-mode .video-info p,
 body.night-mode .blog-content p,
 body.night-mode .about-text p,
@@ -4128,6 +4173,7 @@ body.night-mode .skill-tag {
     }
 
     .process-steps,
+    .partners-grid,
     .video-grid,
     .blog-grid,
     .gallery-grid {
@@ -4135,6 +4181,7 @@ body.night-mode .skill-tag {
     }
 
     .step,
+    .partner-card,
     .contact-form,
     .quote-form {
         padding: 24px;
@@ -4220,6 +4267,15 @@ body.night-mode .skill-tag {
     .blog-content,
     .video-info {
         padding: 20px;
+    }
+
+    .partner-card {
+        min-height: 140px;
+    }
+
+    .partner-logo {
+        width: min(100%, 200px);
+        max-height: 96px;
     }
 }
 
@@ -4455,6 +4511,22 @@ body.night-mode .skill-tag {
         </div>
     </div>
 </div>
+        </div>
+    </section>
+
+
+    <!-- Partners Section -->
+    <section class="partners" id="partners">
+        <div class="container">
+            <div class="section-title">
+                <h2>Partners</h2>
+            </div>
+            <p class="partners-intro">Creative collaborators and organizations we are proud to work with.</p>
+            <div class="partners-grid">
+                <div class="partner-card">
+                    <img src="images/KBK-Nobg.png" alt="KBK partner logo" class="partner-logo" loading="lazy" decoding="async">
+                </div>
+            </div>
         </div>
     </section>
 
@@ -4807,6 +4879,7 @@ body.night-mode .skill-tag {
                         <li><a href="#home">Home</a></li>
                         <li><a href="#process">Work Process</a></li>
                         <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#partners">Partners</a></li>
                         <li><a href="#about">About Us</a></li>
                         <li><a href="#blog">Blog</a></li>
                         <!-- Add these two links -->
