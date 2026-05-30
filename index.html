@@ -3862,15 +3862,40 @@ body.night-mode .gallery {
     margin-top: 12px;
 }
 
+.team-modal-content {
+    padding: clamp(28px, 4vw, 44px);
+}
+
+.team-members {
+    gap: 28px;
+}
+
+.team-modal .team-member {
+    gap: 28px;
+    padding: 22px;
+    align-items: flex-start;
+}
+
+.team-modal .member-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.team-modal .member-role {
+    margin-bottom: 18px;
+}
+
 .team-modal .member-bio {
     margin-top: 0;
-    margin-bottom: 0 !important;
+    margin-bottom: 10px !important;
+    line-height: 1.55;
 }
 
 .team-modal .member-skills {
-    margin-top: -12px !important;
+    margin-top: 0 !important;
     align-items: center;
-    transform: translateY(-4px);
+    transform: none;
+    gap: 10px;
 }
 
 .team-member {
@@ -4219,6 +4244,19 @@ body.night-mode .skill-tag {
 
     .member-skills {
         justify-content: center;
+    }
+
+    .team-modal .team-member {
+        gap: 18px;
+        padding: 20px;
+    }
+
+    .team-modal .member-role {
+        margin-bottom: 14px;
+    }
+
+    .team-modal .member-bio {
+        margin-bottom: 12px !important;
     }
 
     .modal-header {
