@@ -4346,6 +4346,140 @@ body.night-mode .skill-tag {
     }
 }
 
+/* Google-like interaction polish */
+:root {
+    --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+    --ease-emphasized: cubic-bezier(0.2, 0, 0, 1);
+    --motion-fast: 160ms;
+    --motion-medium: 280ms;
+    --focus-ring: 0 0 0 4px rgba(124, 58, 237, 0.16);
+}
+
+:where(a, button, input, select, textarea, .cta-button, .nav-links a, .step, .partner-card, .video-item, .blog-card, .gallery-item, .contact-detail, .team-member, .modal-card, .team-modal-content) {
+    transition-duration: var(--motion-medium);
+    transition-property: background-color, border-color, box-shadow, color, filter, opacity, transform;
+    transition-timing-function: var(--ease-standard);
+}
+
+:where(a, button, input, select, textarea, .cta-button):focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+}
+
+.nav-links a.is-active {
+    background: rgba(124, 58, 237, 0.11);
+    color: var(--primary);
+}
+
+body.night-mode .nav-links a.is-active {
+    background: transparent !important;
+    color: #5eead4;
+    box-shadow: inset 0 -2px 0 #5eead4;
+}
+
+.cta-button,
+#zcWebOptin,
+.nav-links li:last-child a {
+    transform-origin: center;
+}
+
+.cta-button:active,
+#zcWebOptin:active,
+.nav-links li:last-child a:active {
+    transform: scale(0.98);
+}
+
+.step,
+.partner-card,
+.video-item,
+.blog-card,
+.gallery-item,
+.contact-detail,
+.team-member {
+    position: relative;
+    isolation: isolate;
+}
+
+.step::after,
+.partner-card::after,
+.video-item::after,
+.blog-card::after,
+.gallery-item::after,
+.contact-detail::after,
+.team-member::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0;
+    pointer-events: none;
+    background: radial-gradient(circle at var(--mx, 50%) var(--my, 0%), rgba(124, 58, 237, 0.12), transparent 38%);
+    transition: opacity var(--motion-medium) var(--ease-standard);
+}
+
+body.night-mode .step::after,
+body.night-mode .partner-card::after,
+body.night-mode .video-item::after,
+body.night-mode .blog-card::after,
+body.night-mode .gallery-item::after,
+body.night-mode .contact-detail::after,
+body.night-mode .team-member::after {
+    background: radial-gradient(circle at var(--mx, 50%) var(--my, 0%), rgba(20, 184, 166, 0.14), transparent 42%);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .step:hover::after,
+    .partner-card:hover::after,
+    .video-item:hover::after,
+    .blog-card:hover::after,
+    .gallery-item:hover::after,
+    .contact-detail:hover::after,
+    .team-member:hover::after {
+        opacity: 1;
+    }
+
+    .step:hover,
+    .partner-card:hover,
+    .video-item:hover,
+    .blog-card:hover,
+    .gallery-item:hover,
+    .contact-detail:hover,
+    .team-member:hover {
+        transform: translateY(-6px);
+    }
+}
+
+.motion-ready .motion-reveal {
+    opacity: 0;
+    filter: blur(6px);
+    transform: translateY(22px) scale(0.985);
+}
+
+.motion-ready .motion-reveal.visible {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0) scale(1);
+    transition-delay: var(--stagger, 0ms);
+}
+
+.modal.active .modal-card,
+.blog-modal.active .blog-article,
+.team-modal.active .team-modal-content,
+.legal-modal.active .legal-modal-content {
+    animation: materialModalIn 320ms var(--ease-emphasized) both;
+}
+
+@keyframes materialModalIn {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -5990,6 +6124,110 @@ document.getElementById('zcampaignOptinForm').addEventListener('submit', functio
             clearInterval(checkInterval);
         }
     }, 500);
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.body.classList.add('motion-ready');
+
+    const revealItems = Array.from(document.querySelectorAll([
+        '.step',
+        '.partner-card',
+        '.video-item',
+        '.blog-card',
+        '.about-text',
+        '.about-image',
+        '.contact-info',
+        '.contact-form',
+        '.gallery-item'
+    ].join(',')));
+
+    revealItems.forEach(function(item, index) {
+        item.classList.add('motion-reveal');
+        item.style.setProperty('--stagger', Math.min(index % 6, 5) * 45 + 'ms');
+    });
+
+    if ('IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(function(entry) {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            });
+        }, {
+            threshold: 0.16,
+            rootMargin: '0px 0px -8% 0px'
+        });
+
+        revealItems.forEach(function(item) {
+            revealObserver.observe(item);
+        });
+    } else {
+        revealItems.forEach(function(item) {
+            item.classList.add('visible');
+        });
+    }
+
+    const hoverItems = Array.from(document.querySelectorAll([
+        '.step',
+        '.partner-card',
+        '.video-item',
+        '.blog-card',
+        '.gallery-item',
+        '.contact-detail',
+        '.team-member'
+    ].join(',')));
+
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        hoverItems.forEach(function(item) {
+            item.addEventListener('pointermove', function(event) {
+                const rect = item.getBoundingClientRect();
+                item.style.setProperty('--mx', (event.clientX - rect.left) + 'px');
+                item.style.setProperty('--my', (event.clientY - rect.top) + 'px');
+            });
+
+            item.addEventListener('pointerleave', function() {
+                item.style.removeProperty('--mx');
+                item.style.removeProperty('--my');
+            });
+        });
+    }
+
+    const navLinks = Array.from(document.querySelectorAll('.navbar .nav-links a[href^="#"]:not([href="#"])'));
+    const navSections = navLinks
+        .map(function(link) {
+            return {
+                link: link,
+                section: document.querySelector(link.getAttribute('href'))
+            };
+        })
+        .filter(function(item) {
+            return item.section;
+        });
+
+    function setActiveNav(id) {
+        navSections.forEach(function(item) {
+            item.link.classList.toggle('is-active', item.section.id === id);
+        });
+    }
+
+    if ('IntersectionObserver' in window && navSections.length) {
+        const navObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    setActiveNav(entry.target.id);
+                }
+            });
+        }, {
+            rootMargin: '-35% 0px -55% 0px',
+            threshold: 0
+        });
+
+        navSections.forEach(function(item) {
+            navObserver.observe(item.section);
+        });
+    }
 });
 </script>
 
