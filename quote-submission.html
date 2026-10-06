@@ -6,7 +6,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Method 1: Check referrer
     const referrer = document.referrer;
-    const allowedOrigins = ['https://boomis.site', 'https://www.boomis.site'];
+    const allowedOrigins = ['https://boomistudio.com', 'https://www.boomistudio.com'];
     
     // Method 2: Check session storage
     const isFormSubmitted = sessionStorage.getItem('formSubmitted');
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         
         setTimeout(() => {
-            window.location.href = 'https://boomis.site';
+            window.location.href = 'https://boomistudio.com';
         }, 3000);
     }
 });

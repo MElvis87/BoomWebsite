@@ -6,7 +6,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Method 1: Check referrer
     const referrer = document.referrer;
-    const allowedOrigins = ['https://boomis.site', 'https://www.boomis.site'];
+    const allowedOrigins = ['https://boomistudio.com', 'https://www.boomistudio.com'];
     
     // Method 2: Check session storage
     const isFormSubmitted = sessionStorage.getItem('formSubmitted');
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         
         setTimeout(() => {
-            window.location.href = 'https://boomis.site';
+            window.location.href = 'https://boomistudio.com';
         }, 3000);
     }
 });
@@ -549,10 +549,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
                 
                 <div class="action-buttons">
-                    <a href="https://boomis.site" class="cta-button primary" id="home-btn">
+                    <a href="https://boomistudio.com" class="cta-button primary" id="home-btn">
                         Go to Homepage
                     </a>
-                    <a href="https://boomis.site/#portfolio" class="cta-button secondary" id="portfolio-btn">
+                    <a href="https://boomistudio.com/#portfolio" class="cta-button secondary" id="portfolio-btn">
                         View Our Portfolio
                     </a>
                 </div>
@@ -608,7 +608,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             
             <div class="copyright">
-                <p>&copy; 2025 Boom Innovation Studio. All rights reserved. | <a href="https://boomis.site" style="color: var(--accent); text-decoration: none;">boomis.site</a></p>
+                <p>&copy; 2025 Boom Innovation Studio. All rights reserved. | <a href="https://boomistudio.com" style="color: var(--accent); text-decoration: none;">boomistudio.com</a></p>
             </div>
         </div>
     </footer>
@@ -627,7 +627,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (countdown <= 0) {
                 clearInterval(countdownInterval);
-                window.location.href = 'https://boomis.site';
+                window.location.href = 'https://boomistudio.com';
             }
         }, 1000);
         
