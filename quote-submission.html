@@ -469,6 +469,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 font-size: 1rem;
             }
         }
+
+        /* ===== Animated moving gradient background (added) ===== */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background: linear-gradient(120deg, #b9b3ff, #ff9fb8, #8eeaf2, #a79dff, #ffc99a, #b9b3ff);
+            background-size: 400% 400%;
+            animation: boomGradientShift 10s ease-in-out infinite;
+        }
+
+        @keyframes boomGradientShift {
+            0%   { background-position: 0% 0%; }
+            25%  { background-position: 100% 30%; }
+            50%  { background-position: 100% 100%; }
+            75%  { background-position: 0% 70%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            body::before { animation: none; }
+        }
     </style>
 </head>
 <body>
