@@ -4835,25 +4835,33 @@ body.night-mode .process-steps .step-icon {
             filter: blur(6px);
         }
 
-        .hero #hero-canvas {
+        .hero .hero-stage-view {
             position: absolute;
             inset: 0;
             width: 100%;
             height: 100%;
             display: block;
+            background: transparent;
+            --poster-color: transparent;
             cursor: grab;
             border-radius: 12px;
-            touch-action: pan-y; /* vertical swipes still scroll the page on phones */
             -webkit-tap-highlight-color: transparent;
+            transition: opacity 0.28s ease, transform 0.28s ease;
         }
 
-        .hero #hero-canvas:active {
+        .hero .hero-stage-view:active {
             cursor: grabbing;
         }
 
-        .hero #hero-canvas:focus-visible {
+        .hero .hero-stage-view:focus-visible {
             outline: 3px solid rgba(255, 255, 255, 0.85);
             outline-offset: -3px;
+        }
+
+        /* Fade and shrink slightly while the model is swapped (day / night) */
+        .hero .hero-stage.is-swapping .hero-stage-view {
+            opacity: 0;
+            transform: scale(0.92);
         }
 
         .hero .hero-stage-hint {
@@ -5034,8 +5042,25 @@ body.night-mode .process-steps .step-icon {
 
                 <!-- Interactive 3D model (see the module script at the bottom of the page) -->
                 <div class="hero-stage" id="hero-stage">
-                    <canvas id="hero-canvas" tabindex="0"
-                            aria-label="Interactive 3D monkey model. Drag, or use the arrow keys, to rotate it."></canvas>
+                    <model-viewer id="hero-viewer" class="hero-stage-view"
+                        alt="Interactive 3D model. Drag, or use the arrow keys, to rotate it."
+                        camera-controls
+                        disable-zoom
+                        disable-pan
+                        touch-action="pan-y"
+                        auto-rotate
+                        auto-rotate-delay="2000"
+                        rotation-per-second="26deg"
+                        interaction-prompt="none"
+                        camera-orbit="-200deg 78deg auto"
+                        min-camera-orbit="auto 54deg auto"
+                        max-camera-orbit="auto 122deg auto"
+                        interpolation-decay="70"
+                        environment-image="neutral"
+                        shadow-intensity="0"
+                        exposure="1.05">
+                        <div slot="progress-bar"></div>
+                    </model-viewer>
                     <div class="hero-stage-loader" aria-hidden="true"></div>
                     <div class="hero-stage-hint" aria-hidden="true">
                         <i class="fas fa-arrows-left-right"></i> Drag to rotate
@@ -6730,252 +6755,106 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 
-<!-- Hero 3D model: Three.js (pinned) + Draco decoder, loaded from jsDelivr -->
+<!-- Hero 3D model: Google <model-viewer> (pinned version) -->
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 <script>
-// Failsafe: if Three.js can't load (offline, CDN blocked), restore the plain hero instead of leaving a gap.
-setTimeout(function () {
-    var s = document.getElementById('hero-stage');
-    if (s && !s.classList.contains('is-ready')) {
-        document.getElementById('home').classList.add('hero-3d-failed');
+(function () {
+    // Which model shows in which mode (paths are relative to index.html)
+    var MODELS = {
+        day:   '3dmodels/HeroMonkey.glb',
+        night: '3dmodels/Teapot.glb'
+    };
+
+    var hero   = document.getElementById('home');
+    var stage  = document.getElementById('hero-stage');
+    var viewer = document.getElementById('hero-viewer');
+    if (!hero || !stage || !viewer) return;
+
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var firstLoad = true;
+    var swapToken = 0;
+    var rotateTimer = null;
+
+    function giveUp(reason) {
+        console.warn('[Hero 3D] Falling back to the plain hero:', reason);
+        hero.classList.add('hero-3d-failed');
     }
-}, 12000);
-</script>
-<script type="importmap">
-{
-  "imports": {
-    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
-    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
-  }
-}
-</script>
-<script type="module">
-import * as THREE from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
-const MODEL_URL = '3dmodels/HeroMonkey.glb';
-const DRACO_PATH = 'https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/libs/draco/gltf/';
+    // Failsafe: if the model-viewer library itself never loads (offline, script blocked),
+    // restore the plain hero. A slow model download is fine: errors are handled below.
+    setTimeout(function () {
+        if (!window.customElements.get('model-viewer')) giveUp('model-viewer library did not load');
+    }, 10000);
 
-const hero   = document.getElementById('home');
-const stage  = document.getElementById('hero-stage');
-const canvas = document.getElementById('hero-canvas');
+    function isNight() { return document.body.classList.contains('night-mode'); }
 
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function showModel() {
+        var url = MODELS[isNight() ? 'night' : 'day'];
+        viewer.exposure = isNight() ? 0.85 : 1.05;
+        if (viewer.getAttribute('src') === url) return;
 
-function giveUp(reason) {
-    console.warn('[Hero 3D] Falling back to the plain hero:', reason);
-    hero.classList.add('hero-3d-failed');
-}
+        var token = ++swapToken;
+        if (firstLoad) {
+            stage.classList.add('is-loading');
+            viewer.setAttribute('src', url);
+            return;
+        }
+        stage.classList.add('is-swapping');           // fade the old model out...
+        setTimeout(function () {
+            if (token === swapToken) viewer.setAttribute('src', url); // ...then load the new one
+        }, 280);
+    }
 
-function init() {
-    if (!stage || !canvas) return;
-
-    // ---------- Renderer ----------
-    let renderer;
-    try {
-        renderer = new THREE.WebGLRenderer({
-            canvas,
-            antialias: true,
-            alpha: true,
-            powerPreference: 'high-performance'
+    // Spin the model into place whenever one finishes loading
+    function spinIn() {
+        clearTimeout(rotateTimer);
+        if (reduceMotion) {
+            viewer.removeAttribute('auto-rotate');
+            viewer.cameraOrbit = '25deg 78deg auto';
+            viewer.jumpCameraToGoal();
+            return;
+        }
+        viewer.autoRotate = false;
+        viewer.cameraOrbit = '-200deg 78deg auto';
+        viewer.jumpCameraToGoal();
+        requestAnimationFrame(function () {
+            viewer.cameraOrbit = '25deg 78deg auto';
         });
-    } catch (err) {
-        giveUp(err);
-        return;
+        rotateTimer = setTimeout(function () { viewer.autoRotate = true; }, 1400);
     }
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-    renderer.setClearColor(0x000000, 0);
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.05;
 
-    // ---------- Scene, lights ----------
-    const scene = new THREE.Scene();
+    viewer.addEventListener('load', function () {
+        stage.classList.remove('is-loading', 'is-swapping');
+        stage.classList.add('is-ready');
+        spinIn();
 
-    const pmrem = new THREE.PMREMGenerator(renderer);
-    scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
-    pmrem.dispose();
-
-    const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
-    scene.add(camera);
-
-    // Lights ride on the camera so the lighting stays flattering while the model turns.
-    const key  = new THREE.DirectionalLight(0xffffff, 2.2);
-    key.position.set(2.5, 3, 3);
-    const rim  = new THREE.DirectionalLight(0xff7a6b, 2.4);   // coral rim, brand secondary
-    rim.position.set(-4, 2, -8);
-    const rim2 = new THREE.DirectionalLight(0x36d1dc, 1.6);   // teal rim, brand accent
-    rim2.position.set(4, 1, -8);
-    camera.add(key, rim, rim2);
-
-    // ---------- Controls ----------
-    const controls = new OrbitControls(camera, canvas);
-    controls.enableZoom = false;       // never hijack page scrolling
-    controls.enablePan = false;
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.07;
-    controls.rotateSpeed = 0.9;
-    controls.autoRotate = !reduceMotion;
-    controls.autoRotateSpeed = 1.8;
-    controls.minPolarAngle = Math.PI * 0.30;
-    controls.maxPolarAngle = Math.PI * 0.68;
-    canvas.style.touchAction = 'pan-y'; // OrbitControls sets 'none'; keep vertical page scroll on touch
-
-    let resumeTimer = null;
-    controls.addEventListener('start', () => {
-        stage.classList.add('has-interacted');
-        controls.autoRotate = false;
-        clearTimeout(resumeTimer);
-    });
-    controls.addEventListener('end', () => {
-        if (reduceMotion) return;
-        clearTimeout(resumeTimer);
-        resumeTimer = setTimeout(() => { controls.autoRotate = true; }, 2000);
+        if (firstLoad) {
+            firstLoad = false;
+            // Warm the cache with the other model so the day/night swap is instant
+            var other = MODELS[isNight() ? 'day' : 'night'];
+            setTimeout(function () { fetch(other).catch(function () {}); }, 1500);
+        }
     });
 
-    // Keyboard: arrow keys rotate when the canvas is focused
-    canvas.addEventListener('keydown', (e) => {
-        const step = 0.22;
-        const sph = new THREE.Spherical().setFromVector3(camera.position.clone().sub(controls.target));
-        if (e.key === 'ArrowLeft')  sph.theta -= step;
-        else if (e.key === 'ArrowRight') sph.theta += step;
-        else if (e.key === 'ArrowUp')    sph.phi -= step;
-        else if (e.key === 'ArrowDown')  sph.phi += step;
-        else return;
-        e.preventDefault();
-        sph.phi = THREE.MathUtils.clamp(sph.phi, controls.minPolarAngle, controls.maxPolarAngle);
-        camera.position.setFromSpherical(sph).add(controls.target);
-        stage.classList.add('has-interacted');
-        controls.autoRotate = false;
-        controls.update();
+    viewer.addEventListener('error', function (e) {
+        giveUp(e && e.detail ? e.detail : 'model failed to load');
     });
 
-    // ---------- Sizing / framing ----------
-    let fitRadius = 1;
-    function fitDistance() {
-        const vFov = THREE.MathUtils.degToRad(camera.fov);
-        const hFov = 2 * Math.atan(Math.tan(vFov / 2) * camera.aspect);
-        const fov = Math.min(vFov, hFov);
-        return (fitRadius / Math.sin(fov / 2)) * 1.06;
-    }
-    function resize() {
-        const w = stage.clientWidth;
-        const h = stage.clientHeight;
-        if (!w || !h) return;
-        renderer.setSize(w, h, false);
-        camera.aspect = w / h;
-        camera.updateProjectionMatrix();
-        camera.position.setLength(fitDistance());
-        controls.update();
-    }
-
-    // Start slightly off-axis and a little above, so it looks 3D straight away
-    camera.position.set(Math.sin(0.5), 0.14, Math.cos(0.5)).multiplyScalar(5);
-    new ResizeObserver(resize).observe(stage);
-
-    // ---------- Day / night ----------
-    function applyTheme() {
-        const night = document.body.classList.contains('night-mode');
-        scene.environmentIntensity = night ? 0.5 : 0.85;
-        key.intensity = night ? 1.7 : 2.2;
-    }
-    applyTheme();
-    new MutationObserver(applyTheme).observe(document.body, { attributes: true, attributeFilter: ['class'] });
-
-    // ---------- Load model ----------
-    const pivot = new THREE.Group();
-    scene.add(pivot);
-    let introStart = null;
-
-    const draco = new DRACOLoader();
-    draco.setDecoderPath(DRACO_PATH);
-    const loader = new GLTFLoader();
-    loader.setDRACOLoader(draco);
-
-    stage.classList.add('is-loading');
-
-    loader.load(
-        MODEL_URL,
-        (gltf) => {
-            const model = gltf.scene;
-
-            // Centre the model on the pivot so it spins around its own middle
-            const box = new THREE.Box3().setFromObject(model);
-            const center = box.getCenter(new THREE.Vector3());
-            model.position.sub(center);
-            model.updateMatrixWorld(true);
-
-            // Exact bounding radius from the vertices, so the framing is tight
-            let radius = 0;
-            const v = new THREE.Vector3();
-            const maxAniso = Math.min(renderer.capabilities.getMaxAnisotropy(), 8);
-            model.traverse((o) => {
-                if (!o.isMesh) return;
-                const pos = o.geometry.attributes.position;
-                for (let i = 0; i < pos.count; i++) {
-                    v.fromBufferAttribute(pos, i).applyMatrix4(o.matrixWorld);
-                    radius = Math.max(radius, v.length());
-                }
-                const mats = Array.isArray(o.material) ? o.material : [o.material];
-                mats.forEach((m) => {
-                    ['map', 'normalMap', 'roughnessMap', 'metalnessMap', 'emissiveMap', 'aoMap'].forEach((k) => {
-                        if (m[k]) m[k].anisotropy = maxAniso;
-                    });
-                });
-            });
-            fitRadius = radius || 1;
-
-            pivot.add(model);
-            resize();
-
-            stage.classList.remove('is-loading');
-            stage.classList.add('is-ready');
-            introStart = reduceMotion ? null : performance.now();
-            if (introStart === null) { pivot.scale.setScalar(1); }
-        },
-        undefined,
-        (err) => giveUp(err)
-    );
-
-    // Intro: one spin-and-settle when the model appears
-    function intro(now) {
-        if (introStart === null) return;
-        const t = Math.min((now - introStart) / 1500, 1);
-        const e = 1 - Math.pow(1 - t, 3);
-        pivot.rotation.y = (1 - e) * -Math.PI * 1.5;
-        pivot.scale.setScalar(0.7 + 0.3 * e);
-        if (t === 1) introStart = null;
-    }
-    pivot.scale.setScalar(reduceMotion ? 1 : 0.7);
-
-    // ---------- Render loop (only while visible) ----------
-    let inView = true;
-    let tabVisible = !document.hidden;
-
-    function tick(now) {
-        intro(now);
-        controls.update();
-        renderer.render(scene, camera);
-    }
-    function syncLoop() {
-        renderer.setAnimationLoop(inView && tabVisible ? tick : null);
-    }
-    new IntersectionObserver((entries) => {
-        inView = entries[0].isIntersecting;
-        syncLoop();
-    }, { threshold: 0 }).observe(stage);
-    document.addEventListener('visibilitychange', () => {
-        tabVisible = !document.hidden;
-        syncLoop();
+    // Hide the "Drag to rotate" hint once the visitor touches the model
+    viewer.addEventListener('camera-change', function (e) {
+        if (e.detail && e.detail.source === 'user-interaction') {
+            stage.classList.add('has-interacted');
+        }
     });
-    syncLoop();
 
-    // Recover if the GPU context is lost
-    canvas.addEventListener('webglcontextlost', (e) => { e.preventDefault(); giveUp('WebGL context lost'); });
-}
+    // Follow the site's day/night toggle
+    new MutationObserver(showModel).observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class']
+    });
 
-init();
+    showModel();
+})();
 </script>
 
 </body>
