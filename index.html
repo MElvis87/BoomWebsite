@@ -4753,6 +4753,226 @@ body.night-mode .process-steps .step-icon {
         @media (prefers-reduced-motion: reduce) {
             body::before, body.night-mode::before { animation: none; }
         }
+
+        /* ==========================================================
+           HERO: two-column layout with interactive 3D model
+           ========================================================== */
+        .hero .hero-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+            align-items: center;
+            gap: clamp(24px, 4vw, 64px);
+            width: 100%;
+        }
+
+        .hero .hero-layout .hero-content {
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        /* The studio-name chip repeated the logo in the navbar */
+        .hero .hero-layout .hero-content::before {
+            display: none;
+        }
+
+        .hero .hero-layout .hero-content h1 {
+            max-width: 11em;
+            margin: 0 0 22px;
+            font-size: clamp(2.5rem, 4.7vw, 4.6rem);
+            line-height: 1.02;
+            text-align: left;
+            width: auto;
+        }
+
+        .hero .hero-layout .hero-content p {
+            max-width: 30rem;
+            margin: 0 0 32px;
+            text-align: left;
+            width: auto;
+        }
+
+        /* 3D stage */
+        .hero .hero-stage {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            min-height: 320px;
+            max-height: min(600px, 72vh);
+            isolation: isolate;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .hero .hero-stage.is-ready,
+        .hero .hero-stage.is-loading {
+            opacity: 1;
+        }
+
+        /* Soft brand-colour glow behind the model */
+        .hero .hero-stage::before {
+            content: "";
+            position: absolute;
+            inset: 6%;
+            z-index: -1;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle at 35% 30%, rgba(249, 115, 99, 0.55), transparent 55%),
+                radial-gradient(circle at 70% 75%, rgba(124, 58, 237, 0.55), transparent 60%);
+            filter: blur(38px);
+        }
+
+        /* Contact shadow under the model */
+        .hero .hero-stage::after {
+            content: "";
+            position: absolute;
+            left: 22%;
+            right: 22%;
+            bottom: 9%;
+            height: 5%;
+            z-index: -1;
+            border-radius: 50%;
+            background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.45), transparent 70%);
+            filter: blur(6px);
+        }
+
+        .hero #hero-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            cursor: grab;
+            border-radius: 12px;
+            touch-action: pan-y; /* vertical swipes still scroll the page on phones */
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .hero #hero-canvas:active {
+            cursor: grabbing;
+        }
+
+        .hero #hero-canvas:focus-visible {
+            outline: 3px solid rgba(255, 255, 255, 0.85);
+            outline-offset: -3px;
+        }
+
+        .hero .hero-stage-hint {
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .hero .hero-stage.is-ready .hero-stage-hint {
+            opacity: 1;
+            transition-delay: 1.4s;
+        }
+
+        .hero .hero-stage.has-interacted .hero-stage-hint {
+            opacity: 0;
+            transition-delay: 0s;
+        }
+
+        .hero .hero-stage-loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 44px;
+            height: 44px;
+            margin: -22px 0 0 -22px;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.25);
+            border-top-color: #fff;
+            animation: heroStageSpin 0.8s linear infinite;
+            pointer-events: none;
+        }
+
+        .hero .hero-stage.is-ready .hero-stage-loader {
+            display: none;
+        }
+
+        @keyframes heroStageSpin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* If WebGL or the model fails, fall back to the original centred hero */
+        .hero.hero-3d-failed .hero-stage {
+            display: none;
+        }
+
+        .hero.hero-3d-failed .hero-layout {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .hero.hero-3d-failed .hero-layout .hero-content {
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero.hero-3d-failed .hero-layout .hero-content h1,
+        .hero.hero-3d-failed .hero-layout .hero-content p {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .hero.hero-3d-failed .hero-layout .hero-content h1 {
+            max-width: 900px;
+            font-size: clamp(2.65rem, 7vw, 6.25rem);
+        }
+
+        /* Tablet and phone: model on top, text centred below */
+        @media (max-width: 900px) {
+            .hero {
+                padding-top: 116px;
+                padding-bottom: 84px;
+            }
+
+            .hero .hero-layout {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 20px;
+            }
+
+            .hero .hero-stage {
+                order: -1;
+                width: min(100%, 420px);
+                max-height: 46vh;
+                min-height: 260px;
+                margin: 0 auto;
+            }
+
+            .hero .hero-layout .hero-content {
+                align-items: center;
+                text-align: center;
+            }
+
+            .hero .hero-layout .hero-content h1,
+            .hero .hero-layout .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;
+            }
+
+            .hero .hero-layout .hero-content h1 {
+                font-size: clamp(2.3rem, 9.5vw, 3.6rem);
+            }
+        }
     </style>
 </head>
 <body>
@@ -4801,14 +5021,26 @@ body.night-mode .process-steps .step-icon {
             <div class="shape"></div>
         </div>
         <div class="container">
-            <div class="hero-content">
-                <h1>Bringing Ideas to Life with Animation.</h1>
-                <p>We create captivating animation that tell your brand's story and engage your audience like never before.</p>
-                <!-- Hero Section CTA Button -->
-<a href="#portfolio" class="cta-button hero-cta">
-    View Our Work
-    <span class="ripple"></span>
-</a>
+            <div class="hero-layout">
+                <div class="hero-content">
+                    <h1>Bringing Ideas to Life with Animation.</h1>
+                    <p>We create captivating animation that tell your brand's story and engage your audience like never before.</p>
+                    <!-- Hero Section CTA Button -->
+                    <a href="#portfolio" class="cta-button hero-cta">
+                        View Our Work
+                        <span class="ripple"></span>
+                    </a>
+                </div>
+
+                <!-- Interactive 3D model (see the module script at the bottom of the page) -->
+                <div class="hero-stage" id="hero-stage">
+                    <canvas id="hero-canvas" tabindex="0"
+                            aria-label="Interactive 3D monkey model. Drag, or use the arrow keys, to rotate it."></canvas>
+                    <div class="hero-stage-loader" aria-hidden="true"></div>
+                    <div class="hero-stage-hint" aria-hidden="true">
+                        <i class="fas fa-arrows-left-right"></i> Drag to rotate
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -6495,6 +6727,255 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+</script>
+
+
+<!-- Hero 3D model: Three.js (pinned) + Draco decoder, loaded from jsDelivr -->
+<script>
+// Failsafe: if Three.js can't load (offline, CDN blocked), restore the plain hero instead of leaving a gap.
+setTimeout(function () {
+    var s = document.getElementById('hero-stage');
+    if (s && !s.classList.contains('is-ready')) {
+        document.getElementById('home').classList.add('hero-3d-failed');
+    }
+}, 12000);
+</script>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+const MODEL_URL = '3dmodels/HeroMonkey.glb';
+const DRACO_PATH = 'https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/libs/draco/gltf/';
+
+const hero   = document.getElementById('home');
+const stage  = document.getElementById('hero-stage');
+const canvas = document.getElementById('hero-canvas');
+
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function giveUp(reason) {
+    console.warn('[Hero 3D] Falling back to the plain hero:', reason);
+    hero.classList.add('hero-3d-failed');
+}
+
+function init() {
+    if (!stage || !canvas) return;
+
+    // ---------- Renderer ----------
+    let renderer;
+    try {
+        renderer = new THREE.WebGLRenderer({
+            canvas,
+            antialias: true,
+            alpha: true,
+            powerPreference: 'high-performance'
+        });
+    } catch (err) {
+        giveUp(err);
+        return;
+    }
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setClearColor(0x000000, 0);
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.05;
+
+    // ---------- Scene, lights ----------
+    const scene = new THREE.Scene();
+
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+    pmrem.dispose();
+
+    const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
+    scene.add(camera);
+
+    // Lights ride on the camera so the lighting stays flattering while the model turns.
+    const key  = new THREE.DirectionalLight(0xffffff, 2.2);
+    key.position.set(2.5, 3, 3);
+    const rim  = new THREE.DirectionalLight(0xff7a6b, 2.4);   // coral rim, brand secondary
+    rim.position.set(-4, 2, -8);
+    const rim2 = new THREE.DirectionalLight(0x36d1dc, 1.6);   // teal rim, brand accent
+    rim2.position.set(4, 1, -8);
+    camera.add(key, rim, rim2);
+
+    // ---------- Controls ----------
+    const controls = new OrbitControls(camera, canvas);
+    controls.enableZoom = false;       // never hijack page scrolling
+    controls.enablePan = false;
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.07;
+    controls.rotateSpeed = 0.9;
+    controls.autoRotate = !reduceMotion;
+    controls.autoRotateSpeed = 1.8;
+    controls.minPolarAngle = Math.PI * 0.30;
+    controls.maxPolarAngle = Math.PI * 0.68;
+    canvas.style.touchAction = 'pan-y'; // OrbitControls sets 'none'; keep vertical page scroll on touch
+
+    let resumeTimer = null;
+    controls.addEventListener('start', () => {
+        stage.classList.add('has-interacted');
+        controls.autoRotate = false;
+        clearTimeout(resumeTimer);
+    });
+    controls.addEventListener('end', () => {
+        if (reduceMotion) return;
+        clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(() => { controls.autoRotate = true; }, 2000);
+    });
+
+    // Keyboard: arrow keys rotate when the canvas is focused
+    canvas.addEventListener('keydown', (e) => {
+        const step = 0.22;
+        const sph = new THREE.Spherical().setFromVector3(camera.position.clone().sub(controls.target));
+        if (e.key === 'ArrowLeft')  sph.theta -= step;
+        else if (e.key === 'ArrowRight') sph.theta += step;
+        else if (e.key === 'ArrowUp')    sph.phi -= step;
+        else if (e.key === 'ArrowDown')  sph.phi += step;
+        else return;
+        e.preventDefault();
+        sph.phi = THREE.MathUtils.clamp(sph.phi, controls.minPolarAngle, controls.maxPolarAngle);
+        camera.position.setFromSpherical(sph).add(controls.target);
+        stage.classList.add('has-interacted');
+        controls.autoRotate = false;
+        controls.update();
+    });
+
+    // ---------- Sizing / framing ----------
+    let fitRadius = 1;
+    function fitDistance() {
+        const vFov = THREE.MathUtils.degToRad(camera.fov);
+        const hFov = 2 * Math.atan(Math.tan(vFov / 2) * camera.aspect);
+        const fov = Math.min(vFov, hFov);
+        return (fitRadius / Math.sin(fov / 2)) * 1.06;
+    }
+    function resize() {
+        const w = stage.clientWidth;
+        const h = stage.clientHeight;
+        if (!w || !h) return;
+        renderer.setSize(w, h, false);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        camera.position.setLength(fitDistance());
+        controls.update();
+    }
+
+    // Start slightly off-axis and a little above, so it looks 3D straight away
+    camera.position.set(Math.sin(0.5), 0.14, Math.cos(0.5)).multiplyScalar(5);
+    new ResizeObserver(resize).observe(stage);
+
+    // ---------- Day / night ----------
+    function applyTheme() {
+        const night = document.body.classList.contains('night-mode');
+        scene.environmentIntensity = night ? 0.5 : 0.85;
+        key.intensity = night ? 1.7 : 2.2;
+    }
+    applyTheme();
+    new MutationObserver(applyTheme).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+    // ---------- Load model ----------
+    const pivot = new THREE.Group();
+    scene.add(pivot);
+    let introStart = null;
+
+    const draco = new DRACOLoader();
+    draco.setDecoderPath(DRACO_PATH);
+    const loader = new GLTFLoader();
+    loader.setDRACOLoader(draco);
+
+    stage.classList.add('is-loading');
+
+    loader.load(
+        MODEL_URL,
+        (gltf) => {
+            const model = gltf.scene;
+
+            // Centre the model on the pivot so it spins around its own middle
+            const box = new THREE.Box3().setFromObject(model);
+            const center = box.getCenter(new THREE.Vector3());
+            model.position.sub(center);
+            model.updateMatrixWorld(true);
+
+            // Exact bounding radius from the vertices, so the framing is tight
+            let radius = 0;
+            const v = new THREE.Vector3();
+            const maxAniso = Math.min(renderer.capabilities.getMaxAnisotropy(), 8);
+            model.traverse((o) => {
+                if (!o.isMesh) return;
+                const pos = o.geometry.attributes.position;
+                for (let i = 0; i < pos.count; i++) {
+                    v.fromBufferAttribute(pos, i).applyMatrix4(o.matrixWorld);
+                    radius = Math.max(radius, v.length());
+                }
+                const mats = Array.isArray(o.material) ? o.material : [o.material];
+                mats.forEach((m) => {
+                    ['map', 'normalMap', 'roughnessMap', 'metalnessMap', 'emissiveMap', 'aoMap'].forEach((k) => {
+                        if (m[k]) m[k].anisotropy = maxAniso;
+                    });
+                });
+            });
+            fitRadius = radius || 1;
+
+            pivot.add(model);
+            resize();
+
+            stage.classList.remove('is-loading');
+            stage.classList.add('is-ready');
+            introStart = reduceMotion ? null : performance.now();
+            if (introStart === null) { pivot.scale.setScalar(1); }
+        },
+        undefined,
+        (err) => giveUp(err)
+    );
+
+    // Intro: one spin-and-settle when the model appears
+    function intro(now) {
+        if (introStart === null) return;
+        const t = Math.min((now - introStart) / 1500, 1);
+        const e = 1 - Math.pow(1 - t, 3);
+        pivot.rotation.y = (1 - e) * -Math.PI * 1.5;
+        pivot.scale.setScalar(0.7 + 0.3 * e);
+        if (t === 1) introStart = null;
+    }
+    pivot.scale.setScalar(reduceMotion ? 1 : 0.7);
+
+    // ---------- Render loop (only while visible) ----------
+    let inView = true;
+    let tabVisible = !document.hidden;
+
+    function tick(now) {
+        intro(now);
+        controls.update();
+        renderer.render(scene, camera);
+    }
+    function syncLoop() {
+        renderer.setAnimationLoop(inView && tabVisible ? tick : null);
+    }
+    new IntersectionObserver((entries) => {
+        inView = entries[0].isIntersecting;
+        syncLoop();
+    }, { threshold: 0 }).observe(stage);
+    document.addEventListener('visibilitychange', () => {
+        tabVisible = !document.hidden;
+        syncLoop();
+    });
+    syncLoop();
+
+    // Recover if the GPU context is lost
+    canvas.addEventListener('webglcontextlost', (e) => { e.preventDefault(); giveUp('WebGL context lost'); });
+}
+
+init();
 </script>
 
 </body>
